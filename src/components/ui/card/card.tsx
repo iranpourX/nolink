@@ -9,7 +9,7 @@ interface ButtonProps {
 const Card: React.FC<ButtonProps> = ({children, className}) => {
 
     return (
-        <div className={`rounded-lg border border-gray-100 shadow-xs bg-white dark:bg-gray-800 ${className}`}>
+        <div className={`rounded-lg border border-gray-100 dark:border-gray-800 shadow-xs bg-white dark:bg-gray-800 ${className}`}>
 
             {children}
 

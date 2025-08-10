@@ -60,7 +60,7 @@ export default function Profile() {
                             <div className="flex justify-between items-start mb-2">
                                 <div className="flex flex-col">
                                     <div className="flex items-center mb-2">
-                                        <span className="text-gray-800 font-medium text-lg me-1">Ali Iranpour</span>
+                                        <span className="text-gray-800 dark:text-gray-100 font-medium text-lg me-1">Ali Iranpour</span>
                                         <span className={'me-2'}>
                                             <svg
                                                 className="size-5"
@@ -88,7 +88,7 @@ export default function Profile() {
                                                     <path
                                                         d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512l388.6 0c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304l-91.4 0z"/></svg>
                                             </i>
-                                            Ali
+                                            {user?.user_name}
                                         </span>
                                         <span className="flex items-baseline text-sm font-medium text-gray-400 mb-2">
                                             <i className="me-1">
@@ -123,7 +123,7 @@ export default function Profile() {
                                                               d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-9.2 9.2-11.9 22.9-6.9 34.9s16.6 19.8 29.6 19.8l96 0s0 0 0 0l128 0s0 0 0 0l96 0c12.9 0 24.6-7.8 29.6-19.8s2.2-25.7-6.9-34.9l-160-160z"/>
                                                     </svg>
                                                 </i>
-                                                <div className="text-lg font-semibold text-gray-700">
+                                                <div className="text-lg font-semibold text-gray-700 dark:text-gray-300">
                                                     $4,500
                                                 </div>
                                             </div>
