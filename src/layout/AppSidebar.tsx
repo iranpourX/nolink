@@ -1,4 +1,5 @@
-"use client";
+"use client"
+
 import React, {useCallback, useEffect, useRef, useState} from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -210,9 +211,9 @@ const AppSidebar: React.FC = () => {
     useEffect(() => {
         // Check if the current path matches any submenu item
         let submenuMatched = false
-        navItems.forEach((nav, index) => {
-            if (nav.subItems) {
-                nav.subItems.forEach((subItem) => {
+        navItems.forEach(({subItems}, index) => {
+            if (subItems) {
+                subItems.forEach((subItem) => {
                     if (isActive(subItem.path)) {
                         setOpenSubmenu({index})
                         submenuMatched = true
@@ -252,7 +253,7 @@ const AppSidebar: React.FC = () => {
         <aside
             className={cn(
                 'fixed mt-16 flex flex-col lg:mt-0 h-screen',
-                'top-0 px-5 left-0 z-9 bg-white dark:bg-gray-900',
+                'top-0 px-5 left-0 z-50 bg-white dark:bg-gray-900',
                 'dark:border-gray-800 text-gray-900 border-gray-200',
                 'transition-all duration-300 ease-in-out border-r lg:translate-x-0',
                 [isExpanded || isMobileOpen ? 'w-[290px]' : isHovered ? 'w-[290px]' : 'w-[90px]'],

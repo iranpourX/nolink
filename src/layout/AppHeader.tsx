@@ -44,18 +44,18 @@ const AppHeader: React.FC = () => {
 
     return (
         <header
-            className="sticky top-0 flex w-full bg-header z-9 dark:border-gray-800 dark:bg-gray-900">
+            className="sticky top-0 flex w-full bg-white z-99999 dark:border-gray-800 dark:bg-gray-900">
             <div className="flex flex-col items-center justify-between grow lg:flex-row lg:px-6">
                 <div
                     className="flex items-center justify-between w-full gap-2 px-3 py-3 border-b border-gray-200 dark:border-gray-800 sm:gap-4 lg:justify-normal lg:border-b-0 lg:px-0 lg:py-4">
                     <button
-                        className="p-3 text-gray-500 border-gray-200 rounded-lg z-99 dark:border-gray-800 flex lg:hidden dark:text-gray-400 border lg:border-none"
+                        className="px-3 py-2 text-gray-500 rounded-lg flex lg:hidden dark:text-gray-400"
                         onClick={handleToggle}
                         aria-label="Toggle Sidebar"
                     >
                         {isMobileOpen ? (
                             <svg
-                                className="size-5"
+                                className="size-6"
                                 xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 384 512">
                                 <path
@@ -63,7 +63,7 @@ const AppHeader: React.FC = () => {
                             </svg>
                         ) : (
                             <svg
-                                className="size-5"
+                                className="size-6"
                                 xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 448 512"
                             >
