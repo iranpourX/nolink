@@ -20,8 +20,15 @@ interface IFormInputs {
     email: string
 }
 
+interface IData {
+    "id": string
+    "phone_number": string
+    "user_name": string
+    "display_name": string
+}
+
 export default function Profile() {
-    const [user, setUser] = useState<object>()
+    const [user, setUser] = useState<IData>()
 
     useEffect(() => {
         client.get('account/profile').then(res => {
@@ -193,7 +200,6 @@ export default function Profile() {
 
     function InfoUpdate() {
         const [loading, setLoading] = useState<boolean>(false)
-
 
 
         const {
