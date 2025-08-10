@@ -2,10 +2,10 @@
 
 import React, {useEffect, useState} from 'react'
 import {Toaster, toast} from 'sonner'
-import PageBreadcrumb from '../../../components/common/PageBreadCrumb'
+import PageBreadcrumb from '@/components/common/PageBreadCrumb'
 import {faker} from "@faker-js/faker"
 import {cn} from '@/utils/helper'
-import Badge from "@/components/ui/badge/Badge";
+import Badge from "@/components/ui/badge/Badge"
 import {
     Tab,
     TabGroup,
