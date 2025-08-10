@@ -11,8 +11,8 @@ import {cn} from '@/utils/helper'
 import {ErrorMessage} from "@hookform/error-message"
 import {SubmitHandler, useForm} from "react-hook-form"
 import {toast} from "sonner";
-import axios from "axios"
 import Link from "next/link"
+import client from "@/app/lib/client";
 
 interface IFormInputs {
     display_name: string
@@ -21,17 +21,15 @@ interface IFormInputs {
 }
 
 export default function Profile() {
+    const [user, setUser] = useState(null)
 
     useEffect(() => {
 
-        axios.get('https://api.nolink.ir/account/profile', {
-            headers: {
-                'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiIwMDAwMDAwMC0wMDAwLTAwMDAtMDAwMC0wMDAwMDAwMDAwMDIiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9tb2JpbGVwaG9uZSI6IjBcdTAwMDA5XHUwMDAwMVx1MDAwMDlcdTAwMDA3XHUwMDAwNFx1MDAwMDVcdTAwMDA5XHUwMDAwOVx1MDAwMDZcdTAwMDAzXHUwMDAwIiwiQXNwTmV0LklkZW50aXR5LlNlY3VyaXR5U3RhbXAiOiI2NjgxN2FhZC1iYzM2LTRlNWMtYjQwNi0xMDIwNzUzOGQ5MTYiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zaWQiOiIxZEYxS2NQQmVxanJodW9qNTRRRjg4eFpNZ1I2RTFsSk5OdmxKVmtYQmNZPSIsInJvbGUiOiJzdXBlcmFkbWluIiwibmJmIjoxNzU0NzU5MzgxLCJleHAiOjE3NTUzNjQxODEsImlhdCI6MTc1NDc1OTM4MSwiaXNzIjoibm9saW5rLmlyIiwiYXVkIjoibm9saW5rLmlyIn0.B68RXHhxOvrugsc8eUCyo0z1AaD1tSaPI5AFdtsdEtQ'
-            },
-            withCredentials: true
-        }).then(response => {
-            console.log(response.data)
-        })
+        const res = client('account/profile')
+
+        // setUser('asdasdasd')
+
+        console.log(res)
     })
 
     function HeaderInfo() {
@@ -253,7 +251,6 @@ export default function Profile() {
 
                             </div>
                         </div>
-
                     </div>
                 </form>
 
