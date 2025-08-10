@@ -27,8 +27,6 @@ export default function Profile() {
 
         const res = client('account/profile')
 
-        // setUser('asdasdasd')
-
         console.log(res)
     })
 
