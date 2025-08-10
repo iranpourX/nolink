@@ -21,7 +21,6 @@ interface IFormInputs {
 }
 
 export default function Profile() {
-    const [user, setUser] = useState(null)
 
     useEffect(() => {
 
