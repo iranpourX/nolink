@@ -21,13 +21,16 @@ interface IFormInputs {
 }
 
 export default function Profile() {
+    const [user, setUser] = useState<object>()
 
     useEffect(() => {
+        client.get('account/profile').then(res => {
+            setUser(res.data.data)
+        })
+    }, []);
 
-        const res = client('account/profile')
+    console.log(user)
 
-        console.log(res)
-    })
 
     function HeaderInfo() {
 
@@ -191,6 +194,8 @@ export default function Profile() {
     function InfoUpdate() {
         const [loading, setLoading] = useState<boolean>(false)
 
+
+
         const {
             handleSubmit,
             register,
@@ -213,7 +218,8 @@ export default function Profile() {
                     <div className="p-9">
                         <div className="flex items-center flex-wrap mb-6">
 
-                            <label htmlFor={'full-name'} className="lg:w-4/12 text-gray-700 w-full mb-2">full name</label>
+                            <label htmlFor={'full-name'} className="lg:w-4/12 text-gray-700 w-full mb-2">full
+                                name</label>
                             <div className="lg:w-8/12 w-full">
                                 <input
                                     id={'full-name'}
@@ -229,7 +235,7 @@ export default function Profile() {
                                         },
                                         required: 'llllklkllkllklllklklklklk'
                                     })}
-                                    defaultValue={'Ali Iranpour'}
+                                    defaultValue={user?.display_name}
                                     className={cn('info-input',
                                         [
                                             errors.display_name &&

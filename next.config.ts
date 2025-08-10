@@ -2,7 +2,7 @@ import type {NextConfig} from 'next'
 
 const nextConfig: NextConfig = {
     devIndicators: false,
-    output: 'standalone',
+    reactStrictMode: false,
     webpack(config) {
         config.module.rules.push({
             test: /\.svg$/,
