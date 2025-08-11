@@ -1,10 +1,10 @@
 'use client'
 
-import React, {useState} from "react";
-import Card from "@/components/ui/card/card";
-import {cn} from "@/utils/helper";
-import Image from "next/image";
-import Link from "next/link"
+import React from 'react'
+import Card from '@/components/ui/card/card'
+import {cn} from '@/utils/helper'
+import Image from 'next/image'
+import Link from 'next/link'
 
 interface IUser {
     user: {
@@ -12,12 +12,14 @@ interface IUser {
         phone_number: string
         user_name: string
         display_name: string
+        role: {
+            display_name: string
+            name: string
+        }
     }
 }
 
-
 const HeaderInfo: React.FC<IUser> = (props) => {
-
     return (
         <Card className="mb-5 mb-xl-10">
             <div className="p-8">
@@ -27,9 +29,10 @@ const HeaderInfo: React.FC<IUser> = (props) => {
                             <Image
                                 className={'rounded-lg'}
                                 src={'/images/user/avatar.jpg'}
-                                alt={'avatar'} width={160} height={160}/>
+                                alt={'avatar'} width={160} height={160}
+                            />
                             <div
-                                className="absolute bottom-0 shadow -right-2 z-9 border-4 border-gray-50 dark:border-gray-800 bg-blue-600 rounded-full size-5"></div>
+                                className="absolute bottom-0 -right-2 z-9 border-4 border-white dark:border-gray-800 bg-blue-600 rounded-full size-5"></div>
                         </div>
                     </div>
                     <div className="grow">
@@ -67,14 +70,16 @@ const HeaderInfo: React.FC<IUser> = (props) => {
                                             </i>
                                             {props.user?.user_name}
                                         </span>
-                                    <span className="flex items-baseline text-sm font-medium text-gray-400 mb-2">
+                                    <span className="flex items-center text-sm font-medium text-gray-400 mb-2">
                                             <i className="me-1">
-                                                <svg className={'size-3.5 fill-gray-400'}
-                                                     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                                <svg
+                                                    className={'size-3.5 fill-green-400'}
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    viewBox="0 0 512 512">
                                                     <path
-                                                        d="M64 208.1L256 65.9 448 208.1l0 47.4L289.5 373c-9.7 7.2-21.4 11-33.5 11s-23.8-3.9-33.5-11L64 255.5l0-47.4zM256 0c-12.1 0-23.8 3.9-33.5 11L25.9 156.7C9.6 168.8 0 187.8 0 208.1L0 448c0 35.3 28.7 64 64 64l384 0c35.3 0 64-28.7 64-64l0-239.9c0-20.3-9.6-39.4-25.9-51.4L289.5 11C279.8 3.9 268.1 0 256 0z"/>
+                                                        d="M269.4 2.9C265.2 1 260.7 0 256 0s-9.2 1-13.4 2.9L54.3 82.8c-22 9.3-38.4 31-38.3 57.2c.5 99.2 41.3 280.7 213.6 363.2c16.7 8 36.1 8 52.8 0C454.7 420.7 495.5 239.2 496 140c.1-26.2-16.3-47.9-38.3-57.2L269.4 2.9zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/>
                                                 </svg>
-                                            </i> ali_iranpour1@hotmail.com
+                                            </i> {props.user.role.name}
                                         </span>
                                 </div>
 

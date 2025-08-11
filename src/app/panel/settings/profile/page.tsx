@@ -8,6 +8,10 @@ interface IUser {
     phone_number: string
     user_name: string
     display_name: string
+    role: {
+        display_name: string
+        name: string
+    }
 }
 
 interface IData {

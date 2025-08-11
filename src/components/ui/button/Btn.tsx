@@ -3,7 +3,7 @@ import {cn} from '@/utils/helper'
 
 interface ButtonProps {
     children: React.ReactNode
-    size?: "sm" | "md"
+    size?: 'sm' | 'md' | 'lg' | 'xl'
     variant?: "primary" | "outline"
     startIcon?: ReactNode
     endIcon?: ReactNode
@@ -26,12 +26,14 @@ const Btn: React.FC<ButtonProps> =
          form
      }) => {
         const sizeClasses = {
-            sm: "px-4 py-3 text-sm",
-            md: "px-5 py-3.5 text-sm"
+            sm: "px-3.5 py-2 text-sm",
+            md: "px-4 py-2.5 text-base",
+            lg: "px-4 py-2.5 text-lg",
+            xl: "px-5 py-3 text-xl"
         }
 
         const variantClasses = {
-            primary: "bg-blue-500 text-white shadow-xs disabled:bg-blue-300",
+            primary: "bg-blue-500 text-white shadow-xs disabled:opacity-50",
             outline: "bg-white text-gray-700 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 dark:bg-gray-800 dark:text-gray-400 dark:ring-gray-700 dark:hover:bg-white/[0.03] dark:hover:text-gray-300",
         }
 
