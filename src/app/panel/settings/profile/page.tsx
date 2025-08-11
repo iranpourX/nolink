@@ -29,21 +29,12 @@ export default function Profile() {
     const [user, setUser] = useState<IUser | null>(null)
 
     useEffect(() => {
-        async function fetchUser() {
-            try {
-                const response = await client("account/profile", {
-                    method: 'get'
-                })
-                if (response.status === 200) {
-                    setUser(response.data.data)
-                }
 
-            } catch (error) {
-                toast.error(error)
-            }
-        }
-
-        fetchUser()
+        client('account/profile', {method: 'get'})
+            .then(res => res.json())
+            .then(res => {
+                setUser(res.data)
+            })
     }, []);
 
     const HeaderInfo = () => {
