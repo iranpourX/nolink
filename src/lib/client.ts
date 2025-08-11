@@ -1,8 +1,7 @@
 import getCookie from "@/lib/auth/cookie";
 import {redirect} from "next/navigation";
-import type {RequestInit} from "undici-types";
 
-export async function client(input: string, init: RequestInit) {
+export async function client(input: string, init: any) {
     const isExpired = isTokenExpired()
 
     if (isExpired) {
@@ -47,11 +46,9 @@ function isTokenExpired() {
     }
 
     const expires = cookie.split('=')[1]
-    if (Date.now() > expires) {
-        return true
-    }
+    return Date.now() > expires
 
-    return false
+
 }
 
 export default client
