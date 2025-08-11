@@ -1,12 +1,18 @@
 'use client'
 
-import React, {useEffect, useState} from 'react'
+import React, {Suspense, useEffect, useState} from 'react'
 import PageBreadcrumb from '@/components/common/PageBreadCrumb'
-import client from "@/app/lib/client";
+import client from "@/lib/client";
 import Card from "@/components/ui/card/card";
 import Link from "next/link";
 import Image from "next/image"
 import {cn} from "@/utils/helper";
+import CardHeader from "@/components/ui/card/card-header";
+import {ErrorMessage} from "@hookform/error-message";
+import CardFooter from "@/components/ui/card/card-footer";
+import Btn from "@/components/ui/button/Btn";
+import {SubmitHandler, useForm} from "react-hook-form";
+import {toast} from "sonner";
 
 interface IUser {
     id: string
@@ -23,13 +29,22 @@ export default function Profile() {
     const [user, setUser] = useState<IUser | null>(null)
 
     useEffect(() => {
-        client.get('account/profile')
-            .then(res => {
-                setUser(res.data.data)
-            })
-    }, []);
+        async function fetchUser() {
+            try {
+                const response = await client("account/profile", {
+                    method: 'get'
+                })
+                if (response.status === 200) {
+                    setUser(response.data.data)
+                }
 
-    console.log(user)
+            } catch (error) {
+                toast.error(error)
+            }
+        }
+
+        fetchUser()
+    }, []);
 
     const HeaderInfo = () => {
 
@@ -93,7 +108,7 @@ export default function Profile() {
                                                         d="M269.4 2.9C265.2 1 260.7 0 256 0s-9.2 1-13.4 2.9L54.3 82.8c-22 9.3-38.4 31-38.3 57.2c.5 99.2 41.3 280.7 213.6 363.2c16.7 8 36.1 8 52.8 0C454.7 420.7 495.5 239.2 496 140c.1-26.2-16.3-47.9-38.3-57.2L269.4 2.9zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/>
                                                 </svg>
                                             </i>
-                                            {user?.role.name}
+                                            {user?.role?.name}
                                         </span>
                                     </div>
 
@@ -194,15 +209,126 @@ export default function Profile() {
         )
     }
 
+    const UpdateInfo = () => {
+        const [loading, setLoading] = useState<boolean>(false)
+
+        const {
+            handleSubmit,
+            register,
+            formState: {errors}
+        } = useForm<IUser>()
+
+        const onSubmitInfo: SubmitHandler<IUser> = async (value) => {
+            setLoading(true)
+            client.post('/account/update-profile', value).then(res => {
+                console.log(res.data)
+            })
+
+            setLoading(false)
+        }
+
+        return (
+            <Card>
+                <CardHeader title={`Personal Info`}/>
+
+                <form id="info-form" autoComplete={'off'} onSubmit={handleSubmit(onSubmitInfo)}>
+                    <div className="p-9">
+                        <div className="flex items-center flex-wrap mb-6">
+                            <div className={'lg:w-6/12 w-full'}>
+                                <div className="w-full">
+                                    <label htmlFor={'full-name'} className="text-gray-700 block w-full mb-2">full
+                                        name</label>
+                                    <input
+                                        id={'full-name'}
+                                        {...register('display_name', {
+                                            min: {
+                                                value: 3,
+                                                message: 'sadsdadsadasdadssdgijgsdi'
+                                            },
+                                            max: {
+                                                value: 50,
+                                                message: 'weweqeqweqeqeqweqeerwerwr'
+                                            },
+                                            required: 'llllklkllkllklllklklklklk'
+                                        })}
+                                        defaultValue={user?.display_name}
+                                        className={cn('info-input',
+                                            [
+                                                errors.display_name &&
+                                                'ring-red-500 border-red-500 focus:border-red-500 focus:ring-red-500'
+                                            ]
+                                        )}
+                                    />
+                                    <ErrorMessage
+                                        errors={errors}
+                                        name="display_name"
+                                        render={({message}) => <small
+                                            className="px-1 text-red-500 text-xs">{message}</small>}
+                                    />
+
+                                    {!errors.display_name && (<small className="h-6 block"></small>)}
+                                </div>
+
+                                <div className="w-full">
+                                    <label htmlFor={'user-name'} className="text-gray-700 block w-full mb-2">
+                                        username
+                                    </label>
+                                    <input
+                                        id={'user-name'}
+                                        {...register('user_name', {
+                                            min: {
+                                                value: 3,
+                                                message: 'sadsdadsadasdadssdgijgsdi'
+                                            },
+                                            max: {
+                                                value: 50,
+                                                message: 'weweqeqweqeqeqweqeerwerwr'
+                                            },
+                                            required: 'llllklkllkllklllklklklklk'
+                                        })}
+                                        defaultValue={user?.user_name}
+                                        className={cn('info-input',
+                                            [
+                                                errors.user_name &&
+                                                'ring-red-500 border-red-500 focus:border-red-500 focus:ring-red-500'
+                                            ]
+                                        )}
+                                    />
+                                    <ErrorMessage
+                                        errors={errors}
+                                        name="user_name"
+                                        render={({message}) => <small
+                                            className="px-1 text-red-500 text-xs">{message}</small>}
+                                    />
+
+                                    {!errors.user_name && (<small className="h-6 block"></small>)}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <CardFooter>
+                    <Btn inType={'submit'} loading={loading} form={'info-form'} size="md">
+                        Save Changes
+                    </Btn>
+                </CardFooter>
+
+            </Card>
+        )
+    }
+
     return (
         <div className="">
             <PageBreadcrumb pageTitle="Profile"/>
 
-            <HeaderInfo />
+            <Suspense fallback={<div>Loading...</div>}>
+                <HeaderInfo/>
+            </Suspense>
 
-
-            {/*<UpdateInfo user={user}/>*/}
-
+            <Suspense fallback={<div>Loading...</div>}>
+                <UpdateInfo/>
+            </Suspense>
         </div>
     )
 }

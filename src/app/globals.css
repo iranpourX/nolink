@@ -459,7 +459,7 @@
 }
 
 .info-input {
-    @apply border border-gray-200 bg-gray-50 ring-0 focus:outline-gray-200 rounded-lg py-3 px-2 w-full
+    @apply border-2 border-gray-200 bg-white ring-0 focus:outline-gray-200 rounded-lg py-2 px-2 w-full
 }
 
 .my-label {

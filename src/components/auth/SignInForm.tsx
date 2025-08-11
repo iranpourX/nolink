@@ -8,7 +8,10 @@ import {cn} from '@/utils/helper'
 import {toast} from 'sonner'
 import {Field} from '@headlessui/react'
 import Btn from "@/components/ui/button/Btn";
-import {login, loginWithCode, loginWithPass} from "@/actions/auth";
+import sendPhone from '@/lib/auth/sendPhone'
+import loginWithCode from "@/lib/auth/loginWithCode"
+import loginWithPassword from "@/lib/auth/loginWithPassword";
+import {redirect} from "next/navigation";
 
 interface IFormInputs {
     phone_number: string
@@ -25,8 +28,6 @@ export default function SignInForm() {
     const [showPassword, setShowPassword] = useState<boolean>(false)
     const [loading, setLoading] = useState<boolean>(false)
     const [phoneNumber, setPhoneNumber] = useState<string>('')
-
-    // const [state, action, response] = useActionState(login)
 
     const change = (id: number) => {
         setPage(id)
@@ -49,7 +50,7 @@ export default function SignInForm() {
         setLoading(true)
         setPhoneNumber(value.phone_number)
 
-        const {status, data} = await login(value)
+        const {status, data} = await sendPhone(value)
         if (status === 200) {
             if (data.data.exists) {
                 setPage(3)
@@ -67,12 +68,13 @@ export default function SignInForm() {
 
     const onSubmitPassword: SubmitHandler<IFormPassword> = async (value) => {
         setLoading(true)
-        const {status, data} = await loginWithPass({
+        const {status, data} = await loginWithPassword({
             phone_number: phoneNumber,
             password: value.password
         })
         if (status === 200) {
-            console.log(data)
+            setLoading(false)
+            redirect('/panel/links')
         }
     }
 
