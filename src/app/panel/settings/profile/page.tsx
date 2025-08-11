@@ -1,4 +1,6 @@
-import React from 'react'
+'use client'
+
+import React, {useEffect, useState} from 'react'
 import PageBreadcrumb from '@/components/common/PageBreadCrumb'
 import client from "@/app/lib/client";
 import HeaderInfo from "@/components/profile/header-info"
@@ -16,26 +18,30 @@ interface IUser {
 }
 
 interface IData {
-    data: {
-        data: IUser,
-        status: object
-    }
+    data: IUser,
+    status: object
 }
 
-export default async function Profile() {
+export default function Profile() {
+    const [user, setUser] = useState<IData | null>(null)
 
-    const {data: {data: user}}: IData = await client.get('account/profile')
+    useEffect(() => {
+        client.get('account/profile')
+            .then(res => {
+                setUser(res.data)
+            })
+    }, []);
 
-
+    console.log(user)
 
     return (
         <div className="">
             <PageBreadcrumb pageTitle="Profile"/>
 
-            <HeaderInfo user={user}/>
+            <HeaderInfo data={user?.data} status={user?.status} />
 
 
-            <UpdateInfo user={user}/>
+            {/*<UpdateInfo user={user}/>*/}
 
         </div>
     )

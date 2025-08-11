@@ -10,8 +10,8 @@ const client = axios.create({
 client.interceptors.request.use(
    async (config) => {
         const token = await tokens()
-        if (token.token) {
-            config.headers.Authorization = `Bearer ${token.token}`;
+        if (token) {
+            config.headers.Authorization = `Bearer ${token}`;
         }
         console.log('Server-side request sent:', config.url);
         return config;

@@ -5,10 +5,7 @@ import axios from 'axios'
 
 const tokens = async () => {
     const cookie = await cookies()
-    const token = cookie.get('token')?.value
-    const refresh_token = cookie.get('refresh_token')?.value
-
-    return {token, refresh_token}
+    return cookie.get('token')?.value
 }
 
 export async function login(value: { phone_number: string }) {
