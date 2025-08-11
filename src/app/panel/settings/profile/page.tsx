@@ -211,9 +211,6 @@ export default function Profile() {
 
         const onSubmitInfo: SubmitHandler<IUser> = async (value) => {
             setLoading(true)
-            client.post('/account/update-profile', value).then(res => {
-                console.log(res.data)
-            })
 
             setLoading(false)
         }
