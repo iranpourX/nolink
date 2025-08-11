@@ -20,15 +20,15 @@ export async function client(input: string, init: any) {
 async function refreshToken() {
     const token = await getCookie("token")
     const refresh = await getCookie('refresh_token')
-
+    const body = {
+        "token": token,
+        "refresh_token": refresh
+    }
     console.log(token)
     console.log(refresh)
     const res = await fetch('https://api.nolink.ir/auth/refresh-token', {
         method: 'post',
-        body: {
-            token: token,
-            refresh_token: refresh
-        }
+        body: JSON.stringify(body)
     })
 
     if (res.status === 401) {
@@ -45,7 +45,7 @@ function isTokenExpired() {
         return true
     }
 
-    const expires = cookie.split('=')[1]
+    const expires = parseInt(cookie.split('=')[1])
     return Date.now() > expires
 
 
