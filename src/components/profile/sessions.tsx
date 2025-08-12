@@ -31,10 +31,9 @@ const Sessions = () => {
 
             <div className="p-8">
                 <div className="max-w-2xl text-sm text-gray-600 dark:text-gray-400">
-                    If necessary, you may log out of all of your other browser sessions across all of your devices. Some
-                    of
-                    your recent sessions are listed below; however, this list may not be exhaustive. If you feel your
-                    account has been compromised, you should also update your password.
+                    If necessary, you may log out of all of your other browser sessions across all of your devices.
+                    Some of your recent sessions are listed below; however, this list may not be exhaustive.
+                    If you feel your account has been compromised, you should also update your password.
                 </div>
                 <div className="mt-5">
                     {
