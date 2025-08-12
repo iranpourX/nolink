@@ -8,10 +8,8 @@ import {cn} from '@/utils/helper'
 import {toast} from 'sonner'
 import {Field} from '@headlessui/react'
 import Btn from "@/components/ui/button/Btn";
-import sendPhone from '@/lib/auth/sendPhone'
-import loginWithCode from "@/lib/auth/loginWithCode"
-import loginWithPassword from "@/lib/auth/loginWithPassword";
 import {redirect} from "next/navigation";
+import {loginWithCode, loginWithPassword, sendPhoneNumber} from "@/actions/auth";
 
 interface IFormInputs {
     phone_number: string
@@ -50,8 +48,8 @@ export default function SignInForm() {
         setLoading(true)
         setPhoneNumber(value.phone_number)
 
-        const {status, data} = await sendPhone(value)
-        if (status === 200) {
+        const {status, data} = await sendPhoneNumber(value)
+        if (status === 200 && data.status.code === 200) {
             if (data.data.exists) {
                 setPage(3)
             } else {
@@ -72,7 +70,7 @@ export default function SignInForm() {
             phone_number: phoneNumber,
             password: value.password
         })
-        if (status === 200) {
+        if (status === 200 && data.status.code === 200) {
             setLoading(false)
             redirect('/panel/links')
         }

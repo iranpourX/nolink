@@ -2,7 +2,7 @@
 
 import React, {Suspense, useEffect, useState} from 'react'
 import PageBreadcrumb from '@/components/common/PageBreadCrumb'
-import client from "@/lib/client";
+import client from "@/app/lib/client";
 import Card from "@/components/ui/card/card";
 import Link from "next/link";
 import Image from "next/image"
@@ -30,12 +30,11 @@ export default function Profile() {
 
     useEffect(() => {
 
-        client('account/profile', {method: 'get'})
-            .then(res => res.json())
-            .then(res => {
-                setUser(res.data)
+        client.get('account/profile')
+            .then(({status, data}) => {
+                setUser(data.data)
             })
-    }, []);
+    }, [])
 
     const HeaderInfo = () => {
 
