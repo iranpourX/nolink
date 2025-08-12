@@ -40,12 +40,12 @@ const Sessions = () => {
                         sessions.map((session: ISessions) => (
                             <div
                                 key={session.id}
-                                className="py-4 flex items-center border-b last:border-none border-gray-100">
+                                className="py-4 flex items-center border-b last:border-none border-gray-100 dark:border-gray-700">
                                 <div>
                                     {
                                         session.os === 'Windows' ? (
                                                 <svg
-                                                    className={'size-9 fill-gray-600'}
+                                                    className={'size-9 fill-gray-600 dark:fill-gray-400'}
                                                     xmlns="http://www.w3.org/2000/svg"
                                                     viewBox="0 0 576 512">
                                                     <path
@@ -54,7 +54,7 @@ const Sessions = () => {
                                             )
                                             : (
                                                 <svg
-                                                    className={'size-9 fill-gray-600'}
+                                                    className={'size-9 fill-gray-600 dark:fill-gray-400'}
                                                     xmlns="http://www.w3.org/2000/svg"
                                                     viewBox="0 0 384 512">
                                                     <path
@@ -69,7 +69,7 @@ const Sessions = () => {
                                         {session.os} - {session.browser}
                                     </div>
 
-                                    <div className="text-xs text-gray-500">
+                                    <div className="text-xs text-gray-500 dark:text-gray-400">
                                         {session.ip_address},
 
                                         {
@@ -103,12 +103,4 @@ const Sessions = () => {
     )
 }
 
-export default Sessions;
-
-export async function getStaticProps() {
-    let sessions = await client.get('account/active-sessions')
-
-    return {
-        props: {sessions}
-    }
-}
+export default Sessions
