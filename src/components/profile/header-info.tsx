@@ -93,8 +93,8 @@ const HeaderInfo: React.FC<IUser | null> = (props) => {
 
                                 <div className="flex flex-wrap">
                                     <div
-                                        className="min-w-32 border border-gray-300 border-dashed rounded-lg py-3 px-5 me-6 mb-3">
-                                        <div className="flex items-center">
+                                        className="min-w-28 border border-gray-300 border-dashed rounded-lg py-3 px-4 me-6 mb-3">
+                                        <div className="flex items-baseline">
                                             <i className="me-2">
                                                 <svg className={'size-4'}
                                                      xmlns="http://www.w3.org/2000/svg"
@@ -114,8 +114,8 @@ const HeaderInfo: React.FC<IUser | null> = (props) => {
 
 
                                     <div
-                                        className="min-w-32 border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
-                                        <div className="flex items-center">
+                                        className="min-w-28 border border-gray-300 border-dashed rounded-lg py-3 px-4 me-6 mb-3">
+                                        <div className="flex items-baseline">
                                             <i className="me-2">
                                                 <svg
                                                     className={'size-4'}
@@ -127,15 +127,15 @@ const HeaderInfo: React.FC<IUser | null> = (props) => {
                                                           d="M128 256s0 0 0 0l-96 0c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l160 160c12.5 12.5 32.8 12.5 45.3 0l160-160c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8l-96 0s0 0 0 0l-128 0z"/>
                                                 </svg>
                                             </i>
-                                            <div className="text-lg font-semibold text-gray-700">75</div>
+                                            <div className="text-lg font-semibold text-gray-700 dark:text-gray-300">75</div>
                                         </div>
                                         <div className="font-medium text-sm text-gray-400">Projects</div>
 
                                     </div>
 
                                     <div
-                                        className="min-w-32 border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
-                                        <div className="flex items-center">
+                                        className="min-w-28 border border-gray-300 border-dashed rounded-lg py-3 px-4 me-6 mb-3">
+                                        <div className="flex items-baseline">
                                             <i className="me-2">
                                                 <svg className={'size-4'}
                                                      xmlns="http://www.w3.org/2000/svg"
@@ -146,7 +146,7 @@ const HeaderInfo: React.FC<IUser | null> = (props) => {
                                                           d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-9.2 9.2-11.9 22.9-6.9 34.9s16.6 19.8 29.6 19.8l96 0s0 0 0 0l128 0s0 0 0 0l96 0c12.9 0 24.6-7.8 29.6-19.8s2.2-25.7-6.9-34.9l-160-160z"/>
                                                 </svg>
                                             </i>
-                                            <div className="text-lg font-semibold text-gray-700">%60</div>
+                                            <div className="text-lg font-semibold text-gray-700 dark:text-gray-300">%60</div>
                                         </div>
                                         <div className="font-medium text-sm text-gray-400">Success Rate</div>
 
