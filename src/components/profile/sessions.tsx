@@ -34,12 +34,10 @@ const Sessions = () => {
     }, [])
 
     const remove = async (id: string) => {
-        const response = await client.post(`account/remove-session/${id}`)
-        toast.promise(response, {
-            loading: 'Loading data...',
-            success: response.data.status.message,
-            error: response.data.status.message,
-        })
+        const {status, data} = await client.post(`account/remove-session/${id}`)
+        if (status === 200 && data.status.code === 200) {
+            toast.success(data.status.message)
+        }
         router.refresh()
     }
 
