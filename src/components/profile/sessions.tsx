@@ -41,7 +41,7 @@ const Sessions = () => {
                         sessions.map((session: ISessions) => (
                             <div
                                 key={session.id}
-                                className="py-4 flex items-center border-b border-gray-100">
+                                className="py-4 flex items-center border-b last:border-none border-gray-100">
                                 <div>
                                     {
                                         session.os === 'Windows' ? (
@@ -65,8 +65,8 @@ const Sessions = () => {
                                     }
                                 </div>
 
-                                <div className="ms-3 flex flex-col gap-2">
-                                    <div className="text-sm text-gray-600 dark:text-gray-400">
+                                <div className="ms-3 flex flex-col gap-1.5">
+                                    <div className="text-sm text-gray-700 dark:text-gray-400">
                                         {session.os} - {session.browser}
                                     </div>
 
@@ -74,9 +74,9 @@ const Sessions = () => {
                                         {session.ip_address},
 
                                         {
-                                            session.is_active
+                                            session.current
                                                 ? (<span className="text-green-500 font-semibold"> This device</span>)
-                                                : (`last active ${session.last_activity}`)
+                                                : (` Last active ${session.last_activity}`)
                                         }
 
                                     </div>
