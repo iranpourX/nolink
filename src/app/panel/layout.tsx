@@ -31,7 +31,11 @@ export default function PanelLayout({children}: {
 
                 <div className="p-4 mx-auto max-w-(--breakpoint-2xl) md:p-6">{children}</div>
             </div>
-            <Toaster richColors position={'bottom-left'}/>
+            <Toaster
+                richColors
+                position={'bottom-left'}
+                style={{fontFamily: 'IRANYekanX'}}
+            />
         </div>
-    );
+    )
 }

@@ -87,9 +87,9 @@ const HeaderInfo: React.FC<IUser | null> = (props) => {
 
                         </div>
 
-                        <div className="flex flex-wrap items-center">
+                        <div className="flex flex-wrap items-center justify-between">
 
-                            <div className="flex flex-col grow pe-8">
+                            <div className="flex pe-8">
 
                                 <div className="flex flex-wrap">
                                     <div
