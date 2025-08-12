@@ -6,30 +6,32 @@ import {useEffect, useState} from "react";
 import client from "@/app/lib/client";
 
 interface IUser {
-    id: string
-    phone_number: string
-    user_name: string
-    display_name: string
-    role: {
+    data?: {
+        id: string
+        phone_number: string
+        user_name: string
         display_name: string
-        name: string
+        role: {
+            display_name: string
+            name: string
+        }
     }
+    status?: object
 }
 
 export default function ProfilePage() {
     const [user, setUser] = useState<IUser | null>(null)
 
     useEffect(() => {
-
         client.get('account/profile')
-            .then(({status, data}) => {
-                setUser(data.data)
+            .then(({data}) => {
+                setUser(data)
             })
     }, [])
 
     return (
         <>
-            <HeaderInfo user={user}/>
+            <HeaderInfo {...user}/>
 
         </>
     )

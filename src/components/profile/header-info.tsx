@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 interface IUser {
-    user: {
+    data?: {
         id: string
         phone_number: string
         user_name: string
@@ -15,9 +15,10 @@ interface IUser {
             name: string
         }
     }
+    status?: object
 }
 
-export default function HeaderInfo({user}: IUser) {
+const HeaderInfo: React.FC<IUser | null> = (props) => {
     return (
         <Card className="mb-5 mb-xl-10">
             <div className="p-8">
@@ -66,7 +67,7 @@ export default function HeaderInfo({user}: IUser) {
                                                     <path
                                                         d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512l388.6 0c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304l-91.4 0z"/></svg>
                                             </i>
-                                            {user?.user_name}
+                                            {props?.data?.user_name}
                                         </span>
                                     <span className="flex items-center text-sm font-medium text-gray-400 mb-2">
                                             <i className="me-1">
@@ -78,7 +79,7 @@ export default function HeaderInfo({user}: IUser) {
                                                         d="M269.4 2.9C265.2 1 260.7 0 256 0s-9.2 1-13.4 2.9L54.3 82.8c-22 9.3-38.4 31-38.3 57.2c.5 99.2 41.3 280.7 213.6 363.2c16.7 8 36.1 8 52.8 0C454.7 420.7 495.5 239.2 496 140c.1-26.2-16.3-47.9-38.3-57.2L269.4 2.9zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/>
                                                 </svg>
                                             </i>
-                                        {user?.role?.name}
+                                        {props?.data?.role?.name}
                                         </span>
                                 </div>
 
@@ -178,3 +179,5 @@ export default function HeaderInfo({user}: IUser) {
         </Card>
     )
 }
+
+export default HeaderInfo
