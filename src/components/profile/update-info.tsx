@@ -6,9 +6,10 @@ import {cn} from "@/utils/helper";
 import {ErrorMessage} from "@hookform/error-message";
 import CardFooter from "@/components/ui/card/card-footer";
 import Btn from "@/components/ui/button/Btn";
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import client from "@/app/lib/client";
 import {toast} from "sonner";
+import {useRouter} from 'next/navigation'
 
 
 interface IUser {
@@ -29,17 +30,29 @@ interface IData {
 
 const UpdateInfo: React.FC<IData> = ({data: user}) => {
     const [loading, setLoading] = useState<boolean>(false)
+    const router = useRouter()
 
     const {
         handleSubmit,
         register,
-        formState: {errors}
+        formState: {errors},
+        reset
     } = useForm<IUser>()
+
+    useEffect(() => {
+        if (user) {
+            reset({
+                display_name: user.display_name,
+                user_name: user.user_name
+            })
+        }
+    }, [user])
 
     const onSubmitInfo: SubmitHandler<IUser> = async (value) => {
         setLoading(true)
         const {data, status} = await client.post('account/update-profile', value)
         if (status === 200 && data.status.code === 200) {
+            await router.refresh()
             toast.success(data.status.message)
         }
         setLoading(false)
@@ -69,7 +82,6 @@ const UpdateInfo: React.FC<IData> = ({data: user}) => {
                                         },
                                         required: 'llllklkllkllklllklklklklk'
                                     })}
-                                    defaultValue={user?.display_name}
                                     className={cn('info-input',
                                         [
                                             errors.display_name &&
@@ -104,7 +116,7 @@ const UpdateInfo: React.FC<IData> = ({data: user}) => {
                                         },
                                         required: 'llllklkllkllklllklklklklk'
                                     })}
-                                    defaultValue={user?.user_name}
+
                                     className={cn('info-input',
                                         [
                                             errors.user_name &&

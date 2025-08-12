@@ -4,6 +4,8 @@ import Card from "@/components/ui/card/card";
 import CardHeader from "@/components/ui/card/card-header";
 import React, {useEffect, useState} from "react";
 import client from "@/app/lib/client";
+import {toast} from "sonner";
+import {useRouter} from "next/navigation"
 
 type ISessions = {
     browser: string
@@ -17,13 +19,29 @@ type ISessions = {
 
 const Sessions = () => {
     const [sessions, setSessions] = useState<ISessions[]>([])
+    const router = useRouter()
+
+    const getSessions = async () => {
+        return await client.get('account/active-sessions')
+    }
 
     useEffect(() => {
-        client.get('account/active-sessions')
-            .then(({data}) => {
+        getSessions().then(({status, data}) => {
+            if (status === 200 && data.status.code === 200) {
                 setSessions(data.data)
-            })
+            }
+        })
     }, [])
+
+    const remove = async (id: string) => {
+        const response = await client.post(`account/remove-session/${id}`)
+        toast.promise(response, {
+            loading: 'Loading data...',
+            success: response.data.status.message,
+            error: response.data.status.message,
+        })
+        router.refresh()
+    }
 
     return (
         <Card>
@@ -82,6 +100,7 @@ const Sessions = () => {
                                 </div>
                                 <div className={'flex grow justify-end'}>
                                     <button
+                                        onClick={() => remove(session.id)}
                                         type="button"
                                     >
                                         <svg

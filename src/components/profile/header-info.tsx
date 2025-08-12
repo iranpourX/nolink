@@ -58,7 +58,7 @@ const HeaderInfo: React.FC<IUser | null> = (props) => {
                                     )}>Upgrade to Pro</Link>
                                 </div>
 
-                                <div className="flex items-center justify-center flex-wrap pe-2">
+                                <div className="flex items-center justify-start flex-wrap pe-2">
                                         <span
                                             className="flex items-baseline text-sm font-medium text-gray-400 me-5 mb-2">
                                             <i className="me-1">

@@ -43,7 +43,7 @@ const Btn: React.FC<ButtonProps> =
                 className={cn(
                     'flex items-center justify-center font-medium gap-2',
                     'rounded-lg transition disabled:cursor-not-allowed',
-                    className, sizeClasses[size], variantClasses[variant]
+                    sizeClasses[size], variantClasses[variant], className
                 )}
                 form={form}
                 onClick={onClick}
