@@ -20,7 +20,12 @@ interface IUser {
     }
 }
 
-export default function UpdateInfo() {
+interface IData {
+    data?: IUser
+    status?: object
+}
+
+const UpdateInfo: React.FC<IData> = ({data: user}) => {
     const [loading, setLoading] = useState<boolean>(false)
 
     const {
@@ -29,18 +34,18 @@ export default function UpdateInfo() {
         formState: {errors}
     } = useForm<IUser>()
 
-    const onSubmitInfo: SubmitHandler<IUser> = async (value) => {
+    const onSubmitInfo: SubmitHandler<IUser> = async () => {
         setLoading(true)
 
         setLoading(false)
     }
 
     return (
-        <Card>
+        <Card className={'mb-10'}>
             <CardHeader title={`Personal Info`}/>
 
             <form id="info-form" autoComplete={'off'} onSubmit={handleSubmit(onSubmitInfo)}>
-                <div className="p-9">
+                <div className="p-8">
                     <div className="flex items-center flex-wrap mb-6">
                         <div className={'lg:w-6/12 w-full'}>
                             <div className="w-full">
@@ -59,7 +64,7 @@ export default function UpdateInfo() {
                                         },
                                         required: 'llllklkllkllklllklklklklk'
                                     })}
-                                    // defaultValue={user?.display_name}
+                                    defaultValue={user?.display_name}
                                     className={cn('info-input',
                                         [
                                             errors.display_name &&
@@ -94,7 +99,7 @@ export default function UpdateInfo() {
                                         },
                                         required: 'llllklkllkllklllklklklklk'
                                     })}
-                                    // defaultValue={user?.user_name}
+                                    defaultValue={user?.user_name}
                                     className={cn('info-input',
                                         [
                                             errors.user_name &&
@@ -125,3 +130,5 @@ export default function UpdateInfo() {
         </Card>
     )
 }
+
+export default UpdateInfo;

@@ -4,6 +4,8 @@ import HeaderInfo from "@/components/profile/header-info";
 
 import {useEffect, useState} from "react";
 import client from "@/app/lib/client";
+import UpdateInfo from "@/components/profile/update-info";
+import Sessions from "@/components/profile/sessions";
 
 interface IUser {
     data?: {
@@ -32,6 +34,10 @@ export default function ProfilePage() {
     return (
         <>
             <HeaderInfo {...user}/>
+
+            <UpdateInfo {...user}/>
+
+            <Sessions />
 
         </>
     )

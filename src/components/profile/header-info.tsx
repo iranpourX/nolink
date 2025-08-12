@@ -20,7 +20,7 @@ interface IUser {
 
 const HeaderInfo: React.FC<IUser | null> = (props) => {
     return (
-        <Card className="mb-5 mb-xl-10">
+        <Card className="mb-10">
             <div className="p-8">
                 <div className="flex flex-wrap sm:flex-nowrap">
                     <div className="me-7 mb-2">
