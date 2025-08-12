@@ -1,13 +1,9 @@
 import React from 'react'
 import type {Metadata} from 'next'
-import {Inter} from 'next/font/google'
 import './globals.css';
 import {SidebarProvider} from '@/context/SidebarContext';
 import {ThemeProvider} from '@/context/ThemeContext';
 
-const inter = Inter({
-    subsets: ["latin"]
-})
 export const metadata: Metadata = {
     title: {
         template: 'Nolink | %s',
@@ -20,7 +16,7 @@ export default async function RootLayout({children}: Readonly<{
 }>) {
     return (
         <html lang="en">
-        <body className={`${inter.className} rtl:font-yekan dark:bg-gray-900`}>
+        <body className={`dark:bg-gray-900`}>
         <ThemeProvider>
             <SidebarProvider>{children}</SidebarProvider>
         </ThemeProvider>

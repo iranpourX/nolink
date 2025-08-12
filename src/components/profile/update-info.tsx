@@ -7,6 +7,8 @@ import {ErrorMessage} from "@hookform/error-message";
 import CardFooter from "@/components/ui/card/card-footer";
 import Btn from "@/components/ui/button/Btn";
 import React, {useState} from "react";
+import client from "@/app/lib/client";
+import {toast} from "sonner";
 
 
 interface IUser {
@@ -34,9 +36,12 @@ const UpdateInfo: React.FC<IData> = ({data: user}) => {
         formState: {errors}
     } = useForm<IUser>()
 
-    const onSubmitInfo: SubmitHandler<IUser> = async () => {
+    const onSubmitInfo: SubmitHandler<IUser> = async (value) => {
         setLoading(true)
-
+        const {data, status} = await client.post('account/update-profile', value)
+        if (status === 200 && data.status.code === 200) {
+            toast.success(data.status.message)
+        }
         setLoading(false)
     }
 

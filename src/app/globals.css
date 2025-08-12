@@ -1,11 +1,11 @@
 @import 'tailwindcss';
+@import "./../../public/webfonts/fontiran.css";
 
 @custom-variant dark (&:is(.dark *));
 
 @theme {
     --font-*: initial;
-    --font-inter: Inter, sans-serif;
-    --font-yekan: IRANYekanX, sans-serif;
+    --default-font-family: IRANYekanX, sans-serif;
 
     --breakpoint-*: initial;
     --breakpoint-2xsm: 375px;

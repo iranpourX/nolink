@@ -39,7 +39,7 @@ const HeaderInfo: React.FC<IUser | null> = (props) => {
                         <div className="flex justify-between items-start mb-2">
                             <div className="flex flex-col">
                                 <div className="flex items-center mb-2">
-                                    <span className="text-gray-800 dark:text-gray-100 font-medium text-lg me-1">Ali Iranpour</span>
+                                    <span className="text-gray-800 dark:text-gray-100 font-medium text-lg me-1">{props?.data?.display_name}</span>
                                     <span className={'me-2'}>
                                             <svg
                                                 className="size-5"

@@ -122,7 +122,7 @@ const AppHeader: React.FC = () => {
                 </div>
             </div>
         </header>
-    );
-};
+    )
+}
 
-export default AppHeader;
+export default AppHeader

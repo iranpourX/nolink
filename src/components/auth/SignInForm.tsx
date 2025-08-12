@@ -323,7 +323,7 @@ export default function SignInForm() {
 
                                             </Field>
 
-                                            <Btn className={'w-full'} loading={loading}>
+                                            <Btn inType={'submit'} className={'w-full'} loading={loading}>
                                                 continue
                                             </Btn>
 
