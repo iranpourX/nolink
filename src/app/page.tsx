@@ -40,13 +40,13 @@ export default function Home() {
             </header>
 
             <div className="min-h-screen">
-                <div className="flex justify-center items-center gap-6">
-                    <div className="flex flex-col justify-start items-center gap-8">
+                <div className="flex justify-center items-center mt-16 gap-y-6">
+                    <div className="flex flex-col justify-start items-center p-4 gap-y-8">
                         <div className="flex flex-col items-center gap-4">
-                            <h2 className="text-center text-4xl font-bold">
+                            <h2 className="text-center text-2xl lg:text-4xl font-bold">
                                 کوتاه کــن، بـسـنـج، پـیـشـرفـت کــن
                             </h2>
-                            <h3 className="text-center text-gray-500 text-lg font-medium">
+                            <h3 className="text-center text-gray-500 text-base lg:text-lg font-medium">
                                 نولینک، راهی سریع و هوشمند برای کوتاه‌کردن و مدیریت لینک‌های طـــــــــــولانی
                             </h3>
                         </div>
@@ -65,7 +65,6 @@ export default function Home() {
                                     )}
                                     defaultValue={'https://amazon.com/dp/B0CSLKLKS/sjikjd=jndd_jdjmLldhsnkos'}
                                 />
-
 
                                 <div className="absolute flex gap-2 items-center right-2 top-1/2 -translate-y-1/2 -tracking-[0.2px]">
                                     <button
