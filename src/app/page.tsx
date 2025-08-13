@@ -1,5 +1,7 @@
 import type {Metadata} from "next"
 import Link from "next/link"
+import {cn} from "@/utils/helper";
+import React from "react";
 
 export const metadata: Metadata = {
     title: 'Nolink'
@@ -38,42 +40,63 @@ export default function Home() {
             </div>
 
             <div className="min-h-screen">
-                <div className="max-w-xl flex justify-center items-center gap-6">
+                <div className="flex justify-center items-center gap-6">
                     <div className="flex flex-col justify-start items-center gap-16">
                         <div className="flex flex-col justify-start items-center gap-4">
-                            <div
-                                className="text-center justify-start text-4xl font-bold">کوتاه
-                                کــن، بـسـنـج، پـیـشـرفـت کــن
-                            </div>
-                            <div
-                                className="text-center justify-start text-lg font-medium">نولینک،
-                                راهی سریع و هوشمند برای کوتاه‌کردن و مدیریت لینک‌های طـــــــــــولانی
-                            </div>
+                            <h2 className="text-center text-4xl font-bold">
+                                کوتاه کــن، بـسـنـج، پـیـشـرفـت کــن
+                            </h2>
+                            <h3 className="text-center text-gray-500 text-lg font-medium">
+                                نولینک، راهی سریع و هوشمند برای کوتاه‌کردن و مدیریت لینک‌های طـــــــــــولانی
+                            </h3>
                         </div>
-                        <div
-                            className="h-16 pl-4 pr-2.5 py-4 bg-white rounded-lg shadow outline-1 outline-offset-[-1px] outline-gray-300 inline-flex justify-start items-center gap-4 overflow-hidden">
-                            <div className="flex-1 h-6 flex justify-start items-center gap-2">
-                                <div
-                                    className="flex-1 h-6 justify-start text-gray-900 text-base font-normal leading-normal">https://amazon.com/dp/B0CSLKLKS/sjikjd=jndd_jdjmLldhsnkos
+
+                        <form>
+                            <div className="relative">
+                                <input
+                                    type="text"
+                                    placeholder="Search ..."
+                                    className={cn(
+                                        'dark:bg-dark-900 w-full rounded-lg border border-gray-300',
+                                        'bg-white py-3.5 pl-4 pr-38 text-lg text-gray-800 shadow-xs',
+                                        'placeholder:text-gray-400 focus:border-blue-300 focus:outline-0',
+                                        'dark:border-gray-800 dark:bg-gray-900',
+                                        'dark:text-white dark:placeholder:text-gray-200'
+                                    )}
+                                    defaultValue={'https://amazon.com/dp/B0CSLKLKS/sjikjd=jndd_jdjmLldhsnkos'}
+                                />
+
+
+                                <div className="absolute flex gap-2 items-center right-2 top-1/2 -translate-y-1/2 -tracking-[0.2px]">
+                                    <button
+                                        type={'button'}
+                                        className={cn(
+                                            'flex border-none p-2 text-white',
+                                            'dark:border-gray-800 dark:bg-white/[0.03] dark:text-gray-400'
+                                        )}>
+                                        <svg
+                                            className="size-6 fill-gray-400 dark:fill-gray-200"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 384 512">
+                                            <path
+                                                d="M324.5 411.1c6.2 6.2 16.4 6.2 22.6 0s6.2-16.4 0-22.6L214.6 256 347.1 123.5c6.2-6.2 6.2-16.4 0-22.6s-16.4-6.2-22.6 0L192 233.4 59.6 100.9c-6.2-6.2-16.4-6.2-22.6 0s-6.2 16.4 0 22.6L169.4 256 36.9 388.5c-6.2 6.2-6.2 16.4 0 22.6s16.4 6.2 22.6 0L192 278.6 324.5 411.1z"/>
+                                        </svg>
+                                    </button>
+
+                                    <button
+                                        type={'button'}
+                                        className={cn(
+                                            'flex',
+                                            'items-center rounded-lg border border-blue-600 bg-blue-600',
+                                            'px-4 py-2 text-base font-semibold text-white',
+                                            'dark:border-gray-800 dark:bg-white/[0.03] dark:text-gray-400'
+                                        )}>
+                                        <span> Short it </span>
+                                    </button>
                                 </div>
                             </div>
-                            <div className="flex justify-start items-center gap-4">
-                                <div
-                                    className="w-8 h-8 p-2 bg-Color-Light-Light rounded-md flex justify-center items-center gap-2.5">
-                                    <div className="w-4 h-4 relative overflow-hidden"/>
-                                </div>
-                                <div data-destructive="False" data-hierarchy="Primary" data-icon="Default"
-                                     data-size="lg"
-                                     data-state="Default" className="px-4 py-2.5 bg-blue-600
-                        rounded-lg shadow-[0px_1px_2px_0px_rgba(16,24,40,0.05)] outline-1 outline-offset-[-1px]
-                        outline-blue-600 flex justify-center items-center gap-2 overflow-hidden">
-                                    <div
-                                        className="justify-start text-white text-base font-semibold leading-normal">Short
-                                        it
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        </form>
+
                         <div className="rounded-lg flex flex-col justify-start items-start overflow-hidden">
                             <div
                                 className="px-4 py-6 bg-white border-b border-slate-200 inline-flex justify-start items-center gap-3">
@@ -202,6 +225,7 @@ export default function Home() {
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
 
