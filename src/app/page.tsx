@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function Home() {
     return (
-        <div className={'min-h-screen'}>
+        <div className={'min-h-screen relative'}>
             <header className="px-8 lg:px-16 py-6 lg:py-8 flex justify-between items-center">
                 <Link href="/signin"
                       className="px-6 py-3 text-sm bg-white rounded-lg shadow flex justify-center items-center gap-3">
