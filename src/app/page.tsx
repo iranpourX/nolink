@@ -52,7 +52,8 @@ export default function Home() {
                         </div>
 
                         <form className={'w-full mt-8'}>
-                            <div className="relative bg-transparent md:bg-white md:rounded-lg overflow-hidden">
+                            <div
+                                className="relative md:bg-transparent bg-white rounded-lg md:rounded-none overflow-hidden">
                                 <input
                                     type="text"
                                     placeholder="Here"
@@ -66,11 +67,13 @@ export default function Home() {
                                     defaultValue={'https://amazon.com/dp/B0CSLKLKS/sjikjd=jndd_jdjmLldhsnkos'}
                                 />
 
-                                <div className="relative p-4 md:absolute flex gap-4 justify-between items-center md:right-2 md:top-1/2 md:-translate-y-1/2 md:-tracking-[0.2px]">
+                                <div
+                                    className="relative p-4 md:absolute flex gap-4 md:gap-0 justify-between items-center md:right-2 md:top-1/2 md:-translate-y-1/2 md:-tracking-[0.2px]">
                                     <button
                                         type={'button'}
                                         className={cn(
-                                            'flex items-center justify-center border-none py-3 px-2 text-white bg-gray-100 rounded-lg w-full',
+                                            'flex items-center justify-center border-none py-3 px-2',
+                                            'text-white bg-gray-100 md:bg-transparent rounded-lg w-full',
                                             'dark:border-gray-800 dark:bg-white/[0.03] dark:text-gray-400 gap-1'
                                         )}>
                                         <svg
