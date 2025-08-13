@@ -9,8 +9,8 @@ export const metadata: Metadata = {
 
 export default function Home() {
     return (
-        <div className={'flex flex-col'}>
-            <div className="px-8 lg:px-16 py-6 lg:py-8 flex justify-between items-center">
+        <div className={'min-h-screen'}>
+            <header className="px-8 lg:px-16 py-6 lg:py-8 flex justify-between items-center">
                 <Link href="/signin"
                       className="px-6 py-3 text-sm bg-white rounded-lg shadow flex justify-center items-center gap-3">
                     ورود | ثبت نام
@@ -22,7 +22,7 @@ export default function Home() {
                             d="M347.3 267.3c6.2-6.2 6.2-16.4 0-22.6l-128-128c-6.2-6.2-16.4-6.2-22.6 0s-6.2 16.4 0 22.6L297.4 240 16 240c-8.8 0-16 7.2-16 16s7.2 16 16 16l281.4 0L196.7 372.7c-6.2 6.2-6.2 16.4 0 22.6s16.4 6.2 22.6 0l128-128zM336 448c-8.8 0-16 7.2-16 16s7.2 16 16 16l96 0c44.2 0 80-35.8 80-80l0-288c0-44.2-35.8-80-80-80l-96 0c-8.8 0-16 7.2-16 16s7.2 16 16 16l96 0c26.5 0 48 21.5 48 48l0 288c0 26.5-21.5 48-48 48l-96 0z"/>
                     </svg>
                 </Link>
-                <Link href="/" className="flex justify-end items-center">
+                <Link href="/" className="flex items-center">
                     <h1 className="text-center justify-start text-black text-2xl font-extrabold">نولینک</h1>
                     <div className="relative">
                         <svg className={'size-12 fill-none'} viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
@@ -37,12 +37,12 @@ export default function Home() {
 
                     </div>
                 </Link>
-            </div>
+            </header>
 
             <div className="min-h-screen">
                 <div className="flex justify-center items-center gap-6">
                     <div className="flex flex-col justify-start items-center gap-8">
-                        <div className="flex flex-col justify-start items-center gap-4">
+                        <div className="flex flex-col items-center gap-4">
                             <h2 className="text-center text-4xl font-bold">
                                 کوتاه کــن، بـسـنـج، پـیـشـرفـت کــن
                             </h2>
