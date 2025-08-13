@@ -52,13 +52,13 @@ export default function Home() {
                         </div>
 
                         <form className={'w-full mt-8'}>
-                            <div className="relative bg-white rounded-lg overflow-hidden">
+                            <div className="relative bg-transparent md:bg-white md:rounded-lg overflow-hidden">
                                 <input
                                     type="text"
                                     placeholder="Here"
                                     className={cn(
                                         'dark:bg-dark-900 w-full rounded-lg border-none md:border border-gray-300',
-                                        'bg-white py-3.5 pl-4 pr-38 text-lg text-gray-800 shadow-none md:shadow-xs',
+                                        'bg-white py-3.5 pl-4 pr-4 md:pr-38 text-lg text-gray-800 shadow-none md:shadow-xs',
                                         'placeholder:text-gray-400 focus:border-blue-300 focus:outline-0',
                                         'dark:border-gray-800 dark:bg-gray-900',
                                         'dark:text-white dark:placeholder:text-gray-200'
