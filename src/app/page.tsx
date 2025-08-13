@@ -39,26 +39,26 @@ export default function Home() {
                 </Link>
             </header>
 
-            <div className="min-h-screen">
+            <div className={'relative'}>
                 <div className="flex justify-center items-center mt-16 gap-y-6">
                     <div className="flex flex-col justify-start items-center p-4 gap-y-8">
                         <div className="flex flex-col items-center gap-4">
-                            <h2 className="text-center text-2xl lg:text-4xl font-bold">
+                            <h2 className="text-center text-2xl md:text-4xl font-bold">
                                 کوتاه کــن، بـسـنـج، پـیـشـرفـت کــن
                             </h2>
-                            <h3 className="text-center text-gray-500 text-base lg:text-lg font-medium">
+                            <h3 className="text-center text-gray-500 text-base md:text-lg font-medium">
                                 نولینک، راهی سریع و هوشمند برای کوتاه‌کردن و مدیریت لینک‌های طـــــــــــولانی
                             </h3>
                         </div>
 
                         <form className={'w-full mt-8'}>
-                            <div className="relative">
+                            <div className="relative bg-white rounded-lg overflow-hidden">
                                 <input
                                     type="text"
                                     placeholder="Here"
                                     className={cn(
-                                        'dark:bg-dark-900 w-full rounded-lg border border-gray-300',
-                                        'bg-white py-3.5 pl-4 pr-38 text-lg text-gray-800 shadow-xs',
+                                        'dark:bg-dark-900 w-full rounded-lg border-none md:border border-gray-300',
+                                        'bg-white py-3.5 pl-4 pr-38 text-lg text-gray-800 shadow-none md:shadow-xs',
                                         'placeholder:text-gray-400 focus:border-blue-300 focus:outline-0',
                                         'dark:border-gray-800 dark:bg-gray-900',
                                         'dark:text-white dark:placeholder:text-gray-200'
@@ -66,27 +66,28 @@ export default function Home() {
                                     defaultValue={'https://amazon.com/dp/B0CSLKLKS/sjikjd=jndd_jdjmLldhsnkos'}
                                 />
 
-                                <div className="absolute flex gap-2 items-center right-2 top-1/2 -translate-y-1/2 -tracking-[0.2px]">
+                                <div className="relative p-4 md:absolute flex gap-4 justify-between items-center md:right-2 md:top-1/2 md:-translate-y-1/2 md:-tracking-[0.2px]">
                                     <button
                                         type={'button'}
                                         className={cn(
-                                            'flex border-none p-2 text-white',
-                                            'dark:border-gray-800 dark:bg-white/[0.03] dark:text-gray-400'
+                                            'flex items-center justify-center border-none py-3 px-2 text-white bg-gray-100 rounded-lg w-full',
+                                            'dark:border-gray-800 dark:bg-white/[0.03] dark:text-gray-400 gap-1'
                                         )}>
                                         <svg
-                                            className="size-6 fill-gray-400 dark:fill-gray-200"
+                                            className="size-5 md:size-6 fill-gray-400 dark:fill-gray-200"
                                             xmlns="http://www.w3.org/2000/svg"
                                             viewBox="0 0 384 512">
                                             <path
                                                 d="M324.5 411.1c6.2 6.2 16.4 6.2 22.6 0s6.2-16.4 0-22.6L214.6 256 347.1 123.5c6.2-6.2 6.2-16.4 0-22.6s-16.4-6.2-22.6 0L192 233.4 59.6 100.9c-6.2-6.2-16.4-6.2-22.6 0s-6.2 16.4 0 22.6L169.4 256 36.9 388.5c-6.2 6.2-6.2 16.4 0 22.6s16.4 6.2 22.6 0L192 278.6 324.5 411.1z"/>
                                         </svg>
+                                        <span className={'md:hidden text-gray-400 text-sm'}>clear</span>
                                     </button>
 
                                     <button
                                         type={'button'}
                                         className={cn(
                                             'flex',
-                                            'items-center rounded-lg border border-blue-600 bg-blue-600',
+                                            'items-center rounded-lg border justify-center border-blue-600 bg-blue-600 w-full',
                                             'px-4 py-2 text-base font-semibold text-white',
                                             'dark:border-gray-800 dark:bg-white/[0.03] dark:text-gray-400'
                                         )}>
@@ -96,134 +97,134 @@ export default function Home() {
                             </div>
                         </form>
 
-                        <div className="rounded-lg flex flex-col w-full overflow-hidden">
-                            <div
-                                className="px-4 py-6 bg-white border-b border-slate-200 inline-flex justify-start items-center gap-3">
-                                <div className="flex-1 flex justify-center items-center gap-3">
-                                    <div className="w-8 h-8 relative overflow-hidden">
-                                        <div
-                                            className="w-3 h-2.5 left-[5px] top-[8.75px] absolute rounded-tl-3xl rounded-tr-3xl border-[3px] border-sky-500"/>
-                                        <div
-                                            className="w-4 h-4 left-[10.92px] top-[7px] absolute rounded-lg border-[3px] border-sky-500"/>
-                                        <div
-                                            className="w-[3px] h-[3px] left-[20.50px] top-[13.50px] absolute bg-sky-500 rounded-full"/>
-                                    </div>
-                                    <div className="flex-1 inline-flex flex-col justify-center items-start gap-2">
-                                        <div className="inline-flex justify-start items-start gap-2">
-                                            <div
-                                                className="justify-start text-Color-Primary-Primary text-base font-medium leading-none">amzn.id/ffYHHcGm
-                                            </div>
-                                        </div>
-                                        <div
-                                            className="self-stretch justify-start text-slate-500 text-xs font-normal leading-none">amazon.com/dp/B0CSLKLKS/sjikjd=jndd_jdjmLldhsnkos
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="flex justify-start items-center gap-1">
-                                    <div
-                                        className="w-8 h-8 p-2 bg-Color-Light-Light rounded-md flex justify-center items-center gap-2.5">
-                                        <div className="w-4 h-4 relative overflow-hidden"/>
-                                    </div>
-                                    <div
-                                        className="w-8 h-8 p-2 bg-Color-Light-Light rounded-md flex justify-center items-center gap-2.5">
-                                        <div className="w-4 h-4 relative overflow-hidden">
-                                            <div
-                                                className="w-3 h-3 left-[0.82px] top-[5.44px] absolute opacity-10 bg-Color-Grey-Grey-500"/>
-                                            <div
-                                                className="w-4 h-4 left-[0.75px] top-[0.75px] absolute bg-Color-Grey-Grey-500"/>
-                                        </div>
-                                    </div>
-                                    <div data-size="Medium" data-state="Default" data-style="Solid"
-                                         className="w-8 h-8 p-2 bg-Color-Light-Light rounded-md flex justify-center items-center gap-2.5">
-                                        <div className="w-4 h-4 relative overflow-hidden"/>
-                                    </div>
-                                </div>
-                            </div>
-                            <div
-                                className="px-4 py-6 bg-b&w-white border-b border-slate-200 inline-flex justify-start items-center gap-3">
-                                <div className="flex-1 flex justify-center items-center gap-3">
-                                    <div className="w-8 h-8 relative overflow-hidden">
-                                        <div
-                                            className="w-3 h-2.5 left-[5px] top-[8.75px] absolute rounded-tl-3xl rounded-tr-3xl border-[3px] border-sky-500"/>
-                                        <div
-                                            className="w-4 h-4 left-[10.92px] top-[7px] absolute rounded-lg border-[3px] border-sky-500"/>
-                                        <div
-                                            className="w-[3px] h-[3px] left-[20.50px] top-[13.50px] absolute bg-sky-500 rounded-full"/>
-                                    </div>
-                                    <div className="flex-1 inline-flex flex-col justify-center items-start gap-2">
-                                        <div className="inline-flex justify-start items-start gap-2">
-                                            <div
-                                                className="justify-start text-Color-Primary-Primary text-base font-medium font-['Inter'] leading-none">amzn.id/ffYHHcGm
-                                            </div>
-                                        </div>
-                                        <div
-                                            className="self-stretch justify-start text-slate-500 text-xs font-normal font-['Inter'] leading-none">amazon.com/dp/B0CSLKLKS/sjikjd=jndd_jdjmLldhsnkos
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="flex justify-start items-center gap-1">
-                                    <div
-                                        className="w-8 h-8 p-2 bg-Color-Light-Light rounded-md flex justify-center items-center gap-2.5">
-                                        <div className="w-4 h-4 relative overflow-hidden"/>
-                                    </div>
-                                    <div
-                                        className="w-8 h-8 p-2 bg-Color-Light-Light rounded-md flex justify-center items-center gap-2.5">
-                                        <div className="w-4 h-4 relative overflow-hidden">
-                                            <div
-                                                className="w-3 h-3 left-[0.82px] top-[5.44px] absolute opacity-10 bg-Color-Grey-Grey-500"/>
-                                            <div
-                                                className="w-4 h-4 left-[0.75px] top-[0.75px] absolute bg-Color-Grey-Grey-500"/>
-                                        </div>
-                                    </div>
-                                    <div data-size="Medium" data-state="Default" data-style="Solid"
-                                         className="w-8 h-8 p-2 bg-Color-Light-Light rounded-md flex justify-center items-center gap-2.5">
-                                        <div className="w-4 h-4 relative overflow-hidden"/>
-                                    </div>
-                                </div>
-                            </div>
-                            <div
-                                className="px-4 py-6 bg-b&w-white border-b inline-flex justify-start items-center gap-3 overflow-hidden">
-                                <div className="flex-1 flex justify-start items-center gap-3">
-                                    <div className="w-8 h-8 relative overflow-hidden">
-                                        <div
-                                            className="w-3 h-2.5 left-[5px] top-[8.75px] absolute rounded-tl-3xl rounded-tr-3xl border-[3px] border-sky-500"/>
-                                        <div
-                                            className="w-4 h-4 left-[10.92px] top-[7px] absolute rounded-lg border-[3px] border-sky-500"/>
-                                        <div
-                                            className="w-[3px] h-[3px] left-[20.50px] top-[13.50px] absolute bg-sky-500 rounded-full"/>
-                                    </div>
-                                    <div className="flex-1 inline-flex flex-col justify-center items-start gap-2">
-                                        <div className="inline-flex justify-start items-start gap-2">
-                                            <div
-                                                className="justify-start text-Color-Primary-Primary text-base font-medium font-['Inter'] leading-none">amzn.id/ffYHHcGm
-                                            </div>
-                                        </div>
-                                        <div
-                                            className="justify-start text-slate-500 text-xs font-normal font-['Inter'] leading-none">amazon.com/dp/B0CSLKLKS/sjikjd=jndd_jdjmLldhsnkos
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="flex justify-start items-center gap-1">
-                                    <div
-                                        className="w-8 h-8 p-2 bg-Color-Light-Light rounded-md flex justify-center items-center gap-2.5">
-                                        <div className="w-4 h-4 relative overflow-hidden"/>
-                                    </div>
-                                    <div
-                                        className="w-8 h-8 p-2 bg-Color-Light-Light rounded-md flex justify-center items-center gap-2.5">
-                                        <div className="w-4 h-4 relative overflow-hidden">
-                                            <div
-                                                className="w-3 h-3 left-[0.82px] top-[5.44px] absolute opacity-10 bg-Color-Grey-Grey-500"/>
-                                            <div
-                                                className="w-4 h-4 left-[0.75px] top-[0.75px] absolute bg-Color-Grey-Grey-500"/>
-                                        </div>
-                                    </div>
-                                    <div data-size="Medium" data-state="Default" data-style="Solid"
-                                         className="w-8 h-8 p-2 bg-Color-Light-Light rounded-md flex justify-center items-center gap-2.5">
-                                        <div className="w-4 h-4 relative overflow-hidden"/>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        {/*<div className="rounded-lg flex flex-col w-full overflow-hidden">*/}
+                        {/*    <div*/}
+                        {/*        className="px-4 py-6 bg-white border-b border-slate-200 inline-flex justify-start items-center gap-3">*/}
+                        {/*        <div className="flex-1 flex justify-center items-center gap-3">*/}
+                        {/*            <div className="w-8 h-8 relative overflow-hidden">*/}
+                        {/*                <div*/}
+                        {/*                    className="w-3 h-2.5 left-[5px] top-[8.75px] absolute rounded-tl-3xl rounded-tr-3xl border-[3px] border-sky-500"/>*/}
+                        {/*                <div*/}
+                        {/*                    className="w-4 h-4 left-[10.92px] top-[7px] absolute rounded-lg border-[3px] border-sky-500"/>*/}
+                        {/*                <div*/}
+                        {/*                    className="w-[3px] h-[3px] left-[20.50px] top-[13.50px] absolute bg-sky-500 rounded-full"/>*/}
+                        {/*            </div>*/}
+                        {/*            <div className="flex-1 inline-flex flex-col justify-center items-start gap-2">*/}
+                        {/*                <div className="inline-flex justify-start items-start gap-2">*/}
+                        {/*                    <div*/}
+                        {/*                        className="justify-start text-Color-Primary-Primary text-base font-medium leading-none">amzn.id/ffYHHcGm*/}
+                        {/*                    </div>*/}
+                        {/*                </div>*/}
+                        {/*                <div*/}
+                        {/*                    className="self-stretch justify-start text-slate-500 text-xs font-normal leading-none">amazon.com/dp/B0CSLKLKS/sjikjd=jndd_jdjmLldhsnkos*/}
+                        {/*                </div>*/}
+                        {/*            </div>*/}
+                        {/*        </div>*/}
+                        {/*        <div className="flex justify-start items-center gap-1">*/}
+                        {/*            <div*/}
+                        {/*                className="w-8 h-8 p-2 bg-Color-Light-Light rounded-md flex justify-center items-center gap-2.5">*/}
+                        {/*                <div className="w-4 h-4 relative overflow-hidden"/>*/}
+                        {/*            </div>*/}
+                        {/*            <div*/}
+                        {/*                className="w-8 h-8 p-2 bg-Color-Light-Light rounded-md flex justify-center items-center gap-2.5">*/}
+                        {/*                <div className="w-4 h-4 relative overflow-hidden">*/}
+                        {/*                    <div*/}
+                        {/*                        className="w-3 h-3 left-[0.82px] top-[5.44px] absolute opacity-10 bg-Color-Grey-Grey-500"/>*/}
+                        {/*                    <div*/}
+                        {/*                        className="w-4 h-4 left-[0.75px] top-[0.75px] absolute bg-Color-Grey-Grey-500"/>*/}
+                        {/*                </div>*/}
+                        {/*            </div>*/}
+                        {/*            <div data-size="Medium" data-state="Default" data-style="Solid"*/}
+                        {/*                 className="w-8 h-8 p-2 bg-Color-Light-Light rounded-md flex justify-center items-center gap-2.5">*/}
+                        {/*                <div className="w-4 h-4 relative overflow-hidden"/>*/}
+                        {/*            </div>*/}
+                        {/*        </div>*/}
+                        {/*    </div>*/}
+                        {/*    <div*/}
+                        {/*        className="px-4 py-6 bg-b&w-white border-b border-slate-200 inline-flex justify-start items-center gap-3">*/}
+                        {/*        <div className="flex-1 flex justify-center items-center gap-3">*/}
+                        {/*            <div className="w-8 h-8 relative overflow-hidden">*/}
+                        {/*                <div*/}
+                        {/*                    className="w-3 h-2.5 left-[5px] top-[8.75px] absolute rounded-tl-3xl rounded-tr-3xl border-[3px] border-sky-500"/>*/}
+                        {/*                <div*/}
+                        {/*                    className="w-4 h-4 left-[10.92px] top-[7px] absolute rounded-lg border-[3px] border-sky-500"/>*/}
+                        {/*                <div*/}
+                        {/*                    className="w-[3px] h-[3px] left-[20.50px] top-[13.50px] absolute bg-sky-500 rounded-full"/>*/}
+                        {/*            </div>*/}
+                        {/*            <div className="flex-1 inline-flex flex-col justify-center items-start gap-2">*/}
+                        {/*                <div className="inline-flex justify-start items-start gap-2">*/}
+                        {/*                    <div*/}
+                        {/*                        className="justify-start text-Color-Primary-Primary text-base font-medium font-['Inter'] leading-none">amzn.id/ffYHHcGm*/}
+                        {/*                    </div>*/}
+                        {/*                </div>*/}
+                        {/*                <div*/}
+                        {/*                    className="self-stretch justify-start text-slate-500 text-xs font-normal font-['Inter'] leading-none">amazon.com/dp/B0CSLKLKS/sjikjd=jndd_jdjmLldhsnkos*/}
+                        {/*                </div>*/}
+                        {/*            </div>*/}
+                        {/*        </div>*/}
+                        {/*        <div className="flex justify-start items-center gap-1">*/}
+                        {/*            <div*/}
+                        {/*                className="w-8 h-8 p-2 bg-Color-Light-Light rounded-md flex justify-center items-center gap-2.5">*/}
+                        {/*                <div className="w-4 h-4 relative overflow-hidden"/>*/}
+                        {/*            </div>*/}
+                        {/*            <div*/}
+                        {/*                className="w-8 h-8 p-2 bg-Color-Light-Light rounded-md flex justify-center items-center gap-2.5">*/}
+                        {/*                <div className="w-4 h-4 relative overflow-hidden">*/}
+                        {/*                    <div*/}
+                        {/*                        className="w-3 h-3 left-[0.82px] top-[5.44px] absolute opacity-10 bg-Color-Grey-Grey-500"/>*/}
+                        {/*                    <div*/}
+                        {/*                        className="w-4 h-4 left-[0.75px] top-[0.75px] absolute bg-Color-Grey-Grey-500"/>*/}
+                        {/*                </div>*/}
+                        {/*            </div>*/}
+                        {/*            <div data-size="Medium" data-state="Default" data-style="Solid"*/}
+                        {/*                 className="w-8 h-8 p-2 bg-Color-Light-Light rounded-md flex justify-center items-center gap-2.5">*/}
+                        {/*                <div className="w-4 h-4 relative overflow-hidden"/>*/}
+                        {/*            </div>*/}
+                        {/*        </div>*/}
+                        {/*    </div>*/}
+                        {/*    <div*/}
+                        {/*        className="px-4 py-6 bg-b&w-white border-b inline-flex justify-start items-center gap-3 overflow-hidden">*/}
+                        {/*        <div className="flex-1 flex justify-start items-center gap-3">*/}
+                        {/*            <div className="w-8 h-8 relative overflow-hidden">*/}
+                        {/*                <div*/}
+                        {/*                    className="w-3 h-2.5 left-[5px] top-[8.75px] absolute rounded-tl-3xl rounded-tr-3xl border-[3px] border-sky-500"/>*/}
+                        {/*                <div*/}
+                        {/*                    className="w-4 h-4 left-[10.92px] top-[7px] absolute rounded-lg border-[3px] border-sky-500"/>*/}
+                        {/*                <div*/}
+                        {/*                    className="w-[3px] h-[3px] left-[20.50px] top-[13.50px] absolute bg-sky-500 rounded-full"/>*/}
+                        {/*            </div>*/}
+                        {/*            <div className="flex-1 inline-flex flex-col justify-center items-start gap-2">*/}
+                        {/*                <div className="inline-flex justify-start items-start gap-2">*/}
+                        {/*                    <div*/}
+                        {/*                        className="justify-start text-Color-Primary-Primary text-base font-medium font-['Inter'] leading-none">amzn.id/ffYHHcGm*/}
+                        {/*                    </div>*/}
+                        {/*                </div>*/}
+                        {/*                <div*/}
+                        {/*                    className="justify-start text-slate-500 text-xs font-normal font-['Inter'] leading-none">amazon.com/dp/B0CSLKLKS/sjikjd=jndd_jdjmLldhsnkos*/}
+                        {/*                </div>*/}
+                        {/*            </div>*/}
+                        {/*        </div>*/}
+                        {/*        <div className="flex justify-start items-center gap-1">*/}
+                        {/*            <div*/}
+                        {/*                className="w-8 h-8 p-2 bg-Color-Light-Light rounded-md flex justify-center items-center gap-2.5">*/}
+                        {/*                <div className="w-4 h-4 relative overflow-hidden"/>*/}
+                        {/*            </div>*/}
+                        {/*            <div*/}
+                        {/*                className="w-8 h-8 p-2 bg-Color-Light-Light rounded-md flex justify-center items-center gap-2.5">*/}
+                        {/*                <div className="w-4 h-4 relative overflow-hidden">*/}
+                        {/*                    <div*/}
+                        {/*                        className="w-3 h-3 left-[0.82px] top-[5.44px] absolute opacity-10 bg-Color-Grey-Grey-500"/>*/}
+                        {/*                    <div*/}
+                        {/*                        className="w-4 h-4 left-[0.75px] top-[0.75px] absolute bg-Color-Grey-Grey-500"/>*/}
+                        {/*                </div>*/}
+                        {/*            </div>*/}
+                        {/*            <div data-size="Medium" data-state="Default" data-style="Solid"*/}
+                        {/*                 className="w-8 h-8 p-2 bg-Color-Light-Light rounded-md flex justify-center items-center gap-2.5">*/}
+                        {/*                <div className="w-4 h-4 relative overflow-hidden"/>*/}
+                        {/*            </div>*/}
+                        {/*        </div>*/}
+                        {/*    </div>*/}
+                        {/*</div>*/}
 
                     </div>
                 </div>
