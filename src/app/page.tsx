@@ -41,7 +41,7 @@ export default function Home() {
 
             <div className="min-h-screen">
                 <div className="flex justify-center items-center gap-6">
-                    <div className="flex flex-col justify-start items-center gap-16">
+                    <div className="flex flex-col justify-start items-center gap-8">
                         <div className="flex flex-col justify-start items-center gap-4">
                             <h2 className="text-center text-4xl font-bold">
                                 کوتاه کــن، بـسـنـج، پـیـشـرفـت کــن
@@ -51,11 +51,11 @@ export default function Home() {
                             </h3>
                         </div>
 
-                        <form>
+                        <form className={'w-full mt-8'}>
                             <div className="relative">
                                 <input
                                     type="text"
-                                    placeholder="Search ..."
+                                    placeholder="Here"
                                     className={cn(
                                         'dark:bg-dark-900 w-full rounded-lg border border-gray-300',
                                         'bg-white py-3.5 pl-4 pr-38 text-lg text-gray-800 shadow-xs',
@@ -97,7 +97,7 @@ export default function Home() {
                             </div>
                         </form>
 
-                        <div className="rounded-lg flex flex-col justify-start items-start overflow-hidden">
+                        <div className="rounded-lg flex flex-col w-full overflow-hidden">
                             <div
                                 className="px-4 py-6 bg-white border-b border-slate-200 inline-flex justify-start items-center gap-3">
                                 <div className="flex-1 flex justify-center items-center gap-3">
