@@ -9,8 +9,6 @@ import Btn from "@/components/ui/button/Btn";
 import React, {useState, useEffect} from "react";
 import client from "@/app/lib/client";
 import {toast} from "sonner";
-import {useRouter} from 'next/navigation'
-
 
 interface IUser {
     id: string
@@ -30,7 +28,6 @@ interface IData {
 
 const UpdateInfo: React.FC<IData> = ({data: user}) => {
     const [loading, setLoading] = useState<boolean>(false)
-    const router = useRouter()
 
     const {
         handleSubmit,
@@ -52,7 +49,6 @@ const UpdateInfo: React.FC<IData> = ({data: user}) => {
         setLoading(true)
         const {data, status} = await client.post('account/update-profile', value)
         if (status === 200 && data.status.code === 200) {
-            await router.refresh()
             toast.success(data.status.message)
         }
         setLoading(false)
