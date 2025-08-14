@@ -167,7 +167,7 @@
     }
 
     body {
-        @apply relative font-normal z-1 bg-gray-100;
+        @apply relative font-normal z-1 bg-gray-50;
     }
 }
 
