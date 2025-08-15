@@ -24,13 +24,13 @@ export const SessionsSkeleton = () => {
             {[...Array(3)].map((x, i) =>
                 <div key={i}
                      className="py-4 flex animate-pulse items-center border-b last:border-none border-gray-100 dark:border-gray-700">
-                    <div className={'size-9 rounded-lg bg-gray-200'}></div>
+                    <div className={'size-9 rounded-lg bg-gray-200 dark:bg-gray-600'}></div>
                     <div className="ms-3 flex flex-col gap-1.5">
-                        <div className="bg-gray-200 rounded-lg p-2.5 w-52"></div>
-                        <div className="bg-gray-200 rounded-lg p-2 w-64"></div>
+                        <div className="bg-gray-200 dark:bg-gray-600 rounded-lg p-2.5 w-52"></div>
+                        <div className="bg-gray-200 dark:bg-gray-600 rounded-lg p-2 w-64"></div>
                     </div>
                     <div className={'flex grow justify-end'}>
-                        <span className={'bg-gray-200 p-2.5 rounded-lg'}></span>
+                        <span className={'bg-gray-200 dark:bg-gray-600 p-2.5 rounded-lg'}></span>
                     </div>
                 </div>
             )}
@@ -43,7 +43,7 @@ const Sessions = () => {
     const router = useRouter()
 
     const getSessions = async () => {
-        return await client.get('account/active-sessions')
+        return await client.get('account/active-sessions0')
     }
 
     useEffect(() => {
