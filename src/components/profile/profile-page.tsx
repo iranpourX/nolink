@@ -3,7 +3,7 @@
 import {useEffect, useState} from "react"
 import client from "@/app/lib/client"
 import HeaderInfo from "@/components/profile/header-info"
-import UpdateInfo from "@/components/profile/update-info"
+// import UpdateInfo from "@/components/profile/update-info"
 import Sessions from "@/components/profile/sessions"
 
 interface IUser {
@@ -34,10 +34,9 @@ export default function ProfilePage() {
         <>
             <HeaderInfo {...user}/>
 
-            <UpdateInfo {...user}/>
+            {/*<UpdateInfo {...user}/>*/}
 
-            <Sessions />
-
+            <Sessions/>
         </>
     )
 }

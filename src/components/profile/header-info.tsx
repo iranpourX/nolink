@@ -30,8 +30,6 @@ const HeaderInfo: React.FC<IUser | null> = (props) => {
                                 src={'/images/user/avatar.jpg'}
                                 alt={'avatar'} width={160} height={160}
                             />
-                            <div
-                                className="absolute bottom-0 -right-2 z-9 border-4 border-white dark:border-gray-800 bg-blue-600 rounded-full size-5"></div>
                         </div>
                     </div>
                     <div className="grow">
