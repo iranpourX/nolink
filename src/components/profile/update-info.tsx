@@ -64,7 +64,7 @@ const UpdateInfo: React.FC<IData> = ({data: user}) => {
                     <div className="flex items-center flex-wrap mb-6">
                         <div className={'lg:w-6/12 w-full'}>
                             <div className="w-full">
-                                <label htmlFor={'full-name'} className="text-gray-700 block w-full mb-2">full
+                                <label htmlFor={'full-name'} className="text-gray-700 dark:text-gray-300 block w-full mb-2">full
                                     name</label>
                                 <input
                                     id={'full-name'}
@@ -97,7 +97,7 @@ const UpdateInfo: React.FC<IData> = ({data: user}) => {
                             </div>
 
                             <div className="w-full">
-                                <label htmlFor={'user-name'} className="text-gray-700 block w-full mb-2">
+                                <label htmlFor={'user-name'} className="text-gray-700 dark:text-gray-300 block w-full mb-2">
                                     username
                                 </label>
                                 <input
