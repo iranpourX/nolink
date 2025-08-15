@@ -31,7 +31,9 @@ export async function loginWithPassword(value: { phone_number: string; password:
     const {status, data} = response
 
     if (status === 200 && data.status.code === 200) {
-        await saveCookie('token', data.data.token)
+        await saveCookie('token', data.data.token, {
+            expire: new Date(new Date().setFullYear(new Date().getFullYear() + 1))
+        })
         await saveCookie('refresh_token', data.data.refresh_token)
     }
 
