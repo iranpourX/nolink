@@ -154,7 +154,7 @@ const HeaderInfo: React.FC<IUser | null> = (props) => {
 
                             </div>
 
-                            <div className="flex items-center w-80 flex-col mt-3">
+                            <div className="flex items-center w-full max-w-80 flex-col mt-3">
 
                                 <div className="flex w-full items-center justify-between mb-1">
                                         <span
