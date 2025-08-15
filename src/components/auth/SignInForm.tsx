@@ -119,6 +119,7 @@ export default function SignInForm() {
                             maxLength={11}
                             id="phone_number"
                             placeholder="09.."
+                            inputMode={'tel'}
                             className={cn(
                                 'block w-full rounded-lg border border-gray-300',
                                 'bg-gray-50/85 p-2.5 text-sm text-gray-800 focus:outline-0',
