@@ -1,4 +1,4 @@
-import {getCookie} from "@/app/lib/cookie"
+import {getCookie} from '@/app/lib/cookie'
 
 export default async function api(url: string, options?: RequestInit) {
     const token = await getCookie('token')
@@ -10,10 +10,11 @@ export default async function api(url: string, options?: RequestInit) {
     const headers = {
         ...options?.headers,
         'Authorization': `Bearer ${token}`,
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
     }
 
     const response = await fetch(`https://api.nolink.ir/${url}`, {
+        'credentials': 'include',
         ...options,
         headers
     })

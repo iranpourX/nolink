@@ -1,10 +1,10 @@
 'use client'
 
-import Card from "@/components/ui/card/card";
-import CardHeader from "@/components/ui/card/card-header";
-import React, {useEffect, useState} from "react";
-import {toast} from "sonner";
-import api from "@/app/lib/client";
+import Card from "@/components/ui/card/card"
+import CardHeader from "@/components/ui/card/card-header"
+import React, {useEffect, useState} from "react"
+import {toast} from "sonner"
+import api from "@/app/lib/client"
 
 interface ISessions {
     browser: string
@@ -14,15 +14,6 @@ interface ISessions {
     is_active: boolean
     last_activity: string
     os: string
-}
-
-async function getSessions() {
-    const response = await fetch('/api/settings/sessions', {
-        method: 'GET'
-    })
-    if (response.ok) {
-        return await response.json()
-    }
 }
 
 export const SessionsSkeleton = () => {
@@ -55,7 +46,7 @@ export default function Sessions() {
         }).then(response => response.json())
             .then(response => setSessions(response))
 
-    }, []);
+    }, [])
 
     const remove = async (id: string) => {
         const response = await api(`account/remove-session/${id}`, {method: 'post'})
