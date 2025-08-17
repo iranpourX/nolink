@@ -3,7 +3,6 @@
 import {cn} from "@/utils/helper";
 import React, {useState} from "react";
 import {SubmitHandler, useForm} from "react-hook-form";
-import client from "@/app/lib/client";
 import {toast} from "sonner";
 import api from "@/app/lib/client";
 

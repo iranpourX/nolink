@@ -49,8 +49,8 @@ export default function SignInForm() {
         setPhoneNumber(value.phone_number)
 
         const {status, data} = await sendPhoneNumber(value)
-        if (status === 200 && data.status.code === 200) {
-            if (data.data.exists) {
+        if (status.code === 200) {
+            if (data.exists) {
                 setPage(3)
             } else {
                 setPage(2)
@@ -66,12 +66,13 @@ export default function SignInForm() {
 
     const onSubmitPassword: SubmitHandler<IFormPassword> = async (value) => {
         setLoading(true)
-        const {status, data} = await loginWithPassword({
+        const {status} = await loginWithPassword({
             phone_number: phoneNumber,
             password: value.password
         })
-        if (status === 200 && data.status.code === 200) {
+        if (status.code === 200) {
             setLoading(false)
+            toast.success(status.message)
             redirect('/panel/links')
         }
     }

@@ -41,9 +41,8 @@ export default function Sessions() {
     const [sessions, setSessions] = useState<ISessions[]>([])
 
     useEffect(() => {
-        fetch('/api/settings/sessions', {
-            method: 'GET'
-        }).then(response => response.json())
+        fetch('/api/settings/sessions', {method: 'get'})
+            .then(response => response.json())
             .then(response => setSessions(response))
 
     }, [])

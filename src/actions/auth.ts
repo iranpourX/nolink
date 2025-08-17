@@ -1,44 +1,48 @@
 'use server'
 
-import axios from 'axios'
 import {saveCookie} from "@/app/lib/cookie"
 
-export async function sendPhoneNumber(value: { phone_number: string }) {
-    const response = await axios.post('https://api.nolink.ir/auth/login', value)
+export async function sendPhoneNumber(value: { "phone_number": string }) {
+    const response = await fetch('https://api.nolink.ir/auth/login', {
+        method: 'post',
+        credentials: 'include',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(value)
+    })
 
-    const {status, data} = response
-
-    return {
-        status,
-        data
-    }
+    return await response.json()
 }
 
 export async function loginWithCode(value: { phone_number: string }) {
-    const response = await axios.post('https://api.nolink.ir/auth/loginwithcode', value)
+    const response = await fetch('https://api.nolink.ir/auth/loginwithcode', {
+        method: 'post',
+        credentials: 'include',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(value)
+    })
 
-    const {status, data} = response
-
-    return {
-        status,
-        data
-    }
+    return await response.json()
 }
 
 export async function loginWithPassword(value: { phone_number: string; password: string; }) {
-    const response = await axios.post('https://api.nolink.ir/auth/loginwithpass', value)
+    const response = await fetch('https://api.nolink.ir/auth/loginwithpass', {
+        method: 'post',
+        credentials: 'include',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(value)
+    })
+    const res = await response.json()
 
-    const {status, data} = response
-
-    if (status === 200 && data.status.code === 200) {
-        await saveCookie('token', data.data.token, {
-            expire: new Date(new Date().setFullYear(new Date().getFullYear() + 1))
-        })
-        await saveCookie('refresh_token', data.data.refresh_token)
+    if (response.ok) {
+        await saveCookie('token', res.data.token)
+        await saveCookie('refresh_token', res.data.refresh_token)
     }
 
-    return {
-        status,
-        data
-    }
+    return res
 }
