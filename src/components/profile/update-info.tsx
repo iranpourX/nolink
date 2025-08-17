@@ -8,8 +8,8 @@ import {ErrorMessage} from "@hookform/error-message"
 import CardFooter from "@/components/ui/card/card-footer"
 import Btn from "@/components/ui/button/Btn"
 import React, {useState, useEffect} from "react"
-import client from "@/app/lib/client"
 import {toast} from "sonner"
+import api from "@/app/lib/client";
 
 interface IUser {
     id: string
@@ -48,8 +48,9 @@ const UpdateInfo: React.FC<IData> = ({data: user}) => {
 
     const onSubmitInfo: SubmitHandler<IUser> = async (value) => {
         setLoading(true)
-        const {data, status} = await client.post('account/update-profile', value)
-        if (status === 200 && data.status.code === 200) {
+        const response = await api('account/update-profile', {body: JSON.stringify(value)})
+        const data = await response.json()
+        if (data.status === 200 && data.data.status.code === 200) {
             toast.success(data.status.message)
 
         }

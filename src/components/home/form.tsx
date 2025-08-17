@@ -31,10 +31,11 @@ export default function Form() {
 
     const onSubmitInfo: SubmitHandler<IForm> = async (value) => {
         setLoading(true)
-        const {data, status} = await api('links/create', {
+        const response = await api('links/create', {
             body: JSON.stringify(value),
         })
-        if (status === 200 && data.status.code === 200) {
+        const data = await response.json()
+        if (data.status === 200 && data.data.status.code === 200) {
             toast.success(data.status.message)
 
         }
