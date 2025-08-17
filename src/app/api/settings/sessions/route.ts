@@ -12,19 +12,3 @@ export async function GET(req: NextRequest) {
 
     return NextResponse.json(sessions.data)
 }
-
-export async function DELETE(req: NextRequest) {
-    // const sessions = await api('/account/remove-session/' + id, {
-    //     method: "DELETE"
-    // })
-
-
-    return req
-}
-
-export async function POST(req: NextRequest) {
-    const id = await req.json()
-
-    return id
-    // const response = await api(`account/remove-session/${id}`, {method: 'post'})
-}
