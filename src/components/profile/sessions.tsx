@@ -3,11 +3,10 @@
 import Card from "@/components/ui/card/card";
 import CardHeader from "@/components/ui/card/card-header";
 import React, {useEffect, useState} from "react";
-import client from "@/app/lib/client";
 import {toast} from "sonner";
-import {useRouter} from "next/navigation"
+import api from "@/app/lib/client";
 
-type ISessions = {
+interface ISessions {
     browser: string
     current: boolean
     id: string
@@ -15,6 +14,15 @@ type ISessions = {
     is_active: boolean
     last_activity: string
     os: string
+}
+
+async function getSessions() {
+    const response = await fetch('/api/settings/sessions', {
+        method: 'GET'
+    })
+    if (response.ok) {
+        return await response.json()
+    }
 }
 
 export const SessionsSkeleton = () => {
@@ -38,28 +46,23 @@ export const SessionsSkeleton = () => {
     )
 }
 
-const Sessions = () => {
+export default function Sessions() {
     const [sessions, setSessions] = useState<ISessions[]>([])
-    const router = useRouter()
-
-    const getSessions = async () => {
-        return await client.get('account/active-sessions')
-    }
 
     useEffect(() => {
-        getSessions().then(({status, data}) => {
-            if (status === 200 && data.status.code === 200) {
-                setSessions(data.data)
-            }
-        })
-    }, [])
+        fetch('/api/settings/sessions', {
+            method: 'GET'
+        }).then(response => response.json())
+            .then(response => setSessions(response))
+
+    }, []);
 
     const remove = async (id: string) => {
-        const {status, data} = await client.post(`account/remove-session/${id}`)
-        if (status === 200 && data.status.code === 200) {
+        const response = await api(`account/remove-session/${id}`, {method: 'post'})
+        const data = await response.json()
+        if (response.status === 200 && data.status.code === 200) {
             toast.success(data.status.message)
         }
-        router.refresh()
     }
 
     return (
@@ -67,7 +70,7 @@ const Sessions = () => {
             <Card>
                 <CardHeader title={'Sessions'}/>
 
-                <div className="p-8">
+                <div className="px-8 py-4">
                     {sessions.length > 0
                         ? (sessions.map((session: ISessions) => (
                             <div
@@ -130,5 +133,3 @@ const Sessions = () => {
         </>
     )
 }
-
-export default Sessions

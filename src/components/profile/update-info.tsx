@@ -51,6 +51,7 @@ const UpdateInfo: React.FC<IData> = ({data: user}) => {
         const {data, status} = await client.post('account/update-profile', value)
         if (status === 200 && data.status.code === 200) {
             toast.success(data.status.message)
+
         }
         setLoading(false)
     }

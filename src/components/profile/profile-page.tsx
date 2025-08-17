@@ -1,8 +1,7 @@
-'use client'
 
-import {useEffect, useState} from "react"
-import client from "@/app/lib/client"
-import HeaderInfo from "@/components/profile/header-info"
+// import {useEffect, useState} from "react"
+// import client from "@/app/lib/client"
+// import HeaderInfo from "@/components/profile/header-info"
 // import UpdateInfo from "@/components/profile/update-info"
 import Sessions from "@/components/profile/sessions"
 
@@ -21,18 +20,18 @@ interface IUser {
 }
 
 export default function ProfilePage() {
-    const [user, setUser] = useState<IUser | null>(null)
-
-    useEffect(() => {
-        client.get('account/profile')
-            .then(({data}) => {
-                setUser(data)
-            })
-    }, [])
+    // const [user, setUser] = useState<IUser | null>(null)
+    //
+    // useEffect(() => {
+    //     client.get('account/profile')
+    //         .then(({data}) => {
+    //             setUser(data)
+    //         })
+    // }, [])
 
     return (
         <>
-            <HeaderInfo {...user}/>
+            {/*<HeaderInfo {...user}/>*/}
 
             {/*<UpdateInfo {...user}/>*/}
 

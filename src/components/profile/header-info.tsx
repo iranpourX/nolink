@@ -37,7 +37,8 @@ const HeaderInfo: React.FC<IUser | null> = (props) => {
                         <div className="flex justify-between items-start mb-2">
                             <div className="flex flex-col">
                                 <div className="flex items-center mb-2">
-                                    <span className="text-gray-800 dark:text-gray-100 font-medium text-lg me-1">{props?.data?.display_name}</span>
+                                    <span
+                                        className="text-gray-800 dark:text-gray-100 font-medium text-lg me-1">{props?.data?.display_name}</span>
                                     <span className={'me-2'}>
                                             <svg
                                                 className="size-5"
@@ -125,10 +126,10 @@ const HeaderInfo: React.FC<IUser | null> = (props) => {
                                                           d="M128 256s0 0 0 0l-96 0c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l160 160c12.5 12.5 32.8 12.5 45.3 0l160-160c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8l-96 0s0 0 0 0l-128 0z"/>
                                                 </svg>
                                             </i>
-                                            <div className="text-lg font-semibold text-gray-700 dark:text-gray-300">75</div>
+                                            <div className="text-lg font-semibold text-gray-700 dark:text-gray-300">75
+                                            </div>
                                         </div>
                                         <div className="font-medium text-sm text-gray-400">Projects</div>
-
                                     </div>
 
                                     <div
@@ -144,10 +145,11 @@ const HeaderInfo: React.FC<IUser | null> = (props) => {
                                                           d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-9.2 9.2-11.9 22.9-6.9 34.9s16.6 19.8 29.6 19.8l96 0s0 0 0 0l128 0s0 0 0 0l96 0c12.9 0 24.6-7.8 29.6-19.8s2.2-25.7-6.9-34.9l-160-160z"/>
                                                 </svg>
                                             </i>
-                                            <div className="text-lg font-semibold text-gray-700 dark:text-gray-300">%60</div>
+                                            <div
+                                                className="text-lg font-semibold text-gray-700 dark:text-gray-300">%60
+                                            </div>
                                         </div>
                                         <div className="font-medium text-sm text-gray-400">Success Rate</div>
-
                                     </div>
 
                                 </div>
@@ -155,10 +157,9 @@ const HeaderInfo: React.FC<IUser | null> = (props) => {
                             </div>
 
                             <div className="flex items-center w-full max-w-80 flex-col mt-3">
-
                                 <div className="flex w-full items-center justify-between mb-1">
-                                        <span
-                                            className="text-sm font-medium text-gray-500 dark:text-white">Flowbite</span>
+                                    <span
+                                        className="text-sm font-medium text-gray-500 dark:text-white">Flowbite</span>
                                     <span className="text-sm font-medium text-gray-500 dark:text-white">45%</span>
                                 </div>
                                 <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
