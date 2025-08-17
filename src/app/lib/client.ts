@@ -1,5 +1,3 @@
-'use server'
-
 import {getCookie} from '@/app/lib/cookie'
 
 export default async function api(url: string, options?: RequestInit) {

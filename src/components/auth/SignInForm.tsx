@@ -8,8 +8,8 @@ import {cn} from '@/utils/helper'
 import {toast} from 'sonner'
 import {Field} from '@headlessui/react'
 import Btn from "@/components/ui/button/Btn";
-import {redirect} from "next/navigation";
-import {loginWithCode, loginWithPassword, sendPhoneNumber} from "@/actions/auth";
+import {useRouter} from "next/navigation";
+import {loginWithCode, loginWithPassword, sendPhoneNumber} from "@/app/actions/auth";
 
 interface IFormInputs {
     phone_number: string
@@ -26,6 +26,8 @@ export default function SignInForm() {
     const [showPassword, setShowPassword] = useState<boolean>(false)
     const [loading, setLoading] = useState<boolean>(false)
     const [phoneNumber, setPhoneNumber] = useState<string>('')
+
+    const router = useRouter()
 
     const change = (id: number) => {
         setPage(id)
@@ -72,8 +74,8 @@ export default function SignInForm() {
         })
         if (status.code === 200) {
             setLoading(false)
+            router.push('/panel/links')
             toast.success(status.message)
-            redirect('/panel/links')
         }
     }
 

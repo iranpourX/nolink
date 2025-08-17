@@ -48,11 +48,14 @@ export default function Sessions() {
     }, [])
 
     const remove = async (id: string) => {
-        const response = await api(`account/remove-session/${id}`, {method: 'post'})
+        // const response = await api(`account/remove-session/${id}`, {method: 'post'})
+        const response = await fetch(`/api/settings/sessions`, {method: 'DELETE'})
         const data = await response.json()
-        if (response.status === 200 && data.status.code === 200) {
-            toast.success(data.status.message)
-        }
+        console.log(data)
+        // const data = await response.json()
+        // if (response.status === 200 && data.status.code === 200) {
+        //     toast.success(data.status.message)
+        // }
     }
 
     return (
