@@ -1,12 +1,9 @@
 import api from "@/app/lib/client";
-import {NextRequest, NextResponse} from "next/server"
+import {NextResponse} from "next/server"
 
-export async function GET(req: NextRequest) {
+export async function GET() {
     const response = await api("account/active-sessions", {
-        method: "GET",
-        headers: {
-            'User-Agent': req.headers.get('user-agent') || ''
-        }
+        method: "GET"
     })
     const sessions = await response.json()
 
