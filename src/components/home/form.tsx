@@ -5,6 +5,7 @@ import React, {useState} from "react";
 import {SubmitHandler, useForm} from "react-hook-form";
 import client from "@/app/lib/client";
 import {toast} from "sonner";
+import api from "@/app/lib/client";
 
 interface IForm {
     url: string,
@@ -30,7 +31,9 @@ export default function Form() {
 
     const onSubmitInfo: SubmitHandler<IForm> = async (value) => {
         setLoading(true)
-        const {data, status} = await client.post('links/create', value)
+        const {data, status} = await api('links/create', {
+            body: JSON.stringify(value),
+        })
         if (status === 200 && data.status.code === 200) {
             toast.success(data.status.message)
 
