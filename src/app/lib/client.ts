@@ -10,13 +10,13 @@ export default async function api(url: string, options?: RequestInit) {
     const headers = {
         ...options?.headers,
         'Authorization': `Bearer ${token}`,
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
     }
 
     const response = await fetch(`https://api.nolink.ir/${url}`, {
-        'credentials': 'include',
+        credentials: 'include',
         ...options,
-        headers
+        headers,
     })
 
     if (!response.ok) {
