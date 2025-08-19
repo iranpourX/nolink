@@ -1,10 +1,7 @@
 // import {NextResponse} from "next/server";
-import type {NextRequest} from "next/server";
-import {setUserAgent} from "@/app/lib/global-fetch";
+// import type {NextRequest} from "next/server";
 
-export function middleware(request: NextRequest) {
-    const userAgent = request.headers.get("user-agent") || "Unknown-UA";
-    setUserAgent(userAgent);
+export function middleware() {
 
     // const themePreference = request.cookies.get('token')
     // if (!themePreference) {

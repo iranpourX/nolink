@@ -11,7 +11,7 @@ type ThemeContextType = {
     selectTheme: (mode: Theme) => void
 }
 
-const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
+const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
 
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> =
     ({children}) => {

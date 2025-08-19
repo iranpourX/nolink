@@ -3,8 +3,8 @@
 import Card from "@/components/ui/card/card"
 import CardHeader from "@/components/ui/card/card-header"
 import React, {useEffect, useState} from "react"
-import {toast} from "sonner"
-import api from "@/app/lib/client"
+// import {toast} from "sonner"
+// import api from "@/app/lib/client"
 
 interface ISessions {
     browser: string
@@ -51,7 +51,7 @@ export default function Sessions() {
         // const response = await api(`account/remove-session/${id}`, {method: 'post'})
         const response = await fetch(`/api/settings/sessions`, {method: 'DELETE'})
         const data = await response.json()
-        console.log(data)
+        console.log(data, id)
         // const data = await response.json()
         // if (response.status === 200 && data.status.code === 200) {
         //     toast.success(data.status.message)
@@ -120,7 +120,8 @@ export default function Sessions() {
                                 </div>
                             </div>
                         )))
-                        : (<SessionsSkeleton/>)}
+                        : (<SessionsSkeleton/>)
+                    }
                 </div>
             </Card>
         </>

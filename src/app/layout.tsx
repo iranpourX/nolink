@@ -3,6 +3,7 @@ import type {Metadata} from 'next'
 import './globals.css'
 import {SidebarProvider} from '@/context/SidebarContext'
 import {ThemeProvider} from '@/context/ThemeContext'
+import {UserProvider} from '@/context/UserContext'
 
 export const metadata: Metadata = {
     title: {
@@ -19,7 +20,11 @@ export default async function RootLayout({children}: Readonly<{
         <html lang="en">
         <body className={`dark:bg-gray-900`}>
         <ThemeProvider>
-            <SidebarProvider>{children}</SidebarProvider>
+            <SidebarProvider>
+                <UserProvider>
+                    {children}
+                </UserProvider>
+            </SidebarProvider>
         </ThemeProvider>
         </body>
         </html>
