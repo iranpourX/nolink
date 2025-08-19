@@ -9,7 +9,7 @@ export default function HeaderInfoSkeleton() {
                     <span className={'size-40 flex bg-gray-100 rounded-lg'}/>
                 </div>
             </div>
-            <div className="grow flex flex-col justify-between animate-pulse">
+            <div className="grow flex flex-col gap-y-3 justify-between animate-pulse">
                 <div className="flex justify-between items-start">
                     <div className="flex flex-col">
                         <div className="flex items-center mb-2 w-40 py-3.5 bg-gray-100 rounded-lg"/>
