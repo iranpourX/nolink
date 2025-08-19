@@ -111,11 +111,11 @@ const HeaderInfo: React.FC<User> = ({user, loading}) => {
                                                             </svg>
                                                         </i>
                                                         <div
-                                                            className="text-lg font-semibold text-gray-700 dark:text-gray-300">
-                                                            $4,500
+                                                            className="text-lg font-semibold text-gray-700 dark:text-gray-400">
+                                                            $4.50
                                                         </div>
                                                     </div>
-                                                    <div className="font-medium text-sm text-gray-400">Earnings</div>
+                                                    <div className="font-medium text-sm text-gray-500">Earnings</div>
                                                 </div>
 
 
@@ -134,10 +134,10 @@ const HeaderInfo: React.FC<User> = ({user, loading}) => {
                                                             </svg>
                                                         </i>
                                                         <div
-                                                            className="text-lg font-semibold text-gray-700 dark:text-gray-300">75
+                                                            className="text-lg font-semibold text-gray-700 dark:text-gray-400">75
                                                         </div>
                                                     </div>
-                                                    <div className="font-medium text-sm text-gray-400">Projects</div>
+                                                    <div className="font-medium text-sm text-gray-500">Projects</div>
                                                 </div>
 
                                             </div>
