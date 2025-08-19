@@ -15,11 +15,11 @@ export default function HeaderInfoSkeleton() {
                         <div className="flex items-center mb-2 w-40 py-3.5 bg-gray-100 rounded-lg"/>
                         <div className="flex items-center justify-start flex-wrap pe-2">
                             <span
-                                className="flex items-baseline text-sm font-medium text-gray-400 me-5 mb-2">
-                                <span className={'me-1 py-2 w-28 bg-gray-100 rounded-lg'}/>
+                                className="flex items-baseline text-sm font-medium text-gray-400">
+                                <span className={'me-1 py-2.5 w-28 bg-gray-100 rounded-lg'}/>
                             </span>
-                            <span className="flex items-center text-sm font-medium text-gray-400 mb-2">
-                                <span className={'me-1 py-2 w-28 bg-gray-100 rounded-lg'}/>
+                            <span className="flex items-center text-sm font-medium text-gray-400">
+                                <span className={'me-1 py-2.5 w-28 bg-gray-100 rounded-lg'}/>
                             </span>
                         </div>
                     </div>

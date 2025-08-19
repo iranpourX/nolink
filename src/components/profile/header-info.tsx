@@ -37,7 +37,7 @@ const HeaderInfo: React.FC<User> = ({user, loading}) => {
                                         />
                                     </div>
                                 </div>
-                                <div className="grow flex flex-col justify-between">
+                                <div className="grow flex flex-col gap-y-3 justify-between">
 
                                     <div className="flex justify-between items-start">
                                         <div className="flex flex-col">
