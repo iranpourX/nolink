@@ -98,7 +98,7 @@ const HeaderInfo: React.FC<User> = ({user, loading}) => {
 
                                             <div className="flex flex-wrap gap-4">
                                                 <div
-                                                    className="min-w-28 border border-gray-300 border-dashed rounded-lg py-3 px-4">
+                                                    className="min-w-28 border border-gray-300 dark:border-gray-600 border-dashed rounded-lg py-3 px-4">
                                                     <div className="flex items-baseline">
                                                         <i className="me-2">
                                                             <svg className={'size-4'}
@@ -120,7 +120,7 @@ const HeaderInfo: React.FC<User> = ({user, loading}) => {
 
 
                                                 <div
-                                                    className="min-w-28 border border-gray-300 border-dashed rounded-lg py-3 px-4">
+                                                    className="min-w-28 border border-gray-300 dark:border-gray-600 border-dashed rounded-lg py-3 px-4">
                                                     <div className="flex items-baseline">
                                                         <i className="me-2">
                                                             <svg
@@ -138,27 +138,6 @@ const HeaderInfo: React.FC<User> = ({user, loading}) => {
                                                         </div>
                                                     </div>
                                                     <div className="font-medium text-sm text-gray-400">Projects</div>
-                                                </div>
-
-                                                <div
-                                                    className="min-w-28 border border-gray-300 border-dashed rounded-lg py-3 px-4">
-                                                    <div className="flex items-baseline">
-                                                        <i className="me-2">
-                                                            <svg className={'size-4'}
-                                                                 xmlns="http://www.w3.org/2000/svg"
-                                                                 viewBox="0 0 384 512">
-                                                                <path className="fill-gray-300"
-                                                                      d="M128 256c42.7 0 85.3 0 128 0c0 61.3 0 122.7 0 184c0 22.1-17.9 40-40 40l-48 0c-22.1 0-40-17.9-40-40c0-61.3 0-122.7 0-184z"/>
-                                                                <path className="fill-blue-500"
-                                                                      d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-9.2 9.2-11.9 22.9-6.9 34.9s16.6 19.8 29.6 19.8l96 0s0 0 0 0l128 0s0 0 0 0l96 0c12.9 0 24.6-7.8 29.6-19.8s2.2-25.7-6.9-34.9l-160-160z"/>
-                                                            </svg>
-                                                        </i>
-                                                        <div
-                                                            className="text-lg font-semibold text-gray-700 dark:text-gray-300">%60
-                                                        </div>
-                                                    </div>
-                                                    <div className="font-medium text-sm text-gray-400">Success Rate
-                                                    </div>
                                                 </div>
 
                                             </div>

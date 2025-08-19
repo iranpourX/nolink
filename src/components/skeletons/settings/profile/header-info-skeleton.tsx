@@ -27,7 +27,7 @@ export default function HeaderInfoSkeleton() {
                 <div className="flex flex-wrap items-center justify-between">
                     <div className="flex pe-8">
                         <div className="flex flex-wrap gap-4">
-                            {[...Array(3)].map((x, i) =>
+                            {[...Array(2)].map((x, i) =>
                                 <div key={i}
                                      className="min-w-28 border border-gray-100 dark:border-gray-600 rounded-lg py-9 px-4 bg-gray-100 dark:bg-gray-600"/>)}
                         </div>
