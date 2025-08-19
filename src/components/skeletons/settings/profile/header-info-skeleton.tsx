@@ -32,7 +32,7 @@ export default function HeaderInfoSkeleton() {
                                      className="min-w-28 border border-gray-100 dark:border-gray-600 rounded-lg py-9 px-4 bg-gray-100 dark:bg-gray-600"/>)}
                         </div>
                     </div>
-                    <div className="flex items-center w-full max-w-80 py-4 flex-col bg-gray-100 rounded-lg mt-3"/>
+                    <div className="flex items-center w-full max-w-80 py-4 flex-col bg-gray-100 dark:bg-gray-600 rounded-lg mt-3"/>
                 </div>
             </div>
         </>
