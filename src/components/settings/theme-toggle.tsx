@@ -43,24 +43,6 @@ export const ThemeToggle: React.FC = () => {
 
                 </button>
             </li>
-
-            <li className="col-span-3">
-                <button
-                    onClick={() => selectTheme('system')}
-                    className={`flex w-full border-3 overflow-hidden rounded-xl cursor-pointer ${theme === 'system' ? 'border-green-600' : 'border-transparent'}`}>
-                    <div className="block">
-                        <div className="relative">
-                            <Image
-                                className="rounded-lg object-cover object-center"
-                                width={340}
-                                height={170}
-                                src="/images/system-mode.jpg"
-                                alt="system-mode"
-                            />
-                        </div>
-                    </div>
-                </button>
-            </li>
         </ul>
     );
 };
