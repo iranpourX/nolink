@@ -8,7 +8,6 @@ import {cn} from '@/utils/helper'
 import {toast} from 'sonner'
 import {Dialog, DialogBackdrop, DialogPanel, Field} from '@headlessui/react'
 import Btn from "@/components/ui/button/Btn";
-import {useRouter} from "next/navigation";
 import {loginWithCode, loginWithPassword, sendPhoneNumber} from "@/app/actions/auth";
 import {useUser} from "@/context/UserContext"
 
@@ -29,8 +28,6 @@ export default function SignInForm() {
     const [phoneNumber, setPhoneNumber] = useState<string>('')
     const [isOpen, setIsOpen] = useState<boolean>(false)
     const {showLoginPopup, setShowLoginPopup} = useUser()
-
-    const router = useRouter()
 
     function open() {
         setIsOpen(true)
@@ -92,7 +89,7 @@ export default function SignInForm() {
         })
         if (status.code === 200) {
             setLoading(false)
-            router.push('/panel/links')
+            window.location.reload()
             toast.success(status.message)
         }
     }
@@ -327,12 +324,8 @@ export default function SignInForm() {
                                                                 type={showPassword ? "text" : "password"}
                                                                 {...register2("password", {
                                                                     required: 'password is required',
-                                                                    pattern: {
-                                                                        value: /^\d+$/,
-                                                                        message: "This input is number only.",
-                                                                    },
                                                                     minLength: {
-                                                                        value: 3,
+                                                                        value: 8,
                                                                         message: 'This input exceed maxLength'
                                                                     }
                                                                 })}
