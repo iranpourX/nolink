@@ -13,7 +13,7 @@ const Skeleton = () => {
     )
 }
 
-export default function UserDropdown({toRight}: { toRight: boolean }) {
+export default function UserDropdown({toRight}: { toRight?: boolean }) {
     const [isOpen, setIsOpen] = useState(false)
     const {user, loading} = useUser()
 
