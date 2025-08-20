@@ -7,6 +7,7 @@ import StatisticsChart from "@/components/analytics/StatisticsChart";
 export const metadata: Metadata = {
     title: 'Analytics'
 }
+
 export default function Settings() {
 
     return (

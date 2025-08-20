@@ -9,7 +9,6 @@ import CardFooter from "@/components/ui/card/card-footer"
 import Btn from "@/components/ui/button/Btn"
 import React, {useState, useEffect} from "react"
 import {toast} from "sonner"
-import api from "@/app/lib/client";
 
 interface IUser {
     id: string
@@ -47,10 +46,14 @@ const UpdateInfo: React.FC<User> = ({user}) => {
 
     const onSubmitInfo: SubmitHandler<IUser> = async (value) => {
         setLoading(true)
-        const response = await api('account/update-profile', {body: JSON.stringify(value)})
-        const data = await response.json()
-        if (data.status === 200 && data.data.status.code === 200) {
-            toast.success(data.status.message)
+        const response = await fetch('/api/settings/profile', {
+            method: "POST",
+            body: JSON.stringify(value)
+        })
+        const {status} = await response.json()
+
+        if (response.status === 200 && status.code === 200) {
+            toast.success(status.message)
 
         }
         setLoading(false)
@@ -148,4 +151,4 @@ const UpdateInfo: React.FC<User> = ({user}) => {
     )
 }
 
-export default UpdateInfo;
+export default UpdateInfo
