@@ -10,6 +10,7 @@ import {Dialog, DialogBackdrop, DialogPanel, Field} from '@headlessui/react'
 import Btn from "@/components/ui/button/Btn";
 import {loginWithCode, loginWithPassword, sendPhoneNumber} from "@/app/actions/auth";
 import {useUser} from "@/context/UserContext"
+import UserDropdown from "@/components/header/UserDropdown";
 
 interface IFormInputs {
     phone_number: string
@@ -27,7 +28,7 @@ export default function SignInForm() {
     const [loading, setLoading] = useState<boolean>(false)
     const [phoneNumber, setPhoneNumber] = useState<string>('')
     const [isOpen, setIsOpen] = useState<boolean>(false)
-    const {showLoginPopup, setShowLoginPopup} = useUser()
+    const {showLoginPopup, setShowLoginPopup, isAuth} = useUser()
 
     function open() {
         setIsOpen(true)
@@ -120,61 +121,63 @@ export default function SignInForm() {
     const GetNumber = () => {
         return (
             <div>
-                <div className="mb-4 sm:mb-8 flex flex-col justify-center items-center">
+                <div className="mb-4 sm:mb-8 px-6 flex flex-col justify-center items-center">
                     <h1 className="mb-2 font-semibold text-gray-800 text-xl">
                         Sign In
                     </h1>
+                    <p className={'text-sm text-gray-500'}>
+                        To use all features of Nolink, Enter your phone number, you’ll receive a one-time code
+                    </p>
                 </div>
 
                 <form
                     onSubmit={handleSubmit(onSubmitPhone)}
-                    className="gap-3 flex flex-col"
-                >
-                    <Field>
-                        <label htmlFor={'phone_number'} className="my-label">Phone</label>
-                        <input
-                            maxLength={11}
-                            id="phone_number"
-                            placeholder="09.."
-                            inputMode={'tel'}
-                            className={cn(
-                                'block w-full rounded-lg border border-gray-300',
-                                'bg-gray-50/85 p-2.5 text-sm text-gray-800 focus:outline-0',
-                                'focus:ring-1 ring-blue-400 focus:border-blue-400',
-                                [
-                                    errors.phone_number &&
-                                    'ring-red-500 border-red-500 focus:border-red-500 focus:ring-red-500'
-                                ]
-                            )}
-                            autoComplete={'off'}
-                            {...register("phone_number", {
-                                required: 'phone number is required',
-                                pattern: {
-                                    value: /^\d+$/,
-                                    message: "This input is number only.",
-                                },
-                                minLength: {
-                                    value: 10,
-                                    message: 'This input exceed maxLength'
-                                }
-                            })}
-                        />
+                    className="flex flex-col">
+                    <label htmlFor={'phone_number'} className="my-label">Phone</label>
+                    <input
+                        maxLength={11}
+                        id="phone_number"
+                        placeholder="09.."
+                        inputMode={'tel'}
+                        className={cn(
+                            'block w-full rounded-lg border border-gray-300 mb-1',
+                            'bg-gray-50/85 p-2.5 text-sm text-gray-800 focus:outline-0',
+                            'focus:ring-2 ring-blue-100 focus:border-blue-200',
+                            [
+                                errors.phone_number &&
+                                'ring-red-400 border-red-400 focus:border-red-400 focus:ring-red-400'
+                            ]
+                        )}
+                        autoComplete={'off'}
+                        {...register("phone_number", {
+                            required: 'phone number is required',
+                            pattern: {
+                                value: /^\d+$/,
+                                message: "This input is number only.",
+                            },
+                            minLength: {
+                                value: 10,
+                                message: 'This input exceed maxLength'
+                            }
+                        })}
+                    />
 
-                        <ErrorMessage
-                            errors={errors}
-                            name="phone_number"
-                            render={({message}) => <small
-                                className="px-1 text-red-500 text-xs">{message}</small>}
-                        />
+                    <ErrorMessage
+                        errors={errors}
+                        name="phone_number"
+                        render={({message}) => <small
+                            className="px-1 text-red-500 text-xs">{message}</small>}
+                    />
 
-                        {!errors.phone_number && (<small className="h-6 block"></small>)}
+                    {!errors.phone_number && (<small className="h-4 block"></small>)}
 
-                    </Field>
+                    <span className={'text-sm my-2'}>I accept privacy policy of using Nolink</span>
 
                     <Btn inType={'submit'} loading={loading}>
                         submit
                     </Btn>
                 </form>
+
             </div>
         )
     }
@@ -183,19 +186,23 @@ export default function SignInForm() {
 
     return (
         <>
-            <button
-                onClick={open}
-                type={'button'}
-                className="px-6 py-3 text-sm bg-white rounded-lg shadow flex justify-center items-center gap-3">
-                ورود | ثبت نام
-                <svg
-                    className={'size-5 fill-gray-600 rotate-180'}
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 512 512">
-                    <path
-                        d="M347.3 267.3c6.2-6.2 6.2-16.4 0-22.6l-128-128c-6.2-6.2-16.4-6.2-22.6 0s-6.2 16.4 0 22.6L297.4 240 16 240c-8.8 0-16 7.2-16 16s7.2 16 16 16l281.4 0L196.7 372.7c-6.2 6.2-6.2 16.4 0 22.6s16.4 6.2 22.6 0l128-128zM336 448c-8.8 0-16 7.2-16 16s7.2 16 16 16l96 0c44.2 0 80-35.8 80-80l0-288c0-44.2-35.8-80-80-80l-96 0c-8.8 0-16 7.2-16 16s7.2 16 16 16l96 0c26.5 0 48 21.5 48 48l0 288c0 26.5-21.5 48-48 48l-96 0z"/>
-                </svg>
-            </button>
+            {
+                isAuth
+                    ? (<UserDropdown toRight={true}/>)
+                    : (<button
+                        onClick={open}
+                        type={'button'}
+                        className="px-6 py-3 text-sm bg-white rounded-lg shadow flex justify-center items-center gap-3">
+                        ورود | ثبت نام
+                        <svg
+                            className={'size-5 fill-gray-600 rotate-180'}
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 512 512">
+                            <path
+                                d="M347.3 267.3c6.2-6.2 6.2-16.4 0-22.6l-128-128c-6.2-6.2-16.4-6.2-22.6 0s-6.2 16.4 0 22.6L297.4 240 16 240c-8.8 0-16 7.2-16 16s7.2 16 16 16l281.4 0L196.7 372.7c-6.2 6.2-6.2 16.4 0 22.6s16.4 6.2 22.6 0l128-128zM336 448c-8.8 0-16 7.2-16 16s7.2 16 16 16l96 0c44.2 0 80-35.8 80-80l0-288c0-44.2-35.8-80-80-80l-96 0c-8.8 0-16 7.2-16 16s7.2 16 16 16l96 0c26.5 0 48 21.5 48 48l0 288c0 26.5-21.5 48-48 48l-96 0z"/>
+                        </svg>
+                    </button>)
+            }
 
             <Dialog open={isOpen} as="div" className="relative z-10 focus:outline-none" onClose={close}>
                 <DialogBackdrop className="fixed inset-0 bg-black/40"/>
@@ -203,9 +210,8 @@ export default function SignInForm() {
                     <div className="flex min-h-full items-center justify-center p-4">
                         <DialogPanel
                             transition
-                            className="w-full max-w-lg rounded-lg bg-white/5 p-6 backdrop-blur-2xl duration-300 ease-out data-closed:transform-[scale(95%)] data-closed:opacity-0"
+                            className="w-full max-w-sm rounded-lg bg-white p-6 duration-300 ease-out data-closed:transform-[scale(95%)] data-closed:opacity-0"
                         >
-
                             {
                                 (() => {
                                     switch (page) {

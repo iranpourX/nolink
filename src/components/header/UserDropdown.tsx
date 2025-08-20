@@ -5,16 +5,15 @@ import Image from "next/image"
 import {Dropdown} from "../ui/dropdown/Dropdown"
 import {DropdownItem} from "../ui/dropdown/DropdownItem"
 import {useUser} from '@/context/UserContext'
+import {cn} from "@/utils/helper";
 
 const Skeleton = () => {
-    return (
-        <button className="flex items-center animate-pulse">
-            <span className="mr-1 overflow-hidden bg-gray-100 dark:bg-gray-600 rounded-full h-12 w-12"></span>
-        </button>
+    return (<button className="flex items-center animate-pulse">
+            <span className="mr-1 overflow-hidden bg-gray-100 dark:bg-gray-600 rounded-full h-12 w-12"></span></button>
     )
 }
 
-export default function UserDropdown() {
+export default function UserDropdown({toRight}: { toRight: boolean }) {
     const [isOpen, setIsOpen] = useState(false)
     const {user, loading} = useUser()
 
@@ -51,8 +50,11 @@ export default function UserDropdown() {
             <Dropdown
                 isOpen={isOpen}
                 onClose={closeDropdown}
-                className="absolute right-0 mt-[17px] flex w-[260px] flex-col rounded-2xl border border-gray-200 bg-white p-3 shadow-theme-lg dark:border-gray-800 dark:bg-gray-dark"
-            >
+                className={cn(
+                    'absolute mt-[17px] flex w-[260px] flex-col rounded-2xl',
+                    'border border-gray-200 bg-white p-3 shadow-theme-lg dark:border-gray-800 dark:bg-gray-dark',
+                    [toRight ? 'left-0' : 'right-0']
+                )}>
                 <div className={'px-2'}>
                     <span className="block font-medium text-gray-700 text-theme-sm dark:text-gray-400">
                         {user?.display_name}
