@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export default function Home() {
     return (
         <div className={'min-h-screen relative'}>
-            <header className="px-8 lg:px-16 py-6 lg:py-8 flex justify-between items-center">
+            <header className="px-4 lg:px-16 py-6 lg:py-8 flex justify-between items-center">
 
                 <SignInForm/>
 
