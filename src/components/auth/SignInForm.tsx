@@ -97,15 +97,15 @@ export default function SignInForm() {
         }
     }
 
-    useEffect(() => {
-        const secondInterval = setInterval(() => {
-            setCountDown(prev => (prev - 1 < 0 ? 0 : prev - 1))
-        }, 1000)
-
-        return () => {
-            clearInterval(secondInterval)
-        }
-    })
+    // useEffect(() => {
+    //     const secondInterval = setInterval(() => {
+    //         setCountDown(prev => (prev - 1 < 0 ? 0 : prev - 1))
+    //     }, 1000)
+    //
+    //     return () => {
+    //         clearInterval(secondInterval)
+    //     }
+    // })
 
     const backToOtp = async () => {
         setPage(2)
@@ -119,7 +119,6 @@ export default function SignInForm() {
     const resend = () => {
         setCountDown(10)
     }
-
 
     const GetNumber = () => {
         return (
