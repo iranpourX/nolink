@@ -17,6 +17,8 @@ type UserContextType = {
     user: User
     loading: boolean
     setUser: (user: User) => void
+    showLoginPopup: boolean
+    setShowLoginPopup: (callback: boolean) => void
 }
 
 const UserContext = createContext<UserContextType | undefined>(undefined)
@@ -24,6 +26,7 @@ const UserContext = createContext<UserContextType | undefined>(undefined)
 export function UserProvider({children}: { children: React.ReactNode }) {
     const [user, setUser] = useState<User>(null)
     const [loading, setLoading] = useState(true)
+    const [showLoginPopup, setShowLoginPopup] = useState(false)
 
     useEffect(() => {
         const fetchUser = async () => {
@@ -44,7 +47,7 @@ export function UserProvider({children}: { children: React.ReactNode }) {
     }, [])
 
     return (
-        <UserContext.Provider value={{user, loading, setUser}}>
+        <UserContext.Provider value={{user, loading, setUser, showLoginPopup, setShowLoginPopup}}>
             {children}
         </UserContext.Provider>
     )

@@ -5,6 +5,7 @@ import React, {useState} from "react";
 import {SubmitHandler, useForm} from "react-hook-form";
 import {toast} from "sonner";
 import api from "@/app/lib/client";
+import {useUser} from "@/context/UserContext"
 
 interface IForm {
     url: string,
@@ -20,6 +21,7 @@ interface IForm {
 
 export default function Form() {
     const [loading, setLoading] = useState<boolean>(false)
+    const {user, setShowLoginPopup} = useUser()
 
     const {
         handleSubmit,
@@ -83,16 +85,31 @@ export default function Form() {
                         <span className={'md:hidden text-gray-400 text-sm'}>clear</span>
                     </button>
 
-                    <button
-                        type={'button'}
-                        className={cn(
-                            'flex',
-                            'items-center rounded-lg border justify-center border-blue-600 bg-blue-600 w-full',
-                            'px-4 py-2 text-base font-semibold text-white',
-                            'dark:border-gray-800 dark:bg-white/[0.03] dark:text-gray-400'
-                        )}>
-                        <span>Short it</span>
-                    </button>
+                    {
+                        !user
+                            ? (<button
+                                type={'button'}
+                                className={cn(
+                                    'flex',
+                                    'items-center rounded-lg border justify-center border-blue-600 bg-blue-600 w-full',
+                                    'px-4 py-2 text-base font-semibold text-white',
+                                    'dark:border-gray-800 dark:bg-white/[0.03] dark:text-gray-400'
+                                )}>
+                                <span>Short it</span>
+                            </button>)
+                            : (<button
+                                onClick={() => setShowLoginPopup(true)}
+                                type={'button'}
+                                className={cn(
+                                    'flex',
+                                    'items-center rounded-lg border justify-center border-blue-600 bg-blue-600 w-full',
+                                    'px-4 py-2 text-base font-semibold text-white',
+                                    'dark:border-gray-800 dark:bg-white/[0.03] dark:text-gray-400'
+                                )}>
+                                <span>login first</span>
+                            </button>)
+                    }
+
                 </div>
             </div>
         </form>

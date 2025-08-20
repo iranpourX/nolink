@@ -1,8 +1,9 @@
 import type {Metadata} from "next"
 import Link from "next/link"
-import {cn} from "@/utils/helper";
+// import {cn} from "@/utils/helper";
 import React from "react";
-// import Form from "@/components/home/form"
+import SignInForm from "@/components/auth/SignInForm";
+import Form from "@/components/home/form"
 
 export const metadata: Metadata = {
     title: 'Nolink'
@@ -12,17 +13,9 @@ export default function Home() {
     return (
         <div className={'min-h-screen relative'}>
             <header className="px-8 lg:px-16 py-6 lg:py-8 flex justify-between items-center">
-                <Link prefetch={false} href="/signin"
-                      className="px-6 py-3 text-sm bg-white rounded-lg shadow flex justify-center items-center gap-3">
-                    ورود | ثبت نام
-                    <svg
-                        className={'size-5 fill-gray-600 rotate-180'}
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 512 512">
-                        <path
-                            d="M347.3 267.3c6.2-6.2 6.2-16.4 0-22.6l-128-128c-6.2-6.2-16.4-6.2-22.6 0s-6.2 16.4 0 22.6L297.4 240 16 240c-8.8 0-16 7.2-16 16s7.2 16 16 16l281.4 0L196.7 372.7c-6.2 6.2-6.2 16.4 0 22.6s16.4 6.2 22.6 0l128-128zM336 448c-8.8 0-16 7.2-16 16s7.2 16 16 16l96 0c44.2 0 80-35.8 80-80l0-288c0-44.2-35.8-80-80-80l-96 0c-8.8 0-16 7.2-16 16s7.2 16 16 16l96 0c26.5 0 48 21.5 48 48l0 288c0 26.5-21.5 48-48 48l-96 0z"/>
-                    </svg>
-                </Link>
+
+                <SignInForm/>
+
                 <Link prefetch={false} href="/" className="flex items-center">
                     <h1 className="text-center justify-start text-black text-2xl font-extrabold">نولینک</h1>
                     <div className="relative">
@@ -52,7 +45,7 @@ export default function Home() {
                             </h3>
                         </div>
 
-                        {/*<Form/>*/}
+                        <Form/>
 
                         <div className="rounded-lg flex flex-col w-full overflow-hidden">
 

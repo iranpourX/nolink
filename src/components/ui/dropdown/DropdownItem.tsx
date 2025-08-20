@@ -18,7 +18,7 @@ export const DropdownItem: React.FC<DropdownItemProps> =
          href,
          onClick,
          onItemClick,
-         baseClassName = "flex items-center w-full gap-3 rounded-lg p-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900",
+         baseClassName = "flex items-center w-full gap-3 rounded-lg p-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-800",
          className = "",
          children,
      }) => {

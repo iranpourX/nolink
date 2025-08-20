@@ -6,6 +6,14 @@ import {Dropdown} from "../ui/dropdown/Dropdown"
 import {DropdownItem} from "../ui/dropdown/DropdownItem"
 import {useUser} from '@/context/UserContext'
 
+const Skeleton = () => {
+    return (
+        <button className="flex items-center animate-pulse">
+            <span className="mr-1 overflow-hidden bg-gray-100 dark:bg-gray-600 rounded-full h-12 w-12"></span>
+        </button>
+    )
+}
+
 export default function UserDropdown() {
     const [isOpen, setIsOpen] = useState(false)
     const {user, loading} = useUser()
@@ -21,10 +29,13 @@ export default function UserDropdown() {
 
     return (
         <div className="relative">
-            <button
-                onClick={toggleDropdown}
-                className="flex items-center text-gray-700 dark:text-gray-400 dropdown-toggle"
-            >
+
+            {loading
+                ? (<Skeleton/>)
+                : (<button
+                    onClick={toggleDropdown}
+                    className="flex items-center text-gray-700 dark:text-gray-400 dropdown-toggle"
+                >
                 <span className="mr-1 overflow-hidden rounded-full h-12 w-12">
                     <Image
                         width={44}
@@ -34,14 +45,15 @@ export default function UserDropdown() {
                         className={`p-0.5 border-2 rounded-full ${isOpen ? "border-blue-400" : "border-gray-200 dark:border-gray-700"}`}
                     />
                 </span>
-            </button>
+                </button>)
+            }
 
             <Dropdown
                 isOpen={isOpen}
                 onClose={closeDropdown}
                 className="absolute right-0 mt-[17px] flex w-[260px] flex-col rounded-2xl border border-gray-200 bg-white p-3 shadow-theme-lg dark:border-gray-800 dark:bg-gray-dark"
             >
-                <div>
+                <div className={'px-2'}>
                     <span className="block font-medium text-gray-700 text-theme-sm dark:text-gray-400">
                         {user?.display_name}
                     </span>
@@ -62,7 +74,7 @@ export default function UserDropdown() {
                                 xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 512 512">
                                 <path
-                                      d="M406.5 399.6C387.4 352.9 341.5 320 288 320l-64 0c-53.5 0-99.4 32.9-118.5 79.6-35.6-37.3-57.5-87.9-57.5-143.6 0-114.9 93.1-208 208-208s208 93.1 208 208c0 55.7-21.9 106.2-57.5 143.6zm-40.1 32.7C334.4 452.4 296.6 464 256 464s-78.4-11.6-110.5-31.7c7.3-36.7 39.7-64.3 78.5-64.3l64 0c38.8 0 71.2 27.6 78.5 64.3zM256 512a256 256 0 1 0 0-512 256 256 0 1 0 0 512zm0-272a40 40 0 1 1 0-80 40 40 0 1 1 0 80zm-88-40a88 88 0 1 0 176 0 88 88 0 1 0 -176 0z"/>
+                                    d="M406.5 399.6C387.4 352.9 341.5 320 288 320l-64 0c-53.5 0-99.4 32.9-118.5 79.6-35.6-37.3-57.5-87.9-57.5-143.6 0-114.9 93.1-208 208-208s208 93.1 208 208c0 55.7-21.9 106.2-57.5 143.6zm-40.1 32.7C334.4 452.4 296.6 464 256 464s-78.4-11.6-110.5-31.7c7.3-36.7 39.7-64.3 78.5-64.3l64 0c38.8 0 71.2 27.6 78.5 64.3zM256 512a256 256 0 1 0 0-512 256 256 0 1 0 0 512zm0-272a40 40 0 1 1 0-80 40 40 0 1 1 0 80zm-88-40a88 88 0 1 0 176 0 88 88 0 1 0 -176 0z"/>
                             </svg>
                             Edit profile
                         </DropdownItem>
@@ -118,10 +130,10 @@ export default function UserDropdown() {
                 </ul>
                 <button
                     type={"button"}
-                    className="flex items-center gap-3 p-2 mt-2 font-medium text-red-700 rounded-lg group text-sm hover:bg-red-100 hover:text-red-700 dark:text-red-400 dark:hover:bg-red/5 dark:hover:text-red-300"
+                    className="flex items-center gap-3 p-2 mt-2 font-medium text-red-700 rounded-lg group text-sm hover:bg-red-100 hover:text-red-700 dark:text-red-700 dark:hover:bg-red-400"
                 >
                     <svg
-                        className={'size-5 fill-red-500 group-hover:fill-red-700 dark:group-hover:fill-red-300'}
+                        className={'size-5 fill-red-500 group-hover:fill-red-700'}
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 512 512">
                         <path
