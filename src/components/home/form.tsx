@@ -21,7 +21,7 @@ interface IForm {
 
 export default function Form() {
     const [loading, setLoading] = useState<boolean>(false)
-    const {user, setShowLoginPopup} = useUser()
+    const {isAuth, setShowLoginPopup} = useUser()
 
     const {
         handleSubmit,
@@ -86,7 +86,7 @@ export default function Form() {
                     </button>
 
                     {
-                        !user
+                        isAuth
                             ? (<button
                                 type={'button'}
                                 className={cn(
