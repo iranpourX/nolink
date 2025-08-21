@@ -43,8 +43,6 @@ export default function SignInForm() {
         setIsOpen(showLoginPopup)
     }, [showLoginPopup])
 
-    console.log(showLoginPopup)
-
     const change = (id: number) => {
         setPage(id)
     }
@@ -181,8 +179,6 @@ export default function SignInForm() {
             </div>
         )
     }
-
-    console.log('test: ++')
 
     return (
         <>
