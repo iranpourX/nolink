@@ -8,9 +8,5 @@ export function middleware(request: NextRequest) {
         if (request.nextUrl.pathname.startsWith('/panel')) {
             return NextResponse.redirect(new URL('/', request.url))
         }
-    } else {
-        if (request.nextUrl.pathname === '/') {
-            return NextResponse.redirect(new URL('/panel', request.url))
-        }
     }
 }
