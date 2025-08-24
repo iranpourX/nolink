@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import {useTheme} from '@/context/ThemeContext'
 import {cn} from '@/utils/helper'
@@ -10,7 +12,8 @@ export const ThemeToggleButton: React.FC = () => {
             onClick={toggleTheme}
             className={cn(
                 'relative flex items-center justify-center transition-colors',
-                'bg-transparent size-11 hover:text-gray-700'
+                'bg-transparent size-11 hover:text-gray-700 border border-gray-200',
+                'rounded-full dark:border-gray-600',
             )}
         >
             <svg

@@ -18,7 +18,7 @@ export default async function RootLayout({children}: Readonly<{
 }>) {
     return (
         <html lang="en">
-        <body className={`dark:bg-gray-900`}>
+        <body className={`dark:bg-stone-950`}>
         <ThemeProvider>
             <SidebarProvider>
                 <UserProvider>

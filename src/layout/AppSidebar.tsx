@@ -60,9 +60,10 @@ const navItems: NavItem[] = [
         </svg>),
         name: "Settings",
         subItems: [
-            {name: "Profile", path: "/panel/settings/profile"},
+            {name: "profile", path: "/panel/settings/profile"},
             {name: "security", path: "/panel/settings/security"},
-            {name: "API", path: "/error-404"},
+            {name: "people", path: "/panel/settings/people"},
+            {name: "api", path: "/panel/settings/api"},
             {name: "Notifications", path: "/error-404"},
             {name: "Billings", path: "/error-404"},
             {name: "System", path: "/error-404"},
@@ -262,8 +263,8 @@ const AppSidebar: React.FC = () => {
                 }`}
             >
                 <Link href="/panel">
-                    {isExpanded || isHovered || isMobileOpen ? (
-                        <>
+                    {isExpanded || isHovered || isMobileOpen
+                        ? (<>
                             <Image
                                 className="dark:hidden"
                                 src="/images/logo/logo.svg"
@@ -278,15 +279,14 @@ const AppSidebar: React.FC = () => {
                                 width={150}
                                 height={40}
                             />
-                        </>
-                    ) : (
-                        <Image
+                        </>)
+                        : (<Image
                             src="/images/logo/logo-icon.svg"
                             alt="Logo"
                             width={32}
                             height={32}
-                        />
-                    )}
+                        />)
+                    }
                 </Link>
             </div>
 

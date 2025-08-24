@@ -16,8 +16,9 @@ export default function Home() {
 
                 <SignInForm/>
 
+
                 <Link prefetch={false} href="/" className="flex items-center">
-                    <h1 className="text-center justify-start text-black text-2xl font-extrabold">نولینک</h1>
+                    <h1 className="text-center justify-start text-black dark:text-gray-100 text-2xl font-extrabold">نولینک</h1>
                     <div className="relative">
                         <svg className={'size-12 fill-none'} viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
                             <path
