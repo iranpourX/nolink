@@ -9,8 +9,7 @@ export default async function api(url: string, options?: RequestInit) {
 
     const headers = {
         ...options?.headers,
-        'Authorization': `Bearer ${token}`,
-        'Content-Type': 'application/json'
+        'Authorization': `Bearer ${token}`
     }
 
     return await fetch(`https://api.nolink.ir/${url}`, {

@@ -1,16 +1,16 @@
-// import {NextResponse} from "next/server";
-// import type {NextRequest} from "next/server";
+import {NextResponse} from "next/server";
+import type {NextRequest} from "next/server";
 
-export function middleware() {
+export function middleware(request: NextRequest) {
 
-    // const themePreference = request.cookies.get('token')
-    // if (!themePreference) {
-    //     if (request.nextUrl.pathname.startsWith('/panel')) {
-    //         return NextResponse.redirect(new URL('/signin', request.url))
-    //     }
-    // } else {
-    //     if (request.nextUrl.pathname === '/signin') {
-    //         return NextResponse.redirect(new URL('/panel', request.url))
-    //     }
-    // }
+    const themePreference = request.cookies.get('token')
+    if (!themePreference) {
+        if (request.nextUrl.pathname.startsWith('/panel')) {
+            return NextResponse.redirect(new URL('/', request.url))
+        }
+    } else {
+        if (request.nextUrl.pathname === '/') {
+            return NextResponse.redirect(new URL('/panel', request.url))
+        }
+    }
 }
