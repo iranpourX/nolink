@@ -4,7 +4,6 @@ import React, {useState} from "react"
 import Card from "@/components/ui/card/card"
 import {cn} from "@/utils/helper"
 import Image from "next/image"
-import Link from "next/link"
 import HeaderInfoSkeleton from "@/components/skeletons/settings/profile/header-info-skeleton"
 import {toast} from "sonner";
 
@@ -140,26 +139,22 @@ const HeaderInfo: React.FC<{ user: User; loading: boolean }> = ({user, loading})
                                 <div className="hidden md:flex justify-between items-start">
                                     <div className="flex flex-col">
                                         <div className="flex items-center mb-2">
-                                    <span
-                                        className="text-gray-800 dark:text-gray-100 font-medium text-lg me-1">
-                                        {user?.display_name}
-                                    </span>
+                                            <span
+                                                className="text-gray-800 dark:text-gray-100 font-medium text-lg me-1">
+                                                {user?.display_name}
+                                            </span>
                                             <span className={'me-2'}>
-                                        <svg
-                                            className="size-5"
-                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                                            <path
-                                                className="fill-blue-400"
-                                                d="M0 256c0 36.8 20.7 68.8 51.1 84.9C41 373.8 49 411 75 437s63.3 34 96.1 23.9C187.2 491.3 219.2 512 256 512s68.8-20.7 84.9-51.1C373.8 471 411 463 437 437s34-63.3 23.9-96.1C491.3 324.8 512 292.8 512 256s-20.7-68.8-51.1-84.9C471 138.2 463 101 437 75s-63.3-34-96.1-23.9C324.8 20.7 292.8 0 256 0s-68.8 20.7-84.9 51.1C138.2 41 101 49 75 75s-34 63.3-23.9 96.1C20.7 187.2 0 219.2 0 256zm136 0c0-6.1 2.3-12.3 7-17c9.4-9.4 24.6-9.4 33.9 0l47 47c37-37 74-74 111-111c4.7-4.7 10.8-7 17-7s12.3 2.3 17 7c2.3 2.3 4.1 5 5.3 7.9c.6 1.5 1 2.9 1.3 4.4c.2 1.1 .3 2.2 .3 2.2c.1 1.2 .1 1.2 .1 2.5c-.1 1.5-.1 1.9-.1 2.3c-.1 .7-.2 1.5-.3 2.2c-.3 1.5-.7 3-1.3 4.4c-1.2 2.9-2.9 5.6-5.3 7.9c-42.7 42.7-85.3 85.3-128 128c-4.7 4.7-10.8 7-17 7s-12.3-2.3-17-7c-21.3-21.3-42.7-42.7-64-64c-4.7-4.7-7-10.8-7-17z"/>
-                                            <path
-                                                className="fill-gray-50"
-                                                d="M369 175c9.4 9.4 9.4 24.6 0 33.9L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0z"/>
-                                        </svg>
-                                    </span>
-                                            <Link href="/" className={cn(
-                                                'py-1 px-2 text-2xs flex items-center justify-center',
-                                                'text-blue-500 bg-blue-100 font-semibold rounded-md'
-                                            )}>Upgrade to Pro</Link>
+                                                <svg
+                                                    className="size-5"
+                                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                                    <path
+                                                        className="fill-blue-400"
+                                                        d="M0 256c0 36.8 20.7 68.8 51.1 84.9C41 373.8 49 411 75 437s63.3 34 96.1 23.9C187.2 491.3 219.2 512 256 512s68.8-20.7 84.9-51.1C373.8 471 411 463 437 437s34-63.3 23.9-96.1C491.3 324.8 512 292.8 512 256s-20.7-68.8-51.1-84.9C471 138.2 463 101 437 75s-63.3-34-96.1-23.9C324.8 20.7 292.8 0 256 0s-68.8 20.7-84.9 51.1C138.2 41 101 49 75 75s-34 63.3-23.9 96.1C20.7 187.2 0 219.2 0 256zm136 0c0-6.1 2.3-12.3 7-17c9.4-9.4 24.6-9.4 33.9 0l47 47c37-37 74-74 111-111c4.7-4.7 10.8-7 17-7s12.3 2.3 17 7c2.3 2.3 4.1 5 5.3 7.9c.6 1.5 1 2.9 1.3 4.4c.2 1.1 .3 2.2 .3 2.2c.1 1.2 .1 1.2 .1 2.5c-.1 1.5-.1 1.9-.1 2.3c-.1 .7-.2 1.5-.3 2.2c-.3 1.5-.7 3-1.3 4.4c-1.2 2.9-2.9 5.6-5.3 7.9c-42.7 42.7-85.3 85.3-128 128c-4.7 4.7-10.8 7-17 7s-12.3-2.3-17-7c-21.3-21.3-42.7-42.7-64-64c-4.7-4.7-7-10.8-7-17z"/>
+                                                    <path
+                                                        className="fill-gray-50"
+                                                        d="M369 175c9.4 9.4 9.4 24.6 0 33.9L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0z"/>
+                                                </svg>
+                                            </span>
                                         </div>
                                         <div className="flex items-center justify-start flex-wrap gap-2 pe-2">
                                             <span className="flex items-baseline text-sm font-medium text-gray-400">

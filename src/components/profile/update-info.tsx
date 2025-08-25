@@ -51,10 +51,9 @@ const UpdateInfo: React.FC<User> = ({user}) => {
             body: JSON.stringify(value)
         })
         const {status} = await response.json()
-
         if (response.status === 200 && status.code === 200) {
             toast.success(status.message)
-
+            window.location.reload()
         }
         setLoading(false)
     }
