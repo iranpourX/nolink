@@ -8,14 +8,14 @@ export default function API() {
         <Card>
             <CardHeader title={'API'}/>
 
-            <div className="px-8 py-16 flex flex-col justify-start items-start gap-5">
-                <div className="flex w-full items-center gap-2.5">
+            <div className="px-4 sm:px-8 py-16 flex flex-col justify-start items-start gap-5">
+                <div className="block sm:flex w-full items-center gap-2.5">
                     <div className="w-28 flex justify-start items-center gap-2.5">
                         <div className="justify-start text-gray-800 text-sm font-normal">API key</div>
                     </div>
                     <div className={'relative w-full'}>
                         <input disabled={true}
-                               className={'grow rounded-lg border border-gray-200 bg-gray-100 ring-0 outline-none w-full'}
+                               className={'rounded-lg border border-gray-200 bg-gray-100 ring-0 outline-none w-full pr-12'}
                                defaultValue={'https://nobitex.ir/panel/exchange/not-irt/'}
                                type={'text'}/>
                         <button

@@ -8,7 +8,7 @@ export default function People() {
         <Card>
             <CardHeader title={'People'}/>
 
-            <div className="px-8 py-4 flex justify-between items-center">
+            <div className="px-4 sm:px-8 py-4 flex justify-between flex-wrap gap-4 items-center">
                 <div className="flex items-center gap-2.5">
                     <img className="w-9 h-9 rounded-[40px]" alt={'avatar'} src="https://placehold.co/36x36"/>
                     <div className="flex flex-col justify-center items-start gap-2">
@@ -36,14 +36,14 @@ export default function People() {
                 <div className="w-full border-t border-gray-200"/>
             </div>
 
-            <div className="px-8 py-4 flex flex-col justify-start items-start gap-5">
-                <div className="flex w-full items-center gap-2.5">
-                    <div className="w-28 flex justify-start items-center gap-2.5">
+            <div className="px-4 sm:px-8 py-4 flex flex-col justify-start items-start gap-5">
+                <div className="block sm:flex w-full items-center gap-2.5">
+                    <div className="sm:w-28 flex justify-start items-center gap-2.5">
                         <div className="justify-start text-gray-800 text-sm font-normal">Link</div>
                     </div>
                     <div className={'relative w-full'}>
                         <input disabled={true}
-                               className={'grow rounded-lg border border-gray-200 bg-gray-100 ring-0 outline-none w-full'}
+                               className={'rounded-lg border border-gray-200 bg-gray-50 ring-0 outline-none w-full pr-12'}
                                defaultValue={'https://nobitex.ir/panel/exchange/not-irt/'}
                                type={'text'}/>
                         <button
@@ -59,7 +59,7 @@ export default function People() {
                     </div>
                 </div>
                 <div className="flex justify-start items-center gap-2.5">
-                    <div className="w-28 flex justify-start items-center gap-2.5"/>
+                    <div className="sm:w-28 flex justify-start items-center gap-2.5"/>
                     <div className="flex items-center">
                         <button
                             className="px-3 py-2 bg-white rounded-lg shadow-xs border border-gray-300 flex gap-2 justify-center items-center">

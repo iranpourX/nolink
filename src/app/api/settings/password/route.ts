@@ -7,7 +7,8 @@ export async function POST(req: NextRequest) {
         method: "POST",
         body: JSON.stringify(body),
         headers: {
-            'User-Agent': req.headers.get('user-agent') || ''
+            'User-Agent': req.headers.get('user-agent') || '',
+            'Content-Type': 'application/json'
         }
     })
 

@@ -28,7 +28,7 @@ const HeaderInfo: React.FC<{ user: User; loading: boolean }> = ({user, loading})
             const data = await response.json()
             if (data.status.code === 200) {
                 toast.success(data.status.message)
-                window.location.reload()
+                // window.location.reload()
             }
         } catch (err) {
             const e = err as Error
@@ -50,11 +50,11 @@ const HeaderInfo: React.FC<{ user: User; loading: boolean }> = ({user, loading})
                                     {
                                         preview
                                             ? (<Image
-                                                className={'size-32 md:size-40'}
+                                                className={'md:size-40'}
                                                 src={preview}
                                                 alt={'avatar'} width={160} height={160}/>)
                                             : (<Image
-                                                className={'size-32 md:size-40'}
+                                                className={'md:size-40'}
                                                 src={user?.avatar.original ?? '/images/user/default.jpg'}
                                                 alt={'avatar'} width={160} height={160}/>)
                                     }

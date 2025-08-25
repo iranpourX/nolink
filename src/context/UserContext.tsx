@@ -33,13 +33,14 @@ export function UserProvider({children}: { children: React.ReactNode }) {
             }
 
             const response = await fetch('/api/settings/profile', {method: 'GET'})
+            console.log(response)
             if (response.ok) {
                 const data = await response.json()
                 setUser(data)
                 setIsAuth(true)
             }
         } catch (err) {
-            console.error("خطا در گرفتن کاربر:", err)
+            // console.error("خطا در گرفتن کاربر:", err)
         } finally {
             setLoading(false)
         }
@@ -49,6 +50,8 @@ export function UserProvider({children}: { children: React.ReactNode }) {
     useEffect(() => {
         void fetchUser()
     }, [])
+
+    // console.log(user)
 
     return (
         <UserContext.Provider value={{isAuth, user, loading, showLoginPopup, setShowLoginPopup}}>
