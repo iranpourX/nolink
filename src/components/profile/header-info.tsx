@@ -8,26 +8,7 @@ import Link from "next/link"
 import HeaderInfoSkeleton from "@/components/skeletons/settings/profile/header-info-skeleton"
 import {toast} from "sonner";
 
-type User = {
-    user: {
-        id: string
-        phone_number: string
-        user_name: string
-        display_name: string
-        avatar: {
-            original: string
-            thumbnail: string
-            updated_at: string
-        }
-        role: {
-            display_name: string
-            name: string
-        }
-    } | null
-    loading: boolean
-}
-
-const HeaderInfo: React.FC<User> = ({user, loading}) => {
+const HeaderInfo: React.FC<{ user: User; loading: boolean }> = ({user, loading}) => {
     const [preview, setPreview] = useState<string | null>(null)
     const [isLoading, setIsLoading] = useState<boolean>(false)
 

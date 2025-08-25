@@ -9,8 +9,8 @@ import {cn} from "@/utils/helper";
 
 const Skeleton = () => {
     return (<button className="flex items-center animate-pulse">
-            <span className="mr-1 overflow-hidden bg-gray-100 dark:bg-gray-600 rounded-full h-12 w-12"></span></button>
-    )
+        <span className="mr-1 overflow-hidden bg-gray-100 dark:bg-gray-600 rounded-full h-12 w-12"></span>
+    </button>)
 }
 
 export default function UserDropdown({toRight}: { toRight?: boolean }) {
@@ -39,7 +39,7 @@ export default function UserDropdown({toRight}: { toRight?: boolean }) {
                     <Image
                         width={44}
                         height={44}
-                        src="/images/user/owner.jpg"
+                        src={user?.avatar.original ?? ''}
                         alt="User"
                         className={`p-0.5 border-2 rounded-full ${isOpen ? "border-blue-400" : "border-gray-200 dark:border-gray-700"}`}
                     />
