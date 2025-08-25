@@ -2,22 +2,6 @@
 
 import React, {createContext, useContext, useState, useEffect, useCallback} from 'react'
 
-type User = {
-    id: string
-    phone_number: string
-    user_name: string
-    display_name: string
-    avatar: {
-        original: string
-        thumbnail: string
-        updated_at: string
-    }
-    role: {
-        display_name: string
-        name: string
-    }
-} | null
-
 type UserContextType = {
     user: User
     loading: boolean

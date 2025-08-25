@@ -12,4 +12,4 @@ type User = {
         display_name: string
         name: string
     }
-}
+} | null

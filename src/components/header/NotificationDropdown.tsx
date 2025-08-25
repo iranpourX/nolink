@@ -89,7 +89,7 @@ export default function NotificationDropdown() {
                                     width={40}
                                     height={40}
                                     src="/images/user/user-02.jpg"
-                                    alt="User"
+                                    alt="Types"
                                     className="w-full overflow-hidden rounded-full"
                                 />
                                 <span
@@ -124,7 +124,7 @@ export default function NotificationDropdown() {
                                     width={40}
                                     height={40}
                                     src="/images/user/user-03.jpg"
-                                    alt="User"
+                                    alt="Types"
                                     className="w-full overflow-hidden rounded-full"
                                 />
                                 <span

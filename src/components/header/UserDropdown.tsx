@@ -40,7 +40,7 @@ export default function UserDropdown({toRight}: { toRight?: boolean }) {
                         width={44}
                         height={44}
                         src={user?.avatar.original ?? ''}
-                        alt="User"
+                        alt="Types"
                         className={`p-0.5 border-2 rounded-full ${isOpen ? "border-blue-400" : "border-gray-200 dark:border-gray-700"}`}
                     />
                 </span>
