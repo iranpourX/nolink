@@ -42,7 +42,7 @@ const HeaderInfo: React.FC<{ user: User; loading: boolean }> = ({user, loading})
         <Card className="mb-10">
             <div className="p-8">
                 <div className="flex flex-wrap gap-4 md:flex-nowrap">
-                    {!loading
+                    {loading
                         ? (<HeaderInfoSkeleton/>)
                         : (<>
                             <div className="flex justify-start gap-4">
