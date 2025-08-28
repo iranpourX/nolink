@@ -137,11 +137,10 @@ const UpdateInfo: React.FC<IProfile> = ({user}) => {
             </form>
 
             <CardFooter>
-                <Btn inType={'submit'} loading={loading} form={'info-form'} size="md">
+                <Btn inType={'submit'} loading={loading} form={'info-form'}>
                     Save Changes
                 </Btn>
             </CardFooter>
-
         </Card>
     )
 }

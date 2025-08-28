@@ -7,7 +7,7 @@ interface ButtonProps {
 const CardFooter: React.FC<ButtonProps> = ({children}) => {
 
     return (
-        <div className="py-3 px-8 flex items-center justify-end border-t border-t-gray-200 dark:border-t-gray-700">
+        <div className="py-3 px-4 md:px-8 flex items-center justify-end border-t border-t-gray-200 dark:border-t-gray-700">
             {children}
         </div>
     )

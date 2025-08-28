@@ -2,6 +2,7 @@ import Card from "@/components/ui/card/card";
 import CardHeader from "@/components/ui/card/card-header";
 import React from "react";
 import Btn from "@/components/ui/button/Btn";
+import CardFooter from "@/components/ui/card/card-footer";
 
 export default function People() {
     return (
@@ -80,13 +81,12 @@ export default function People() {
                     spot now with this special invitation link!
                 </div>
             </div>
-            <div
-                className="px-8 py-4 border-t border-gray-200 flex items-center justify-end gap-2.5">
-                <Btn className="text-xs font-medium">
+
+            <CardFooter>
+                <Btn>
                     Invite People
                 </Btn>
-
-            </div>
+            </CardFooter>
         </Card>
     )
 }

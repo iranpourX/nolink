@@ -2,6 +2,7 @@ import Card from "@/components/ui/card/card";
 import CardHeader from "@/components/ui/card/card-header";
 import React from "react";
 import Btn from "@/components/ui/button/Btn";
+import CardFooter from "@/components/ui/card/card-footer";
 
 export default function API() {
     return (
@@ -32,16 +33,14 @@ export default function API() {
                 </div>
 
             </div>
-            <div
-                className="px-8 py-4 border-t border-gray-200 flex items-center justify-end gap-2.5">
+            <CardFooter>
                 <Btn className={'bg-transparent shadow-none text-gray-800'}>
                     Docs
                 </Btn>
-                <Btn className="text-xs font-medium">
+                <Btn>
                     Renew Plan
                 </Btn>
-
-            </div>
+            </CardFooter>
         </Card>
     )
 }
