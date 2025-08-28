@@ -7,11 +7,11 @@ import {OTPInput, REGEXP_ONLY_DIGITS} from 'input-otp'
 import {cn} from '@/utils/helper'
 import {toast} from 'sonner'
 import {Dialog, DialogBackdrop, DialogPanel, Field} from '@headlessui/react'
-import Btn from "@/components/ui/button/Btn";
-import {loginWithCode, loginWithPassword, sendPhoneNumber} from "@/app/actions/auth";
+import Btn from "@/components/ui/button/Btn"
+import {loginWithCode, loginWithPassword, sendPhoneNumber} from "@/app/actions/auth"
 import {useUser} from "@/context/UserContext"
-import UserDropdown from "@/components/header/UserDropdown";
-import {ThemeToggleButton} from "@/components/common/ThemeToggleButton";
+import UserDropdown from "@/components/header/UserDropdown"
+import {ThemeToggleButton} from "@/components/common/ThemeToggleButton"
 
 interface IFormInputs {
     phone_number: string
