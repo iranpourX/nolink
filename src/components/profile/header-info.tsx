@@ -5,11 +5,13 @@ import Card from "@/components/ui/card/card"
 import {cn} from "@/utils/helper"
 import Image from "next/image"
 import HeaderInfoSkeleton from "@/components/skeletons/settings/profile/header-info-skeleton"
-import {toast} from "sonner";
+import {toast} from "sonner"
+import {useUser} from "@/context/UserContext"
 
 const HeaderInfo: React.FC<{ user: User; loading: boolean }> = ({user, loading}) => {
     const [preview, setPreview] = useState<string | null>(null)
     const [isLoading, setIsLoading] = useState<boolean>(false)
+    const {refetchUser} = useUser()
 
     const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
         setIsLoading(true)
@@ -27,7 +29,7 @@ const HeaderInfo: React.FC<{ user: User; loading: boolean }> = ({user, loading})
             const data = await response.json()
             if (data.status.code === 200) {
                 toast.success(data.status.message)
-                // window.location.reload()
+                refetchUser()
             }
         } catch (err) {
             const e = err as Error

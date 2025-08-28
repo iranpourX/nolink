@@ -13,3 +13,13 @@ type User = {
         name: string
     }
 } | null
+
+type Session = {
+    browser: string
+    current: boolean
+    id: string
+    ip_address: string
+    is_active: boolean
+    last_activity: string
+    os: string
+}

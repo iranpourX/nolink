@@ -1,60 +1,40 @@
 'use client'
 
-import React, {createContext, useContext, useState, useEffect, useCallback} from 'react'
+import React, {createContext, useContext, useState} from 'react'
+import {useQuery} from "@tanstack/react-query"
 
 type UserContextType = {
-    user: User
+    user: User | null
     loading: boolean
-    isAuth: boolean
+    refetchUser: () => void
     showLoginPopup: boolean
     setShowLoginPopup: (callback: boolean) => void
 }
 
 const UserContext = createContext<UserContextType | undefined>(undefined)
 
+async function fetchUser(): Promise<User> {
+    const response = await fetch('/api/settings/profile')
+    return response.json()
+}
+
 export function UserProvider({children}: { children: React.ReactNode }) {
-    const [isAuth, setIsAuth] = useState<boolean>(false)
-    const [user, setUser] = useState<User>(null)
-    const [loading, setLoading] = useState(true)
     const [showLoginPopup, setShowLoginPopup] = useState(false)
 
-    const fetchUser = useCallback(async () => {
-        try {
-            const checkResponse = await fetch('/api/auth/check-token', {
-                method: 'GET',
-                credentials: 'include',
-            })
-            const {hasToken} = await checkResponse.json()
-            if (!hasToken) {
-                setIsAuth(false)
-                setUser(null)
-                setLoading(false)
-                return
-            }
-
-            const response = await fetch('/api/settings/profile', {method: 'GET'})
-            console.log(response)
-            if (response.ok) {
-                const data = await response.json()
-                setUser(data)
-                setIsAuth(true)
-            }
-        } catch (err) {
-            // console.error("خطا در گرفتن کاربر:", err)
-        } finally {
-            setLoading(false)
-        }
-
-    }, [])
-
-    useEffect(() => {
-        void fetchUser()
-    }, [])
-
-    // console.log(user)
+    const {data: user, isLoading: loading, refetch} = useQuery<User | null>({
+        queryKey: ["user"],
+        queryFn: fetchUser,
+        retry: false,
+    })
 
     return (
-        <UserContext.Provider value={{isAuth, user, loading, showLoginPopup, setShowLoginPopup}}>
+        <UserContext.Provider value={{
+            user: user ?? null,
+            loading,
+            refetchUser: refetch,
+            showLoginPopup,
+            setShowLoginPopup
+        }}>
             {children}
         </UserContext.Provider>
     )

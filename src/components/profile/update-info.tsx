@@ -9,24 +9,20 @@ import CardFooter from "@/components/ui/card/card-footer"
 import Btn from "@/components/ui/button/Btn"
 import React, {useState, useEffect} from "react"
 import {toast} from "sonner"
+import {useUser} from "@/context/UserContext";
 
 interface IUser {
-    id: string
-    phone_number: string
-    user_name: string
     display_name: string
-    role: {
-        display_name: string
-        name: string
-    }
+    user_name: string
 }
 
-type User = {
-    user: IUser | null
+interface IProfile {
+    user: User | null
 }
 
-const UpdateInfo: React.FC<User> = ({user}) => {
+const UpdateInfo: React.FC<IProfile> = ({user}) => {
     const [loading, setLoading] = useState<boolean>(false)
+    const {refetchUser} = useUser()
 
     const {
         handleSubmit,
@@ -53,7 +49,7 @@ const UpdateInfo: React.FC<User> = ({user}) => {
         const {status} = await response.json()
         if (response.status === 200 && status.code === 200) {
             toast.success(status.message)
-            window.location.reload()
+            refetchUser()
         }
         setLoading(false)
     }

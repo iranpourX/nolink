@@ -4,6 +4,7 @@ import './globals.css'
 import {SidebarProvider} from '@/context/SidebarContext'
 import {ThemeProvider} from '@/context/ThemeContext'
 import {UserProvider} from '@/context/UserContext'
+import QueryProvider from "@/context/QueryContext"
 
 export const metadata: Metadata = {
     title: {
@@ -21,9 +22,11 @@ export default async function RootLayout({children}: Readonly<{
         <body className={`dark:bg-stone-950`}>
         <ThemeProvider>
             <SidebarProvider>
-                <UserProvider>
-                    {children}
-                </UserProvider>
+                <QueryProvider>
+                    <UserProvider>
+                        {children}
+                    </UserProvider>
+                </QueryProvider>
             </SidebarProvider>
         </ThemeProvider>
         </body>
