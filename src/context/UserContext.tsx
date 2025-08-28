@@ -4,7 +4,7 @@ import React, {createContext, useContext, useState} from 'react'
 import {useQuery} from "@tanstack/react-query"
 
 type UserContextType = {
-    user: User | null
+    user: User
     loading: boolean
     refetchUser: () => void
     showLoginPopup: boolean
@@ -21,9 +21,19 @@ async function fetchUser(): Promise<User> {
 export function UserProvider({children}: { children: React.ReactNode }) {
     const [showLoginPopup, setShowLoginPopup] = useState(false)
 
-    const {data: user, isLoading: loading, refetch} = useQuery<User | null>({
-        queryKey: ["user"],
+    const {data: user, isLoading: loading, refetch} = useQuery<User>({
+        queryKey: ['user'],
         queryFn: fetchUser,
+        select: (data): User => {
+            return {
+                ...data,
+                avatar: {
+                    original: `${data?.avatar?.original}?=${new Date().getTime()}`,
+                    thumbnail: `${data?.avatar?.thumbnail}?=${new Date().getTime()}`,
+                    updated_at: data?.avatar?.updated_at || undefined
+                }
+            }
+        },
         retry: false,
     })
 

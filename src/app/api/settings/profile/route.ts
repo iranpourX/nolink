@@ -4,7 +4,6 @@ import api from "@/app/lib/client"
 export async function GET(req: NextRequest) {
     const response = await api('account/profile', {
         method: "GET",
-        cache: 'no-cache',
         headers: {
             'User-Agent': req.headers.get('user-agent') || ''
         }

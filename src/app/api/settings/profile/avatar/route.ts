@@ -10,7 +10,6 @@ export async function POST(req: NextRequest) {
     const res = await api("account/update-avatar", {
         method: "POST",
         body: formData,
-        cache: 'no-cache',
         headers: {
             'User-Agent': req.headers.get('User-Agent') || ''
         }

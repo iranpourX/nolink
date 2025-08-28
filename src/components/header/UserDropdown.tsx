@@ -39,7 +39,7 @@ export default function UserDropdown({toRight}: { toRight?: boolean }) {
                     <Image
                         width={44}
                         height={44}
-                        src={user?.avatar.thumbnail ?? ''}
+                        src={user?.avatar?.thumbnail ?? '/images/user/default.jpg'}
                         alt="Types"
                         className={`p-0.5 border-2 rounded-full ${isOpen ? "border-blue-400" : "border-gray-200 dark:border-gray-700"}`}
                     />
