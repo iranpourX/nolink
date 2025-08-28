@@ -29,7 +29,7 @@ export default function SignInForm() {
     const [loading, setLoading] = useState<boolean>(false)
     const [phoneNumber, setPhoneNumber] = useState<string>('')
     const [isOpen, setIsOpen] = useState<boolean>(false)
-    const {showLoginPopup, setShowLoginPopup, isAuth} = useUser()
+    const {showLoginPopup, setShowLoginPopup, user} = useUser()
 
     function open() {
         setIsOpen(true)
@@ -185,7 +185,7 @@ export default function SignInForm() {
         <>
             <div className="flex items-center gap-4">
                 {
-                    isAuth
+                    !!user
                         ? (<UserDropdown toRight={true}/>)
                         : (<button
                             onClick={open}
