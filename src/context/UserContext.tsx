@@ -38,15 +38,14 @@ export function UserProvider({children}: { children: React.ReactNode }) {
     })
 
     return (
-        <UserContext.Provider value={{
-            user: user ?? null,
-            loading,
-            refetchUser: refetch,
-            showLoginPopup,
-            setShowLoginPopup
-        }}>
-            {children}
-        </UserContext.Provider>
+        <UserContext.Provider
+            value={{
+                user: user ?? null,
+                loading,
+                refetchUser: refetch,
+                showLoginPopup,
+                setShowLoginPopup
+            }}>{children}</UserContext.Provider>
     )
 }
 

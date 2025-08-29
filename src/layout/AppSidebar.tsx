@@ -8,18 +8,6 @@ import {useSidebar} from '@/context/SidebarContext'
 import {cn} from '@/utils/helper'
 import SidebarWidget from "./SidebarWidget"
 
-type NavItem = {
-    name: string
-    icon: React.ReactNode
-    path?: string
-    subItems?: {
-        name: string
-        path: string
-        pro?: boolean
-        new?: boolean
-    }[]
-}
-
 const navItems: NavItem[] = [
     {
         icon: (<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
@@ -67,7 +55,7 @@ const navItems: NavItem[] = [
             {name: "Notifications", path: "/error-404"},
             {name: "Billings", path: "/error-404"},
             {name: "System", path: "/error-404"},
-        ],
+        ]
     }
 ]
 
@@ -83,88 +71,71 @@ const AppSidebar: React.FC = () => {
             {navItems.map((nav, index) => (
                 <li key={nav.name}>
                     {nav.subItems
-                        ? (
-                            <button
-                                onClick={() => handleSubmenuToggle(index)}
-                                className={`menu-item group ${
-                                    openSubmenu?.index === index
-                                        ? "menu-item-active"
-                                        : "menu-item-inactive"
-                                } cursor-pointer ${
-                                    !isExpanded && !isHovered
-                                        ? "lg:justify-center"
-                                        : "lg:justify-start"
-                                }`}
-                            >
+                        ? (<button
+                            onClick={() => handleSubmenuToggle(index)}
+                            className={`menu-item group ${
+                                openSubmenu?.index === index
+                                    ? "menu-item-active"
+                                    : "menu-item-inactive"
+                            } cursor-pointer ${
+                                !isExpanded && !isHovered
+                                    ? "lg:justify-center"
+                                    : "lg:justify-start"
+                            }`}>
                             <span
                                 className={`${
                                     openSubmenu?.index === index
                                         ? "menu-item-icon-active"
                                         : "menu-item-icon-inactive"
-                                }`}
-                            >
+                                }`}>
                                 {nav.icon}
                             </span>
-                                {(isExpanded || isHovered || isMobileOpen) && (
-                                    <span className={`menu-item-text`}>{nav.name}</span>
-                                )}
-                                {(isExpanded || isHovered || isMobileOpen) && (
-                                    <svg
-                                        className={`ml-auto w-3 h-3 fill-gray-500 transition-transform duration-200 ${
-                                            openSubmenu?.index === index
-                                                ? "rotate-180 text-blue-500" : ""
-                                        }`}
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        viewBox="0 0 512 512">
-                                        <path
-                                            d="M267.3 395.3c-6.2 6.2-16.4 6.2-22.6 0l-192-192c-6.2-6.2-6.2-16.4 0-22.6s16.4-6.2 22.6 0L256 361.4 436.7 180.7c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6l-192 192z"/>
-                                    </svg>
-                                )}
-                            </button>
-                        )
-                        : (nav.path && (
-                            <Link
+                            {(isExpanded || isHovered || isMobileOpen)
+                                && (<span className={`menu-item-text`}>{nav.name}</span>)}
+                            {(isExpanded || isHovered || isMobileOpen)
+                                && (<svg
+                                    className={`ml-auto w-3 h-3 fill-gray-500 transition-transform duration-200 ${
+                                        openSubmenu?.index === index
+                                            ? "rotate-180 text-blue-500" : ""
+                                    }`}
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 512 512">
+                                    <path
+                                        d="M267.3 395.3c-6.2 6.2-16.4 6.2-22.6 0l-192-192c-6.2-6.2-6.2-16.4 0-22.6s16.4-6.2 22.6 0L256 361.4 436.7 180.7c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6l-192 192z"/>
+                                </svg>)}
+                        </button>)
+                        : (nav.path
+                            && (<Link
                                 href={nav.path}
-                                className={`menu-item group ${
-                                    isActive(nav.path) ? "menu-item-active" : "menu-item-inactive"
-                                }`}
-                            >
+                                className={`menu-item group ${isActive(nav.path) ? "menu-item-active" : "menu-item-inactive"}`}>
                             <span
-                                className={`${
-                                    isActive(nav.path)
-                                        ? "menu-item-icon-active"
-                                        : "menu-item-icon-inactive"
-                                }`}
-                            >
+                                className={`${isActive(nav.path)
+                                    ? "menu-item-icon-active"
+                                    : "menu-item-icon-inactive"}`}>
                                 {nav.icon}
                             </span>
-                                {(isExpanded || isHovered || isMobileOpen) && (
-                                    <span className={`menu-item-text`}>{nav.name}</span>
-                                )}
-                            </Link>
-                        ))
+                                {(isExpanded || isHovered || isMobileOpen)
+                                    && (<span className={`menu-item-text`}>{nav.name}</span>)}
+                            </Link>))
                     }
                     {
-                        nav.subItems && (isExpanded || isHovered || isMobileOpen) && (
-                            <div
-                                ref={(el) => {
-                                    subMenuRefs.current[`${index}`] = el
-                                }}
-                                className="overflow-hidden relative transition-all duration-300"
-                                style={{
-                                    height: openSubmenu?.index === index
-                                        ? `${subMenuHeight[`${index}`]}px`
-                                        : "0",
-                                }}
-                            >
+                        nav.subItems && (isExpanded || isHovered || isMobileOpen)
+                        && (<div ref={(el) => {
+                                subMenuRefs.current[`${index}`] = el
+                            }}
+                                 className="overflow-hidden relative transition-all duration-300"
+                                 style={{
+                                     height: openSubmenu?.index === index
+                                         ? `${subMenuHeight[`${index}`]}px`
+                                         : "0",
+                                 }}>
                                 <ul
                                     className={cn(
                                         'mt-2 space-y-1 ml-8 relative',
                                         'before:absolute before:-start-2.5 before:top-0',
                                         'before:bottom-0 before:border-l before:border-gray-200',
                                         'dark:before:border-gray-700'
-                                    )}
-                                >
+                                    )}>
                                     {nav.subItems.map((subItem) => (
                                         <li key={subItem.name}>
                                             <Link
@@ -173,21 +144,17 @@ const AppSidebar: React.FC = () => {
                                                     isActive(subItem.path)
                                                         ? "menu-dropdown-item-active"
                                                         : "menu-dropdown-item-inactive"
-                                                }`}
-                                            >
+                                                }`}>
                                                 {subItem.name}
                                                 <span className="flex items-center gap-1 ml-auto">
-                                                    {subItem.pro && (
-                                                        <span
-                                                            className={`ml-auto ${
-                                                                isActive(subItem.path)
-                                                                    ? "menu-dropdown-badge-active"
-                                                                    : "menu-dropdown-badge-inactive"
-                                                            } menu-dropdown-badge`}
-                                                        >
-                                                                pro
-                                                            </span>
-                                                    )}
+                                                    {subItem.pro
+                                                        && (<span
+                                                                className={`ml-auto ${
+                                                                    isActive(subItem.path)
+                                                                        ? "menu-dropdown-badge-active"
+                                                                        : "menu-dropdown-badge-inactive"
+                                                                } menu-dropdown-badge`}>pro</span>
+                                                        )}
                                                     </span>
                                             </Link>
                                         </li>
@@ -244,7 +211,7 @@ const AppSidebar: React.FC = () => {
             }
             return {index}
         })
-    };
+    }
 
     return (
         <aside
@@ -255,13 +222,11 @@ const AppSidebar: React.FC = () => {
                 'transition-all duration-300 ease-in-out border-r lg:translate-x-0',
                 [isExpanded || isMobileOpen ? 'w-[290px]' : isHovered ? 'w-[290px]' : 'w-[90px]'],
                 [isMobileOpen ? "translate-x-0" : "-translate-x-full"]
-            )}
-        >
+            )}>
             <div
                 className={`py-8 flex  ${
                     !isExpanded && !isHovered ? "lg:justify-center" : "justify-start"
-                }`}
-            >
+                }`}>
                 <Link href="/panel">
                     {isExpanded || isHovered || isMobileOpen
                         ? (<>
@@ -300,8 +265,7 @@ const AppSidebar: React.FC = () => {
                                     <svg
                                         className="size-5 fill-gray-400"
                                         xmlns="http://www.w3.org/2000/svg"
-                                        viewBox="0 0 512 512"
-                                    >
+                                        viewBox="0 0 512 512">
                                         <path
                                             d="M384 208A176 176 0 1 0 32 208a176 176 0 1 0 352 0zM343.3 366C307 397.2 259.7 416 208 416C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208c0 51.7-18.8 99-50 135.3L507.3 484.7c6.2 6.2 6.2 16.4 0 22.6s-16.4 6.2-22.6 0L343.3 366z"/></svg>
                                 </span>
@@ -315,8 +279,7 @@ const AppSidebar: React.FC = () => {
                                             'placeholder:text-gray-400 focus:border-blue-300 focus:outline-0',
                                             'dark:border-gray-800 dark:bg-gray-900',
                                             'dark:text-white dark:placeholder:text-gray-200'
-                                        )}
-                                    />
+                                        )}/>
 
                                     <button
                                         className="absolute right-2.5 top-1/2 inline-flex -translate-y-1/2 items-center rounded-lg border border-gray-200 bg-gray-50 px-1.5 py-1.5 text-xs -tracking-[0.2px] text-gray-500 dark:border-gray-800 dark:bg-white/[0.03] dark:text-gray-400">
