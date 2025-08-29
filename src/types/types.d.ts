@@ -23,3 +23,12 @@ type Session = {
     last_activity: string
     os: string
 }
+
+type DropdownItemProps = {
+    tag?: "a" | "button"
+    href?: string
+    onClick?: () => void
+    onItemClick?: () => void
+    className?: string
+    children: React.ReactNode
+}

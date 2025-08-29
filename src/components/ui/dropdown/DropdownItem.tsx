@@ -1,52 +1,51 @@
-import type React from "react"
+import React from "react"
 import Link from "next/link"
-import {cn} from "@/utils/helper"
+import {cn} from '@/utils/helper'
 
-interface DropdownItemProps {
-    tag?: "a" | "button"
-    href?: string
-    onClick?: () => void
-    onItemClick?: () => void
-    baseClassName?: string
-    className?: string
-    children: React.ReactNode
-}
+const DropdownItem: React.FC<DropdownItemProps> = (
+    {
+        tag = "button",
+        href,
+        onClick,
+        onItemClick,
+        className,
+        children,
+    }) => {
 
-export const DropdownItem: React.FC<DropdownItemProps> =
-    ({
-         tag = "button",
-         href,
-         onClick,
-         onItemClick,
-         baseClassName = "flex items-center w-full gap-3 rounded-lg p-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-800",
-         className = "",
-         children,
-     }) => {
-        const combinedClasses = cn(`${baseClassName} ${className}`.trim())
-
-        const handleClick = (event: React.MouseEvent) => {
-            if (tag === "button") {
-                event.preventDefault()
-            }
-            if (onClick) {
-                onClick()
-            }
-            if (onItemClick) {
-                onItemClick()
-            }
+    const handleClick = (e: React.MouseEvent) => {
+        if (tag === "button") {
+            e.preventDefault()
         }
-
-        if (tag === "a" && href) {
-            return (
-                <Link href={href} className={combinedClasses} onClick={handleClick}>
-                    {children}
-                </Link>
-            )
+        if (onClick) {
+            onClick()
         }
+        if (onItemClick) {
+            onItemClick()
+        }
+    }
 
+    if (tag === "a" && href) {
         return (
-            <button onClick={handleClick} className={combinedClasses}>
+            <Link href={href}
+                  className={cn(
+                      'flex items-center w-full gap-3 rounded-lg p-2 text-sm',
+                      'text-gray-700 hover:bg-gray-100 hover:text-gray-900',
+                      'dark:text-gray-400 dark:hover:bg-gray-800', className
+                  )} onClick={handleClick}>
                 {children}
-            </button>
+            </Link>
         )
     }
+
+    return (
+        <button onClick={handleClick} className={cn(
+            'flex items-center w-full gap-3 rounded-lg p-2 text-sm',
+            'text-gray-700 hover:bg-gray-100 hover:text-gray-900',
+            'dark:text-gray-400 dark:hover:bg-gray-800', className
+        )}>
+            {children}
+        </button>
+    )
+}
+
+export default DropdownItem

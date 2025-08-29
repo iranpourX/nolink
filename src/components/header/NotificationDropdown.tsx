@@ -1,9 +1,10 @@
 "use client"
+
 import React, {useState} from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import {Dropdown} from '../ui/dropdown/Dropdown'
-import {DropdownItem} from '../ui/dropdown/DropdownItem'
+import DropdownItem from '../ui/dropdown/DropdownItem'
 import {cn} from "@/utils/helper";
 
 export default function NotificationDropdown() {
