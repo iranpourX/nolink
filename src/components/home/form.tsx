@@ -36,7 +36,7 @@ export default function Form() {
     const [options, setOptions] = useState<Options>({
         width: 300,
         height: 300,
-        type: 'png',
+        type: 'canvas',
         data: '',
         margin: 10,
         qrOptions: {
