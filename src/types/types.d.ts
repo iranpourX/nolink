@@ -43,3 +43,22 @@ type NavItem = {
         pro?: boolean
     }[]
 }
+
+type CreateLink = {
+    url: string
+    domain_id: string
+}
+
+type ShortedLink = {
+    id: string
+    original_url: string
+    short_url: string
+    is_active: boolean
+    has_password: boolean
+    user_title: string
+    start_date: string
+    end_date: string
+    description: string
+    update_url: string
+    delete_url: string
+} | null
