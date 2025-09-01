@@ -1,7 +1,7 @@
 'use client'
 
 import {cn} from "@/utils/helper"
-import React, {useEffect, useRef, useState} from "react"
+import React, {useRef, useState} from "react"
 import {SubmitHandler, useForm} from "react-hook-form"
 import {useUser} from "@/context/UserContext"
 import {ErrorMessage} from "@hookform/error-message"
@@ -22,7 +22,7 @@ import {
 } from "@headlessui/react"
 import Creatable from "react-select/creatable"
 import Select from "react-select"
-import QRCodeStyling, {FileExtension, Options} from 'qr-code-styling'
+import QRCodeStyling, {Options} from 'qr-code-styling'
 import Btn from "@/components/ui/button/Btn";
 
 
@@ -131,7 +131,7 @@ export default function Form() {
 
         let qr = new QRCodeStyling(options)
 
-        qr.append(document.getElementById("canvas"))
+        qr?.append(document.getElementById("canvas"))
 
         // if (!qrCode) return
         // qrCode?.update(options)
