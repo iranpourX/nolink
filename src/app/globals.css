@@ -322,8 +322,6 @@
     @apply !stroke-gray-100 dark:!stroke-gray-800;
 }
 
-
-
 .form-check-input:checked ~ span {
     @apply border-[6px] border-brand-500 bg-brand-500 dark:border-brand-500;
 }

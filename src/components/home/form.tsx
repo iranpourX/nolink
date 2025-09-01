@@ -22,48 +22,36 @@ import {
 } from "@headlessui/react"
 import Creatable from "react-select/creatable"
 import Select from "react-select"
-import QRCodeStyling, {FileExtension, Options as QRCodeStylingOptions} from 'qr-code-styling'
+import QRCodeStyling, {FileExtension, Options} from 'qr-code-styling'
+import Btn from "@/components/ui/button/Btn";
 
-const styles = {
-    inputWrapper: {
-        margin: '20px 0',
-        display: 'flex',
-        justifyContent: 'space-between',
-        width: '100%',
-    },
-    inputBox: {
-        flexGrow: 1,
-        marginRight: 20,
-    },
-}
 
-const qrOptions: QRCodeStylingOptions = {
-    width: 300,
-    height: 300,
-    dotsOptions: {
-        color: '#4267b2',
-        type: 'rounded',
-    },
-    imageOptions: {
-        crossOrigin: 'anonymous',
-        margin: 20,
-    },
-}
-
-const useQRCodeStyling = (options: QRCodeStylingOptions): QRCodeStyling | null => {
-    if (typeof window !== 'undefined') {
-        // eslint-disable-next-line @typescript-eslint/no-var-requires
-        const QRCodeStylingLib = require('qr-code-styling')
-        return new QRCodeStylingLib(options)
-    }
-    return null
-}
 
 export default function Form() {
     const [ShortedData, setShortedData] = useState<ShortedLink>(null)
     const [loading, setLoading] = useState<boolean>(false)
     const [isOpen, setIsOpen] = useState<boolean>(false)
     const {user, setShowLoginPopup} = useUser()
+
+    const [options, setOptions] = useState<Options>({
+        width: 300,
+        height: 300,
+        type: 'png',
+        data: '',
+        margin: 10,
+        qrOptions: {
+            typeNumber: 0,
+            mode: 'Byte',
+            errorCorrectionLevel: 'Q'
+        },
+        imageOptions: {
+            hideBackgroundDots: true,
+            imageSize: 0.4,
+            margin: 20,
+            crossOrigin: 'anonymous',
+            saveAsBlob: true,
+        }
+    });
 
     const {
         handleSubmit,
@@ -82,7 +70,7 @@ export default function Form() {
         setIsOpen(false)
     }
 
-    const options = [
+    const selectOptions = [
         {value: 'chocolate', label: 'Chocolate'},
         {value: 'strawberry', label: 'Strawberry'},
         {value: 'vanilla', label: 'Vanilla'}
@@ -104,6 +92,11 @@ export default function Form() {
         if (response.status === 200) {
             open()
             setShortedData(data)
+
+            setOptions(options => ({
+                ...options,
+                data: data.short_url
+            }))
         }
 
         setLoading(false)
@@ -132,17 +125,20 @@ export default function Form() {
         setValue('url', '')
     }
 
-    const [fileExt, setFileExt] = useState<FileExtension | undefined>('png')
-    const qrCode = useQRCodeStyling(qrOptions)
-    const ref = useRef<any>(null)
+    const ref = useRef<HTMLDivElement>(null)
 
-    useEffect(() => {
-        qrCode?.append(ref.current)
-    }, [ref, qrCode])
+    const CreateQR = () => {
 
-    useEffect(() => {
-        qrCode?.update({data: ShortedData?.short_url})
-    }, [ShortedData, qrCode])
+        let qr = new QRCodeStyling(options)
+
+        qr.append(document.getElementById("canvas"))
+
+        // if (!qrCode) return
+        // qrCode?.update(options)
+    }
+
+
+    // console.log(options)
 
     return (
         <>
@@ -327,12 +323,12 @@ export default function Form() {
 
                                         <Field className="px-4 py-2">
                                             <Label className="my-label">Tags</Label>
-                                            <Creatable isMulti={true} options={options}/>
+                                            <Creatable isMulti={true} options={selectOptions}/>
                                         </Field>
 
                                         <Field className="px-4 py-2">
                                             <Label className="my-label">Category</Label>
-                                            <Select options={options}/>
+                                            <Select options={selectOptions}/>
                                         </Field>
 
                                         <Field className="px-4 py-2">
@@ -350,9 +346,13 @@ export default function Form() {
                                         </Field>
                                     </TabPanel>
                                     <TabPanel>
-                                        <div style={styles.inputWrapper}>
-                                            <div ref={ref}/>
-                                        </div>
+                                        {/*<div style={styles.inputWrapper}>*/}
+                                        <div id={'canvas'} ref={ref}/>
+                                        {/*</div>*/}
+
+                                        <Btn onClick={CreateQR}>
+                                            ساخت QRCode
+                                        </Btn>
                                     </TabPanel>
                                     <TabPanel>
                                         <Field className="p-4">
