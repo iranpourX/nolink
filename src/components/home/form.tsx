@@ -1,7 +1,7 @@
 'use client'
 
 import {cn} from "@/utils/helper"
-import React, {useRef, useState, useEffect} from "react"
+import React, {useRef, useState} from "react"
 import {SubmitHandler, useForm} from "react-hook-form"
 import {useUser} from "@/context/UserContext"
 import {ErrorMessage} from "@hookform/error-message"
@@ -28,12 +28,11 @@ import Btn from "@/components/ui/button/Btn";
 
 export default function Form() {
     const ref = useRef<HTMLDivElement>(null)
-    const qrRef = useRef<any>(null)
+    const qrRef = useRef<QRCodeStyling>(null)
     const [ShortedData, setShortedData] = useState<ShortedLink>(null)
     const [loading, setLoading] = useState<boolean>(false)
     const [isOpen, setIsOpen] = useState<boolean>(false)
     const {user, setShowLoginPopup} = useUser()
-    const [qrCode, setQrCode] = useState<QRCodeStyling>()
     const [options, setOptions] = useState<Options>({
         width: 300,
         height: 300,
@@ -76,10 +75,6 @@ export default function Form() {
         {value: 'strawberry', label: 'Strawberry'},
         {value: 'vanilla', label: 'Vanilla'}
     ]
-
-    // useEffect(() => {
-    //     setQrCode(new QRCodeStyling(options))
-    // }, [ShortedData])
 
 
     const onSubmitInfo: SubmitHandler<CreateLink> = async (value) => {
@@ -132,18 +127,13 @@ export default function Form() {
         setValue('url', '')
     }
 
-    const CreateQR = () => {
-
-        (async () => {
-
-            const QRCodeStyling = (await import("qr-code-styling")).default;
-
+    const CreateQR = async () => {
+        const QRCodeStyling = (await import('qr-code-styling')).default
+        if (!qrRef.current) {
             qrRef.current = new QRCodeStyling(options)
+        }
 
-            if (ref.current) {
-                qrRef.current.append(ref.current)
-            }
-        })()
+        qrRef.current.append(ref.current)
     }
 
     return (
