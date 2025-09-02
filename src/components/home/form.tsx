@@ -26,7 +26,7 @@ import QRCodeStyling, {Options} from 'qr-code-styling'
 import Btn from "@/components/ui/button/Btn"
 
 export default function Form() {
-    const ref = useRef<HTMLDivElement>(null)
+    const ref = useRef<HTMLElement>(undefined)
     const qrRef = useRef<QRCodeStyling>(null)
     const [ShortedData, setShortedData] = useState<ShortedLink>(null)
     const [loading, setLoading] = useState<boolean>(false)
@@ -132,7 +132,7 @@ export default function Form() {
             qrRef.current = new QRCodeStyling(options)
         }
 
-        qrRef?.current.append(ref.current)
+        qrRef.current.append(ref.current)
     }
 
     return (
