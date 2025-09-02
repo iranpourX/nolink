@@ -62,3 +62,16 @@ type ShortedLink = {
     update_url: string
     delete_url: string
 } | null
+
+declare module "qr-code-styling" {
+    import {Options} from "qr-code-styling";
+    export type QrExtension = "png" | "jpeg" | "webp" | "svg";
+
+    export default class QRCodeStyling {
+        constructor(options?: Options)
+        append(element: HTMLDivElement | null): void;
+        update(options?: Options): void;
+        download(downloadOptions?: { name?: string; extension?: QrExtension }): void;
+        getRawData?(extension?: QrExtension): Promise<Blob>;
+    }
+}

@@ -22,17 +22,17 @@ import {
 } from "@headlessui/react"
 // import Creatable from "react-select/creatable"
 // import Select from "react-select"
-import QRCodeStyling, {Options} from 'qr-code-styling'
+import QRCodeStyling from 'qr-code-styling'
 import Btn from "@/components/ui/button/Btn"
 
 export default function Form() {
-    const ref = useRef<HTMLElement>(undefined)
+    const ref = useRef<HTMLDivElement>(null)
     const qrRef = useRef<QRCodeStyling>(null)
     const [ShortedData, setShortedData] = useState<ShortedLink>(null)
     const [loading, setLoading] = useState<boolean>(false)
     const [isOpen, setIsOpen] = useState<boolean>(false)
     const {user, setShowLoginPopup} = useUser()
-    const [options, setOptions] = useState<Options>({
+    const [options, setOptions] = useState({
         width: 300,
         height: 300,
         type: 'canvas',
@@ -74,7 +74,6 @@ export default function Form() {
         {value: 'strawberry', label: 'Strawberry'},
         {value: 'vanilla', label: 'Vanilla'}
     ]
-
 
     const onSubmitInfo: SubmitHandler<CreateLink> = async (value) => {
         setLoading(true)
@@ -332,7 +331,7 @@ export default function Form() {
                                     </TabPanel>
                                     <TabPanel>
                                         {/*<div style={styles.inputWrapper}>*/}
-                                        <div ref={ref}/>
+                                        <div ref={ref}></div>
                                         {/*</div>*/}
 
                                     </TabPanel>
