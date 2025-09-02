@@ -40,7 +40,7 @@ const Btn: React.FC<ButtonProps> =
         }
 
         const variantClasses = {
-            primary: "bg-blue-500 text-white shadow-xs disabled:opacity-50",
+            primary: "bg-blue-600 text-white shadow-xs disabled:opacity-50",
             outline: "bg-white text-gray-700 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 dark:bg-gray-800 dark:text-gray-400 dark:ring-gray-700 dark:hover:bg-white/[0.03] dark:hover:text-gray-300",
         }
 
@@ -56,16 +56,16 @@ const Btn: React.FC<ButtonProps> =
                 onClick={onClick}
                 disabled={loading}
             >
-                {
-                    loading
-                        ? (<svg
-                            className={`${loaderSize[size]} fill-white animate-spin`}
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 512 512">
-                            <path
-                                d="M457 372c11.5 6.6 26.3 2.7 31.8-9.3C503.7 330.2 512 294.1 512 256C512 122.7 410.1 13.2 280 1.1C266.8-.1 256 10.7 256 24s10.8 23.9 24 25.4C383.5 61.2 464 149.2 464 256c0 29.3-6.1 57.3-17 82.6c-5.3 12.2-1.5 26.8 10 33.5z"/>
-                        </svg>)
-                        : children}
+                {loading
+                    ? (<svg
+                        className={`${loaderSize[size]} fill-white animate-spin`}
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 512 512">
+                        <path
+                            d="M457 372c11.5 6.6 26.3 2.7 31.8-9.3C503.7 330.2 512 294.1 512 256C512 122.7 410.1 13.2 280 1.1C266.8-.1 256 10.7 256 24s10.8 23.9 24 25.4C383.5 61.2 464 149.2 464 256c0 29.3-6.1 57.3-17 82.6c-5.3 12.2-1.5 26.8 10 33.5z"/>
+                    </svg>)
+                    : children
+                }
             </button>
         )
     }

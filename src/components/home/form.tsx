@@ -1,7 +1,7 @@
 'use client'
 
 import {cn} from "@/utils/helper"
-import React, {useRef, useState} from "react"
+import React, {useRef, useState, useEffect} from "react"
 import {SubmitHandler, useForm} from "react-hook-form"
 import {useUser} from "@/context/UserContext"
 import {ErrorMessage} from "@hookform/error-message"
@@ -20,19 +20,20 @@ import {
     TabPanels,
     Textarea
 } from "@headlessui/react"
-import Creatable from "react-select/creatable"
-import Select from "react-select"
+// import Creatable from "react-select/creatable"
+// import Select from "react-select"
 import QRCodeStyling, {Options} from 'qr-code-styling'
 import Btn from "@/components/ui/button/Btn";
 
 
-
 export default function Form() {
+    const ref = useRef<HTMLDivElement>(null)
+    const qrRef = useRef<any>(null)
     const [ShortedData, setShortedData] = useState<ShortedLink>(null)
     const [loading, setLoading] = useState<boolean>(false)
     const [isOpen, setIsOpen] = useState<boolean>(false)
     const {user, setShowLoginPopup} = useUser()
-
+    const [qrCode, setQrCode] = useState<QRCodeStyling>()
     const [options, setOptions] = useState<Options>({
         width: 300,
         height: 300,
@@ -51,7 +52,7 @@ export default function Form() {
             crossOrigin: 'anonymous',
             saveAsBlob: true,
         }
-    });
+    })
 
     const {
         handleSubmit,
@@ -76,6 +77,11 @@ export default function Form() {
         {value: 'vanilla', label: 'Vanilla'}
     ]
 
+    // useEffect(() => {
+    //     setQrCode(new QRCodeStyling(options))
+    // }, [ShortedData])
+
+
     const onSubmitInfo: SubmitHandler<CreateLink> = async (value) => {
         setLoading(true)
         const response = await fetch('/api/home', {
@@ -90,13 +96,14 @@ export default function Form() {
         })
         const data = await response.json()
         if (response.status === 200) {
-            open()
             setShortedData(data)
 
             setOptions(options => ({
                 ...options,
                 data: data.short_url
             }))
+
+            open()
         }
 
         setLoading(false)
@@ -125,32 +132,31 @@ export default function Form() {
         setValue('url', '')
     }
 
-    const ref = useRef<HTMLDivElement>(null)
-
     const CreateQR = () => {
 
-        let qr = new QRCodeStyling(options)
+        (async () => {
 
-        qr?.append(document.getElementById("canvas"))
+            const QRCodeStyling = (await import("qr-code-styling")).default;
 
-        // if (!qrCode) return
-        // qrCode?.update(options)
+            qrRef.current = new QRCodeStyling(options)
+
+            if (ref.current) {
+                qrRef.current.append(ref.current)
+            }
+        })()
     }
-
-
-    // console.log(options)
 
     return (
         <>
-            <form
-                onSubmit={handleSubmit(onSubmitInfo)}
-                className={'w-full mt-8'}>
+            <form onSubmit={handleSubmit(onSubmitInfo)} className={'w-full mt-8'}>
                 <div
                     className="relative md:bg-transparent bg-white border md:border-none border-gray-300 rounded-lg md:rounded-none overflow-hidden">
                     <input
                         type="text"
                         placeholder="paste link"
+                        autoFocus={true}
                         autoComplete={'off'}
+                        disabled={loading}
                         {...register('url', {
                             required: 'مقدار خالی است',
                             pattern: {
@@ -160,10 +166,10 @@ export default function Form() {
                         })}
                         className={cn(
                             'dark:bg-dark-900 w-full rounded-lg border-none md:border md:border-gray-300',
-                            'bg-white py-3.5 pl-4 pr-4 md:pr-38 text-lg text-gray-800 shadow-none md:shadow-xs',
+                            'bg-white py-3.5 pl-4 md:pr-38 pr-4 text-lg text-gray-800 shadow-none md:shadow-xs',
                             'placeholder:text-gray-400 focus:border-blue-300 focus:outline-0',
                             'dark:border-gray-800 dark:bg-gray-900 ring-0 focus:ring-0',
-                            'dark:text-white dark:placeholder:text-gray-200 outline-none'
+                            'dark:text-white dark:placeholder:text-gray-200 outline-none',
                         )}
                     />
 
@@ -183,7 +189,7 @@ export default function Form() {
                                     'dark:border-gray-800 dark:bg-white/[0.03] dark:text-gray-400 gap-1 md:gap-0'
                                 )}>
                                 <svg
-                                    className="size-5 md:size-6 fill-gray-400 dark:fill-gray-200"
+                                    className="size-5 fill-gray-400 dark:fill-gray-200"
                                     xmlns="http://www.w3.org/2000/svg"
                                     viewBox="0 0 384 512">
                                     <path
@@ -199,13 +205,12 @@ export default function Form() {
                                     'text-white bg-gray-100 md:bg-transparent rounded-lg md:rounded-none w-full md:w-auto',
                                     'dark:border-gray-800 dark:bg-white/[0.03] dark:text-gray-400 gap-1 md:gap-0'
                                 )}>
-
                                 <svg
                                     className="size-5 md:size-6 fill-gray-400 dark:fill-gray-200"
                                     xmlns="http://www.w3.org/2000/svg"
                                     viewBox="0 0 384 512">
                                     <path
-                                        d="M64 32C46.3 32 32 46.3 32 64l0 384c0 17.7 14.3 32 32 32l256 0c17.7 0 32-14.3 32-32l0-384c0-17.7-14.3-32-32-32L64 32zM0 64C0 28.7 28.7 0 64 0L320 0c35.3 0 64 28.7 64 64l0 384c0 35.3-28.7 64-64 64L64 512c-35.3 0-64-28.7-64-64L0 64zm112 64l160 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-160 0c-8.8 0-16-7.2-16-16s7.2-16 16-16zm0 96l160 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-160 0c-8.8 0-16-7.2-16-16s7.2-16 16-16zm0 96l96 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-96 0c-8.8 0-16-7.2-16-16s7.2-16 16-16z"/>
+                                        d="M248 80L136 80c-13.3 0-24-10.7-24-24s10.7-24 24-24l112 0c13.3 0 24 10.7 24 24s-10.7 24-24 24zm0 32c28.2 0 51.6-20.9 55.4-48L320 64c17.7 0 32 14.3 32 32l0 352c0 17.7-14.3 32-32 32L64 480c-17.7 0-32-14.3-32-32L32 96c0-17.7 14.3-32 32-32l16.6 0c3.9 27.1 27.2 48 55.4 48l112 0zm50.6-80c-9-18.9-28.3-32-50.6-32L136 0C113.7 0 94.4 13.1 85.4 32L64 32C28.7 32 0 60.7 0 96L0 448c0 35.3 28.7 64 64 64l256 0c35.3 0 64-28.7 64-64l0-352c0-35.3-28.7-64-64-64l-21.4 0z"/>
                                 </svg>
                                 <span className={'md:hidden text-gray-600 text-sm'}>paste</span>
                             </button>)
@@ -216,23 +221,32 @@ export default function Form() {
                                 type={'submit'}
                                 disabled={loading}
                                 className={cn(
-                                    'flex',
-                                    'items-center rounded-lg border justify-center border-blue-600 bg-blue-600 w-full',
-                                    'px-4 py-2 text-base font-semibold text-white',
+                                    'flex items-center rounded-lg border justify-center',
+                                    'border-blue-600 bg-blue-600 w-full px-4 py-2',
+                                    'text-white text-base font-semibold disabled:bg-blue-300 disabled:border-blue-300',
                                     'dark:border-gray-800 dark:bg-white/[0.03] dark:text-gray-400'
                                 )}>
-                                <span>Short it</span>
+                                {loading
+                                    ? (<svg
+                                        className={`size-6 fill-white animate-spin`}
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 512 512">
+                                        <path
+                                            d="M457 372c11.5 6.6 26.3 2.7 31.8-9.3C503.7 330.2 512 294.1 512 256C512 122.7 410.1 13.2 280 1.1C266.8-.1 256 10.7 256 24s10.8 23.9 24 25.4C383.5 61.2 464 149.2 464 256c0 29.3-6.1 57.3-17 82.6c-5.3 12.2-1.5 26.8 10 33.5z"/>
+                                    </svg>)
+                                    : (<span>short it</span>)
+                                }
                             </button>)
                             : (<button
                                 onClick={() => setShowLoginPopup(true)}
                                 type={'button'}
                                 className={cn(
-                                    'flex',
-                                    'items-center rounded-lg border justify-center border-blue-600 bg-blue-600 w-full',
-                                    'px-4 py-2 text-base font-semibold text-white',
+                                    'flex items-center rounded-lg border justify-center',
+                                    'border-blue-600 bg-blue-600 w-full px-4 py-2',
+                                    'text-white text-base font-semibold ',
                                     'dark:border-gray-800 dark:bg-white/[0.03] dark:text-gray-400'
                                 )}>
-                                <span>Short it</span>
+                                <span>short it</span>
                             </button>)
                         }
 
@@ -248,7 +262,12 @@ export default function Form() {
                 {!errors.url && (<small className="h-6 block"></small>)}
             </form>
 
-            <Dialog open={isOpen} as="div" className="relative z-10 focus:outline-none" onClose={close}>
+            <Dialog
+                open={isOpen}
+                as="div"
+                className="relative z-10 focus:outline-none"
+                onClose={() => {
+                }}>
                 <DialogBackdrop className="fixed z-99999 inset-0 bg-black/40"/>
                 <div className="fixed inset-0 z-999999 w-screen overflow-y-auto">
                     <div className="flex min-h-full items-start justify-center pt-16 px-4">
@@ -277,6 +296,7 @@ export default function Form() {
                                     <Tab
                                         className={`border-b-2 py-3 border-transparent focus:outline-0 data-selected:border-b-blue-500 data-selected:text-blue-500 data-selected:font-medium`}>General</Tab>
                                     <Tab
+                                        onClick={CreateQR}
                                         className={`border-b-2 py-3 border-transparent focus:outline-0 data-selected:border-b-blue-500 data-selected:text-blue-500 data-selected:font-medium`}>QR
                                         code</Tab>
                                     <Tab
@@ -320,70 +340,32 @@ export default function Form() {
                                                 />
                                             </div>
                                         </Field>
-
-                                        <Field className="px-4 py-2">
-                                            <Label className="my-label">Tags</Label>
-                                            <Creatable isMulti={true} options={selectOptions}/>
-                                        </Field>
-
-                                        <Field className="px-4 py-2">
-                                            <Label className="my-label">Category</Label>
-                                            <Select options={selectOptions}/>
-                                        </Field>
-
-                                        <Field className="px-4 py-2">
-                                            <Label className="my-label">Comment</Label>
-                                            <Textarea
-                                                className={cn(
-                                                    'block w-full resize-none rounded-lg',
-                                                    'border border-gray-300 bg-white px-3 py-2 text-sm',
-                                                    'text-gray-800 focus:not-data-focus:outline-none',
-                                                    'data-focus:outline-2 data-focus:-outline-offset-2 data-focus:outline-white/25'
-                                                )}
-                                                rows={5}
-                                                placeholder="Leave your comments here"
-                                            />
-                                        </Field>
                                     </TabPanel>
                                     <TabPanel>
                                         {/*<div style={styles.inputWrapper}>*/}
-                                        <div id={'canvas'} ref={ref}/>
+                                        <div ref={ref}/>
                                         {/*</div>*/}
 
-                                        <Btn onClick={CreateQR}>
-                                            ساخت QRCode
-                                        </Btn>
                                     </TabPanel>
                                     <TabPanel>
                                         <Field className="p-4">
-                                            <Label className="my-label">
-                                                Destination URL
-                                            </Label>
-                                            <Input
-                                                placeholder={`Paste your URL here`}
-                                                className="my-input"
-                                            />
+                                            <Label className="my-label">Destination URL</Label>
+                                            <Input placeholder={`Paste your URL here`} className="my-input"/>
                                         </Field>
                                         <Field className="px-4 py-2">
                                             <Label className="my-label">
                                                 Destination URL
                                             </Label>
-                                            <Input
-                                                placeholder={`Paste your URL here`}
-                                                className="my-input"
-                                            />
+                                            <Input placeholder={`Paste your URL here`} className="my-input"/>
                                         </Field>
                                     </TabPanel>
                                 </TabPanels>
                             </TabGroup>
 
                             <div className="mt-4 bg-gray-50 border-t rounded-b-lg p-4 flex items-center justify-end">
-                                <button
-                                    className="rounded-lg bg-blue-500 px-4 py-3 text-sm font-medium text-white focus:outline-0"
-                                    onClick={close}
-                                >
+                                <Btn onClick={close}>
                                     Create Link
-                                </button>
+                                </Btn>
                             </div>
                         </DialogPanel>
                     </div>
