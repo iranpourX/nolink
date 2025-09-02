@@ -23,8 +23,7 @@ import {
 // import Creatable from "react-select/creatable"
 // import Select from "react-select"
 import QRCodeStyling, {Options} from 'qr-code-styling'
-import Btn from "@/components/ui/button/Btn";
-
+import Btn from "@/components/ui/button/Btn"
 
 export default function Form() {
     const ref = useRef<HTMLDivElement>(null)
@@ -133,7 +132,7 @@ export default function Form() {
             qrRef.current = new QRCodeStyling(options)
         }
 
-        qrRef.current.append(ref.current)
+        qrRef?.current.append(ref.current)
     }
 
     return (
