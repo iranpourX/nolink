@@ -250,12 +250,8 @@ export default function Form() {
                 {!errors.url && (<small className="h-6 block"></small>)}
             </form>
 
-            <Dialog
-                open={isOpen}
-                as="div"
-                className="relative z-10 focus:outline-none"
-                onClose={() => {
-                }}>
+            <Dialog open={isOpen} as="div"
+                    className="relative z-10 focus:outline-none" onClose={() => {}}>
                 <DialogBackdrop className="fixed z-99999 inset-0 bg-black/40"/>
                 <div className="fixed inset-0 z-999999 w-screen overflow-y-auto">
                     <div className="flex min-h-full items-start justify-center pt-16 px-4">

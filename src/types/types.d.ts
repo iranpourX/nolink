@@ -1,3 +1,8 @@
+type withPassword = {
+    phone_number: string
+    password: string
+}
+
 type User = {
     id?: string
     phone_number?: string
@@ -74,4 +79,17 @@ declare module "qr-code-styling" {
         download(downloadOptions?: { name?: string; extension?: QrExtension }): void;
         getRawData?(extension?: QrExtension): Promise<Blob>;
     }
+}
+
+type OtpContextType = {
+    phone: string | null
+    loading: boolean
+    page: number
+    sendOtp: (value: { phone_number: string }) => Promise<void>
+    withPassword: (value: { password: string }) => Promise<void>
+    verifyOtp: (code: string) => Promise<void>
+    backToOtp: () => void
+    reset: () => void
+    resend: () => void
+    countDown: number
 }

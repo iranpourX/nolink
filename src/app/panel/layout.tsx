@@ -4,7 +4,6 @@ import React from 'react'
 import Backdrop from "@/layout/Backdrop"
 import AppHeader from "@/layout/AppHeader"
 import AppSidebar from "@/layout/AppSidebar"
-import {Toaster} from "sonner"
 import {useSidebar} from "@/context/SidebarContext";
 
 export default function PanelLayout({children}: {
@@ -26,11 +25,6 @@ export default function PanelLayout({children}: {
                 <AppHeader/>
                 <div className="p-4 mx-auto max-w-(--breakpoint-2xl) md:p-6">{children}</div>
             </div>
-            <Toaster
-                richColors
-                position={'bottom-left'}
-                style={{fontFamily: 'IRANYekanX'}}
-            />
         </div>
     )
 }

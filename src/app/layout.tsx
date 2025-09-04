@@ -5,6 +5,8 @@ import {SidebarProvider} from '@/context/SidebarContext'
 import {ThemeProvider} from '@/context/ThemeContext'
 import {UserProvider} from '@/context/UserContext'
 import QueryProvider from "@/context/QueryContext"
+import {OtpProvider} from "@/context/OtpContext"
+import {Toaster} from "sonner"
 
 export const metadata: Metadata = {
     title: {
@@ -24,11 +26,18 @@ export default async function RootLayout({children}: Readonly<{
             <SidebarProvider>
                 <QueryProvider>
                     <UserProvider>
-                        {children}
+                        <OtpProvider>
+                            {children}
+                        </OtpProvider>
                     </UserProvider>
                 </QueryProvider>
             </SidebarProvider>
         </ThemeProvider>
+        <Toaster
+            richColors
+            position={'bottom-left'}
+            style={{fontFamily: 'IRANYekanX'}}
+        />
         </body>
         </html>
     )

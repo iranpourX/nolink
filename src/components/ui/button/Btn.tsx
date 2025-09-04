@@ -27,14 +27,14 @@ const Btn: React.FC<ButtonProps> =
      }) => {
         const sizeClasses = {
             sm: "px-3.5 py-2 text-xs",
-            md: "px-4 py-2.5 text-xs",
-            lg: "px-4 py-2.5 text-sm",
-            xl: "px-5 py-3 text-lg"
+            md: "px-4 py-3 text-sm",
+            lg: "px-4 py-3.5 text-base",
+            xl: "px-5 py-4 text-lg"
         }
 
         const loaderSize = {
             sm: "size-3",
-            md: "size-4",
+            md: "size-5",
             lg: "size-5",
             xl: "size-6",
         }
