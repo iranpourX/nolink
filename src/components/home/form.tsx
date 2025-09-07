@@ -348,7 +348,7 @@ export default function Form() {
                                                         )}
                                                     />
                                                     <div
-                                                        className={'absolute flex items-center md:right-1 md:top-1/2 md:-translate-y-1/2 md:-tracking-[0.2px]'}>
+                                                        className={'absolute flex items-center right-1 top-1/2 -translate-y-1/2 -tracking-[0.2px]'}>
 
                                                         {!editModeToggle
                                                             && (<button
