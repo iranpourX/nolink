@@ -80,6 +80,10 @@ export default function Form() {
     // ]
 
     const onSubmitInfo: SubmitHandler<CreateLink> = async (value) => {
+        if (!user) {
+            setShowLoginPopup(true)
+            return
+        }
         setLoading(true)
         const response = await fetch('/api/home', {
             method: 'POST',
