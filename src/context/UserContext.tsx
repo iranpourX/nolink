@@ -15,7 +15,7 @@ const UserContext = createContext<UserContextType | undefined>(undefined)
 
 async function fetchUser(): Promise<User> {
     const response = await fetch('/api/settings/profile')
-    return response.json()
+    return await response.json()
 }
 
 export function UserProvider({children}: { children: React.ReactNode }) {
@@ -34,7 +34,7 @@ export function UserProvider({children}: { children: React.ReactNode }) {
                 }
             }
         },
-        retry: false,
+        retry: false
     })
 
     return (

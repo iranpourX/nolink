@@ -1,8 +1,8 @@
-import {NextResponse} from "next/server"
-import {getCookie} from "@/app/lib/cookie"
+import {NextRequest, NextResponse} from "next/server"
 
-export async function GET() {
-    const token = await getCookie('token')
+export async function GET(req: NextRequest)  {
+    const token = req.cookies.get('token')
+
     if (!token) {
         return NextResponse.json({hasToken: false}, {status: 200})
     }

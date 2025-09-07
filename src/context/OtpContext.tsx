@@ -6,6 +6,7 @@ import React, {
     useEffect,
     useState
 } from "react"
+import {useUser} from "@/context/UserContext"
 
 import {toast} from "sonner"
 
@@ -16,6 +17,7 @@ export function OtpProvider({children}: { children: React.ReactNode }) {
     const [page, setPage] = useState<number>(1)
     const [countDown, setCountDown] = useState<number>(0)
     const [loading, setLoading] = useState(false)
+    const {refetchUser, setShowLoginPopup} = useUser()
 
     const sendOtp = async (value: { phone_number: string }) => {
         setLoading(true)
@@ -64,10 +66,11 @@ export function OtpProvider({children}: { children: React.ReactNode }) {
             })
             const resJson = await res.json()
             if (res.ok) {
+                setShowLoginPopup(false)
                 toast.success(resJson.status.message)
-                window.location.reload()
+                refetchUser()
             }
-            // toast.error(resJson.data.message)
+
         } catch (err: unknown) {
             toast.error(err instanceof Error ? err.message : "خطای ناشناخته")
         } finally {
