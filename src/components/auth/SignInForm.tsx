@@ -6,9 +6,9 @@ import {useUser} from "@/context/UserContext"
 import UserDropdown from "@/components/header/UserDropdown"
 import {ThemeToggleButton} from "@/components/common/ThemeToggleButton"
 import {useOtp} from '@/context/OtpContext'
-import GetNumber from "@/components/auth/GetNumber";
-import WithPassword from "@/components/auth/WithPassword";
-import {WithOTP} from "@/components/auth/WithOTP";
+import GetNumber from "@/components/auth/GetNumber"
+import WithPassword from "@/components/auth/WithPassword"
+import {WithOTP} from "@/components/auth/WithOTP"
 
 export default function SignInForm() {
     const [isOpen, setIsOpen] = useState<boolean>(false)
@@ -53,11 +53,12 @@ export default function SignInForm() {
             </div>
 
             <Dialog open={isOpen} as="div" className="relative z-10 focus:outline-none" onClose={close}>
-                <DialogBackdrop className="fixed inset-0 bg-black/40"/>
+                <DialogBackdrop className="fixed inset-0 bg-black/70"/>
                 <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
                     <div className="flex min-h-full items-center justify-center p-4">
-                        <DialogPanel transition
-                                     className="w-full max-w-sm rounded-lg bg-white p-6 duration-300 ease-out data-closed:transform-[scale(95%)] data-closed:opacity-0">
+                        <DialogPanel
+                            transition
+                            className="w-full max-w-sm rounded-lg backdrop-blur-2xl bg-white p-6 duration-300 ease-out data-closed:transform-[scale(60%)] data-closed:opacity-0">
                             {
                                 (() => {
                                     switch (page) {
@@ -70,7 +71,6 @@ export default function SignInForm() {
                                     }
                                 })()
                             }
-
                         </DialogPanel>
                     </div>
                 </div>

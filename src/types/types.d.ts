@@ -87,7 +87,7 @@ type OtpContextType = {
     page: number
     sendOtp: (value: { phone_number: string }) => Promise<void>
     withPassword: (value: { password: string }) => Promise<void>
-    verifyOtp: (code: string) => Promise<void>
+    withOtp: (code: string) => Promise<void>
     backToOtp: () => void
     reset: () => void
     resend: () => void

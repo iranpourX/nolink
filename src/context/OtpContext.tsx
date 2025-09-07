@@ -2,7 +2,8 @@
 
 import React, {
     createContext,
-    useContext, useEffect,
+    useContext,
+    useEffect,
     useState
 } from "react"
 
@@ -74,7 +75,7 @@ export function OtpProvider({children}: { children: React.ReactNode }) {
         }
     }
 
-    const verifyOtp = async (code: string) => {
+    const withOtp = async (code: string) => {
         setLoading(true)
         try {
             const res = await fetch("/api/auth/verify-otp", {
@@ -139,7 +140,7 @@ export function OtpProvider({children}: { children: React.ReactNode }) {
             resend,
             sendOtp,
             loading,
-            verifyOtp,
+            withOtp,
             countDown,
             backToOtp,
             withPassword,

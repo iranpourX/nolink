@@ -1,6 +1,6 @@
 'use client'
 
-import {cn} from "@/utils/helper"
+import {cn, getPathName} from "@/utils/helper"
 import React, {useRef, useState} from "react"
 import {SubmitHandler, useForm} from "react-hook-form"
 import {useUser} from "@/context/UserContext"
@@ -18,8 +18,9 @@ import {
     TabList,
     TabPanel,
     TabPanels,
-    Textarea
+    Transition
 } from "@headlessui/react"
+
 // import Creatable from "react-select/creatable"
 // import Select from "react-select"
 import QRCodeStyling from 'qr-code-styling'
@@ -29,8 +30,11 @@ export default function Form() {
     const ref = useRef<HTMLDivElement>(null)
     const qrRef = useRef<QRCodeStyling>(null)
     const [ShortedData, setShortedData] = useState<ShortedLink>(null)
+    const [defaultShortUrl, setDefaultShortUrl] = useState<string>()
     const [loading, setLoading] = useState<boolean>(false)
     const [isOpen, setIsOpen] = useState<boolean>(false)
+    const [editModeToggle, setEditModeToggle] = useState<boolean>(true)
+    const editing = useRef<HTMLInputElement>(null)
     const {user, setShowLoginPopup} = useUser()
     const [options, setOptions] = useState({
         width: 300,
@@ -69,11 +73,11 @@ export default function Form() {
         setIsOpen(false)
     }
 
-    const selectOptions = [
-        {value: 'chocolate', label: 'Chocolate'},
-        {value: 'strawberry', label: 'Strawberry'},
-        {value: 'vanilla', label: 'Vanilla'}
-    ]
+    // const selectOptions = [
+    //     {value: 'chocolate', label: 'Chocolate'},
+    //     {value: 'strawberry', label: 'Strawberry'},
+    //     {value: 'vanilla', label: 'Vanilla'}
+    // ]
 
     const onSubmitInfo: SubmitHandler<CreateLink> = async (value) => {
         setLoading(true)
@@ -90,7 +94,7 @@ export default function Form() {
         const data = await response.json()
         if (response.status === 200) {
             setShortedData(data)
-
+            setDefaultShortUrl(getPathName(data.short_url))
             setOptions(options => ({
                 ...options,
                 data: data.short_url
@@ -132,6 +136,21 @@ export default function Form() {
         }
 
         qrRef.current.append(ref.current)
+    }
+
+    const editMode = () => {
+        setEditModeToggle(false)
+
+        setTimeout(() => {
+            editing.current?.focus()
+        }, 1)
+
+    }
+
+    const cancelEditMode = () => {
+        setDefaultShortUrl(getPathName(ShortedData?.short_url))
+        setEditModeToggle(true)
+
     }
 
     return (
@@ -231,7 +250,7 @@ export default function Form() {
                                 className={cn(
                                     'flex items-center rounded-lg border justify-center',
                                     'border-blue-600 bg-blue-600 w-full px-4 py-2',
-                                    'text-white text-base font-semibold ',
+                                    'text-white text-base font-semibold',
                                     'dark:border-gray-800 dark:bg-white/[0.03] dark:text-gray-400'
                                 )}>
                                 <span>short it</span>
@@ -251,13 +270,14 @@ export default function Form() {
             </form>
 
             <Dialog open={isOpen} as="div"
-                    className="relative z-10 focus:outline-none" onClose={() => {}}>
+                    className="relative z-10 focus:outline-none" onClose={() => {
+            }}>
                 <DialogBackdrop className="fixed z-99999 inset-0 bg-black/40"/>
                 <div className="fixed inset-0 z-999999 w-screen overflow-y-auto">
                     <div className="flex min-h-full items-start justify-center pt-16 px-4">
                         <DialogPanel
                             transition
-                            className="w-full max-w-xl shadow border rounded-lg bg-white backdrop-blur-2xl duration-200 ease-out data-closed:transform-[scale(98%)] data-closed:opacity-0">
+                            className="w-full max-w-xl relative shadow border rounded-lg bg-white backdrop-blur-2xl duration-200 ease-out data-closed:transform-[scale(98%)] data-closed:opacity-0">
                             <DialogTitle
                                 as="span"
                                 className="text-base flex items-center justify-between border-b p-4 font-semibold text-gray-800">
@@ -294,44 +314,88 @@ export default function Form() {
 
                                 <TabPanels>
                                     <TabPanel>
-                                        <Field className="p-4">
-                                            <Label className="my-label">
-                                                Destination URL
-                                            </Label>
-                                            <Input
-                                                defaultValue={ShortedData?.original_url}
-                                                disabled={true}
-                                                className="my-input"/>
-                                        </Field>
-                                        <Field className="px-4 py-2">
-                                            <Label className="my-label">Shortened link</Label>
-                                            <div className="flex">
+                                        <Transition
+                                            as={'div'}
+                                            appear
+                                            enter="transform transition duration-600"
+                                            enterFrom="translate-y-1 opacity-0"
+                                            enterTo="translate-y-0 opacity-100">
+
+                                            <Field className="p-4">
+                                                <Label className="my-label">Destination URL</Label>
+                                                <Input
+                                                    defaultValue={ShortedData?.original_url}
+                                                    disabled={true}
+                                                    className="my-input"/>
+                                            </Field>
+                                            <Field className="px-4 py-2">
+                                                <Label className="my-label">Shortened link</Label>
+                                                <div className="flex relative">
                                                 <span
-                                                    className="inline-flex items-center px-3 text-sm text-blue-500 bg-blue-50 border border-r-0 rounded-r-none border-blue-300 rounded-l-lg">
+                                                    className="flex items-center px-3 text-sm text-blue-500 bg-blue-50 border border-r-0 rounded-r-none border-blue-300 rounded-l-lg">
                                                     no.link
                                                 </span>
-                                                <input
-                                                    type="text"
-                                                    id="website-admin"
-                                                    disabled={true}
-                                                    defaultValue={ShortedData?.short_url}
-                                                    className={cn(
-                                                        'rounded-r-lg bg-gray-50 border text-gray-900',
-                                                        'block w-full text-sm border-gray-300 p-2.5',
-                                                        'dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400',
-                                                        'dark:text-white'
-                                                    )}
-                                                />
-                                            </div>
-                                        </Field>
-                                    </TabPanel>
-                                    <TabPanel>
-                                        {/*<div style={styles.inputWrapper}>*/}
-                                        <div ref={ref}></div>
-                                        {/*</div>*/}
+                                                    <input
+                                                        ref={editing}
+                                                        disabled={editModeToggle}
+                                                        value={defaultShortUrl}
+                                                        onChange={(e) => setDefaultShortUrl(e.target.value)}
+                                                        className={cn(
+                                                            'rounded-r-lg bg-white border text-gray-900',
+                                                            'block w-full text-sm border-gray-300 p-2.5 disabled:bg-gray-50',
+                                                            'dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400',
+                                                            'dark:text-white pr-24 focus:ring-0 focus:border-gray-400',
+                                                        )}
+                                                    />
+                                                    <div
+                                                        className={'absolute flex items-center md:right-1 md:top-1/2 md:-translate-y-1/2 md:-tracking-[0.2px]'}>
 
+                                                        {!editModeToggle
+                                                            && (<button
+                                                                onClick={cancelEditMode}
+                                                                className={'mr-3'}>
+                                                                <svg
+                                                                    className="size-4 fill-gray-400 dark:fill-gray-200"
+                                                                    xmlns="http://www.w3.org/2000/svg"
+                                                                    viewBox="0 0 384 512">
+                                                                    <path
+                                                                        d="M7.5 105c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l151 151 151-151c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-151 151 151 151c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-151-151-151 151c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l151-151-151-151z"/>
+                                                                </svg>
+                                                            </button>)
+                                                        }
+
+                                                        {
+                                                            editModeToggle
+                                                                ? (<button
+                                                                    onClick={editMode}
+                                                                    className={cn('rounded-lg border min-w-16 bg-white shadow-xs px-3 py-1')}>
+                                                                    edit
+                                                                </button>)
+                                                                : (<button
+                                                                    className={'rounded-lg bg-blue-600 border min-w-16 border-blue-600 text-white shadow-xs px-3 py-1'}>
+                                                                    save
+                                                                </button>)
+                                                        }
+                                                    </div>
+                                                </div>
+                                            </Field>
+                                        </Transition>
+                                    </TabPanel>
+
+                                    <TabPanel>
+                                        <Transition
+                                            as={'div'}
+                                            appear
+                                            enter="transform transition duration-600"
+                                            enterFrom="translate-y-1 opacity-0"
+                                            enterTo="translate-y-0 opacity-100">
+                                            {/*<div style={styles.inputWrapper}>*/}
+                                            <div ref={ref}></div>
+                                            {/*</div>*/}
+                                        </Transition>
                                     </TabPanel>
                                     <TabPanel>
+
                                         <Field className="p-4">
                                             <Label className="my-label">Destination URL</Label>
                                             <Input placeholder={`Paste your URL here`} className="my-input"/>
@@ -342,13 +406,14 @@ export default function Form() {
                                             </Label>
                                             <Input placeholder={`Paste your URL here`} className="my-input"/>
                                         </Field>
+
                                     </TabPanel>
                                 </TabPanels>
                             </TabGroup>
 
                             <div className="mt-4 bg-gray-50 border-t rounded-b-lg p-4 flex items-center justify-end">
                                 <Btn onClick={close}>
-                                    Create Link
+                                    Copy Shortened link
                                 </Btn>
                             </div>
                         </DialogPanel>
