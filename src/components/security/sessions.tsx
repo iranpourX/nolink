@@ -4,7 +4,7 @@ import React from "react"
 import Card from "@/components/ui/card/card"
 import CardHeader from "@/components/ui/card/card-header"
 import {useQuery} from "@tanstack/react-query"
-import SessionsSkeleton from "@/components/skeletons/settings/security/sessions-skeleton"
+import SessionsSkeleton from "@/components/skeletons/settings/sessions-skeleton"
 
 const fetchSessions = async (): Promise<Session[]> => {
     const response = await fetch('/api/settings/sessions')
