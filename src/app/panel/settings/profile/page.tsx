@@ -1,7 +1,8 @@
 import React from 'react'
+import type {Metadata} from 'next'
 import PageBreadcrumb from '@/components/common/PageBreadCrumb'
-import ProfilePage from "@/components/profile/profile-page";
-import type {Metadata} from "next";
+import HeaderInfo from '@/components/profile/header-info'
+import UpdateInfo from '@/components/profile/update-info'
 
 export const metadata: Metadata = {
     title: 'Profile'
@@ -9,10 +10,12 @@ export const metadata: Metadata = {
 
 export default async function Profile() {
     return (
-        <div className="">
+        <>
             <PageBreadcrumb pageTitle="Profile"/>
 
-            <ProfilePage/>
-        </div>
+            <HeaderInfo/>
+
+            <UpdateInfo/>
+        </>
     )
 }

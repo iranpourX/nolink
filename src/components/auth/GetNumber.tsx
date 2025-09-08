@@ -3,7 +3,7 @@
 import Btn from "@/components/ui/button/Btn"
 import {SubmitHandler, useForm} from "react-hook-form"
 import {useOtp} from '@/context/OtpContext'
-import {ErrorMessage} from "@hookform/error-message"
+import ErrorMessage from "@/components/ui/error/ErrorMessage"
 import {cn} from "@/utils/helper"
 
 const GetNumber = () => {
@@ -63,14 +63,7 @@ const GetNumber = () => {
                     />
                 </div>
 
-                <ErrorMessage
-                    errors={errors}
-                    name="phone_number"
-                    render={({message}) => <small
-                        className="px-1 text-red-500 text-xs">{message}</small>}
-                />
-
-                {!errors.phone_number && (<small className="h-4 block"></small>)}
+                <ErrorMessage error={errors.phone_number}/>
 
                 <span className={'text-sm my-2'}>I accept privacy policy of using Nolink</span>
 

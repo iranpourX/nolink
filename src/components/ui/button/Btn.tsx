@@ -1,12 +1,12 @@
-import React, {ReactNode} from 'react'
+import React from 'react'
 import {cn} from '@/utils/helper'
 
 interface ButtonProps {
     children: React.ReactNode
     size?: 'sm' | 'md' | 'lg' | 'xl'
     variant?: "primary" | "outline"
-    startIcon?: ReactNode
-    endIcon?: ReactNode
+    startIcon?: React.ReactNode
+    endIcon?: React.ReactNode
     onClick?: () => void
     loading?: boolean
     className?: string
@@ -48,7 +48,7 @@ const Btn: React.FC<ButtonProps> =
             <button
                 type={inType}
                 className={cn(
-                    'flex items-center justify-center font-medium gap-2.5',
+                    'flex items-center justify-center font-medium gap-2',
                     'rounded-lg transition disabled:cursor-not-allowed',
                     sizeClasses[size], variantClasses[variant], className
                 )}

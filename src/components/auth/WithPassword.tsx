@@ -3,7 +3,7 @@
 import {useState} from "react"
 import {SubmitHandler, useForm} from "react-hook-form"
 import {cn} from "@/utils/helper"
-import {ErrorMessage} from "@hookform/error-message"
+import ErrorMessage from "@/components/ui/error/ErrorMessage"
 import Btn from "@/components/ui/button/Btn"
 import {useOtp} from "@/context/OtpContext"
 
@@ -77,16 +77,7 @@ export const WithPassword = () => {
                 </span>
                 </div>
 
-                <ErrorMessage
-                    errors={errors}
-                    name="password"
-                    render={({message}) => <small
-                        className="p-1 text-red-500 text-xs">{message}</small>}
-                />
-
-                {!errors.password && (
-                    <small className="h-6 block"></small>)}
-
+                <ErrorMessage error={errors.password}/>
 
                 <Btn inType={'submit'} className={'w-full'} loading={loading}>
                     continue

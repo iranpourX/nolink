@@ -1,11 +1,11 @@
 'use client'
 
-import {useLink} from "@/context/LinkContext"
-import {cn} from "@/utils/helper"
 import React from "react"
+import {useLink} from "@/context/LinkContext"
+import {cn, urlValid} from "@/utils/helper"
+import {url} from "@/utils/validations"
 import {SubmitHandler, useForm} from "react-hook-form"
 import {useUser} from "@/context/UserContext"
-import {ErrorMessage} from "@hookform/error-message"
 import {
     Dialog,
     DialogBackdrop,
@@ -20,8 +20,9 @@ import {
 } from "@headlessui/react"
 
 import Btn from "@/components/ui/button/Btn"
-import {ShortedLink} from "@/components/home/ShortedLink";
-import Image from "next/image";
+import {ShortedLink} from "@/components/home/ShortedLink"
+import Image from "next/image"
+import ErrorMessage from "@/components/ui/error/ErrorMessage"
 
 export default function Form() {
     const {loading, sendLink, open, close} = useLink()
@@ -46,12 +47,10 @@ export default function Form() {
     }
 
     const pasteIcon = () => {
-        const expression = /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b[-a-zA-Z0-9()@:%_+.~#?&\/=]*$/;
-        const regex = new RegExp(expression)
         if (navigator.clipboard && navigator.clipboard.readText) {
             navigator.clipboard.readText()
                 .then(clipText => {
-                    if (clipText.match(regex)) {
+                    if (clipText.match(urlValid)) {
                         reset({url: clipText})
                     }
                 })
@@ -80,15 +79,13 @@ export default function Form() {
                         autoFocus={true}
                         autoComplete={'off'}
                         disabled={loading}
-                        {...register('url', {
-                            required: 'مقدار خالی است'
-                        })}
+                        {...register('url', url)}
                         className={cn(
                             'dark:bg-dark-900 w-full rounded-lg border-none md:border md:border-gray-300',
-                            'bg-white py-3.5 pl-4 md:pr-38 pr-4 text-lg text-gray-800 shadow-none md:shadow-xs',
+                            'bg-white py-3.5 pl-4 md:pr-38 pr-4 text-lg text-gray-800 shadow-none',
                             'placeholder:text-gray-400 focus:border-blue-300 focus:outline-0',
                             'dark:border-gray-800 dark:bg-gray-900 ring-0 focus:ring-0',
-                            'dark:text-white dark:placeholder:text-gray-200 outline-none',
+                            'dark:text-white dark:placeholder:text-gray-200',
                         )}
                     />
 
@@ -100,13 +97,11 @@ export default function Form() {
 
                         {
                             !!watch('url')
-                                ? (<button
+                                ? (<Btn
                                     onClick={cleanIcon}
-                                    type={'button'}
+                                    size={'sm'}
                                     className={cn(
-                                        'flex items-center justify-center border-none py-3 md:py-2 px-2',
-                                        'text-white bg-gray-100 md:bg-transparent rounded-lg md:rounded-none w-full md:w-auto',
-                                        'dark:border-gray-800 dark:bg-white/[0.03] dark:text-gray-400 gap-1 md:gap-0'
+                                        `md:bg-transparent bg-gray-100 shadow-none w-full md:w-auto`
                                     )}>
                                     <svg
                                         className="size-5 fill-gray-400 dark:fill-gray-200"
@@ -115,15 +110,13 @@ export default function Form() {
                                         <path
                                             d="M7.5 105c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l151 151 151-151c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-151 151 151 151c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-151-151-151 151c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l151-151-151-151z"/>
                                     </svg>
-                                    <span className={'md:hidden text-gray-600 text-sm'}>clear</span>
-                                </button>)
-                                : (<button
+                                    <span className={'md:hidden text-gray-600 text-base'}>clear</span>
+                                </Btn>)
+                                : (<Btn
                                     onClick={pasteIcon}
-                                    type={'button'}
+                                    size={'sm'}
                                     className={cn(
-                                        'flex items-center justify-center border-none py-3 md:py-2 px-2',
-                                        'text-white bg-gray-100 md:bg-transparent rounded-lg md:rounded-none w-full md:w-auto',
-                                        'dark:border-gray-800 dark:bg-white/[0.03] dark:text-gray-400 gap-1 md:gap-0'
+                                        `md:bg-transparent bg-gray-100 shadow-none w-full md:w-auto`
                                     )}>
                                     <svg
                                         className="size-5 md:size-6 fill-gray-400 dark:fill-gray-200"
@@ -132,8 +125,8 @@ export default function Form() {
                                         <path
                                             d="M248 80L136 80c-13.3 0-24-10.7-24-24s10.7-24 24-24l112 0c13.3 0 24 10.7 24 24s-10.7 24-24 24zm0 32c28.2 0 51.6-20.9 55.4-48L320 64c17.7 0 32 14.3 32 32l0 352c0 17.7-14.3 32-32 32L64 480c-17.7 0-32-14.3-32-32L32 96c0-17.7 14.3-32 32-32l16.6 0c3.9 27.1 27.2 48 55.4 48l112 0zm50.6-80c-9-18.9-28.3-32-50.6-32L136 0C113.7 0 94.4 13.1 85.4 32L64 32C28.7 32 0 60.7 0 96L0 448c0 35.3 28.7 64 64 64l256 0c35.3 0 64-28.7 64-64l0-352c0-35.3-28.7-64-64-64l-21.4 0z"/>
                                     </svg>
-                                    <span className={'md:hidden text-gray-600 text-sm'}>paste</span>
-                                </button>)
+                                    <span className={'md:hidden text-gray-600 text-base'}>paste</span>
+                                </Btn>)
                         }
 
                         {
@@ -173,13 +166,7 @@ export default function Form() {
 
                     </div>
                 </div>
-                <ErrorMessage
-                    errors={errors}
-                    name="url"
-                    render={({message}) => <small
-                        className="px-1 text-red-500 text-xs">{message}</small>}/>
-
-                {!errors.url && (<small className="h-6 block"></small>)}
+                <ErrorMessage error={errors.url}/>
             </form>
 
             <Dialog open={open} as="div"
@@ -220,7 +207,7 @@ export default function Form() {
 
                             <TabGroup>
                                 <TabList
-                                    className={'border-b px-4 mt-3 flex justify-start items-center text-xs gap-4 text-gray-700'}>
+                                    className={'border-b px-4 mt-3 flex justify-start items-center text-xs gap-4 text-gray-700 overflow-x-auto'}>
                                     <Tab
                                         className="tabs-style border-b-2 border-transparent data-selected:border-b-blue-500 data-selected:text-blue-600">
                                         <svg
@@ -241,7 +228,7 @@ export default function Form() {
                                             <path
                                                 d="M144 64c8.8 0 16 7.2 16 16l0 96c0 8.8-7.2 16-16 16l-96 0c-8.8 0-16-7.2-16-16l0-96c0-8.8 7.2-16 16-16l96 0zM48 32C21.5 32 0 53.5 0 80l0 96c0 26.5 21.5 48 48 48l96 0c26.5 0 48-21.5 48-48l0-96c0-26.5-21.5-48-48-48L48 32zM160 336l0 96c0 8.8-7.2 16-16 16l-96 0c-8.8 0-16-7.2-16-16l0-96c0-8.8 7.2-16 16-16l96 0c8.8 0 16 7.2 16 16zM48 288c-26.5 0-48 21.5-48 48l0 96c0 26.5 21.5 48 48 48l96 0c26.5 0 48-21.5 48-48l0-96c0-26.5-21.5-48-48-48l-96 0zM304 64l96 0c8.8 0 16 7.2 16 16l0 96c0 8.8-7.2 16-16 16l-96 0c-8.8 0-16-7.2-16-16l0-96c0-8.8 7.2-16 16-16zM256 80l0 96c0 26.5 21.5 48 48 48l96 0c26.5 0 48-21.5 48-48l0-96c0-26.5-21.5-48-48-48l-96 0c-26.5 0-48 21.5-48 48zm8 240a24 24 0 1 0 48 0 24 24 0 1 0 -48 0zm0 128a24 24 0 1 0 48 0 24 24 0 1 0 -48 0zm152-24a24 24 0 1 0 0 48 24 24 0 1 0 0-48zM392 320a24 24 0 1 0 48 0 24 24 0 1 0 -48 0zm-40 40a24 24 0 1 0 0 48 24 24 0 1 0 0-48zM96 104a24 24 0 1 0 0 48 24 24 0 1 0 0-48zM72 384a24 24 0 1 0 48 0 24 24 0 1 0 -48 0zM352 104a24 24 0 1 0 0 48 24 24 0 1 0 0-48z"/>
                                         </svg>
-                                        QR code
+                                        QRcode
                                     </Tab>
                                     <Tab
                                         className="tabs-style border-b-2 border-transparent data-selected:border-b-blue-500 data-selected:text-blue-600">

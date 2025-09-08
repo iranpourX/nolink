@@ -4,7 +4,7 @@ import {SubmitHandler, useForm} from "react-hook-form"
 import Card from "@/components/ui/card/card"
 import CardHeader from "@/components/ui/card/card-header"
 import {cn} from "@/utils/helper"
-import {ErrorMessage} from "@hookform/error-message"
+import ErrorMessage from "@/components/ui/error/ErrorMessage"
 import CardFooter from "@/components/ui/card/card-footer"
 import Btn from "@/components/ui/button/Btn"
 import React, {useState, useEffect} from "react"
@@ -16,13 +16,9 @@ interface IUser {
     user_name: string
 }
 
-interface IProfile {
-    user: User | null
-}
-
-const UpdateInfo: React.FC<IProfile> = ({user}) => {
+const UpdateInfo = () => {
     const [loading, setLoading] = useState<boolean>(false)
-    const {refetchUser} = useUser()
+    const {refetchUser, user} = useUser()
 
     const {
         handleSubmit,
@@ -86,14 +82,7 @@ const UpdateInfo: React.FC<IProfile> = ({user}) => {
                                         ]
                                     )}
                                 />
-                                <ErrorMessage
-                                    errors={errors}
-                                    name="display_name"
-                                    render={({message}) => <small
-                                        className="px-1 text-red-500 text-xs">{message}</small>}
-                                />
-
-                                {!errors.display_name && (<small className="h-6 block"></small>)}
+                                <ErrorMessage error={errors.display_name}/>
                             </div>
 
                             <div className="w-full">
@@ -122,14 +111,7 @@ const UpdateInfo: React.FC<IProfile> = ({user}) => {
                                         ]
                                     )}
                                 />
-                                <ErrorMessage
-                                    errors={errors}
-                                    name="user_name"
-                                    render={({message}) => <small
-                                        className="px-1 text-red-500 text-xs">{message}</small>}
-                                />
-
-                                {!errors.user_name && (<small className="h-6 block"></small>)}
+                                <ErrorMessage error={errors.user_name}/>
                             </div>
                         </div>
                     </div>

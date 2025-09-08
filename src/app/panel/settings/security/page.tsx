@@ -1,7 +1,8 @@
 import React from 'react'
 import PageBreadcrumb from '@/components/common/PageBreadCrumb'
-import SecurityPage from "@/components/security/security-page";
 import type {Metadata} from "next"
+import UpdatePassword from "@/components/security/update-password"
+import Sessions from "@/components/security/sessions"
 
 export const metadata: Metadata = {
     title: 'Security'
@@ -9,10 +10,12 @@ export const metadata: Metadata = {
 
 export default async function Security() {
     return (
-        <div className="">
+        <>
             <PageBreadcrumb pageTitle="Security"/>
 
-            <SecurityPage/>
-        </div>
+            <UpdatePassword/>
+
+            <Sessions/>
+        </>
     )
 }

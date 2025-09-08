@@ -6,9 +6,7 @@ export const cn = (...inputs: ClassValue[]) => {
     return twMerge(clsx(inputs))
 }
 
-export function copyToClipboard() {
-
-}
+export const urlValid: RegExp = new RegExp('^(https?:\\/\\/)?([a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,}(:\\d+)?(\\/\\S*)?$')
 
 export const getPathName = (url?: string): string | undefined => {
     if (url) {
