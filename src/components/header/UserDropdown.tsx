@@ -9,7 +9,7 @@ import {cn} from "@/utils/helper"
 
 const Skeleton = () => {
     return (<button className="flex items-center animate-pulse">
-        <span className="mr-1 overflow-hidden bg-gray-100 dark:bg-gray-600 rounded-full h-12 w-12"></span>
+        <span className="mr-1 overflow-hidden bg-gray-100 dark:bg-gray-600 rounded-full size-12"></span>
     </button>)
 }
 
@@ -34,12 +34,11 @@ export default function UserDropdown({toRight}: { toRight?: boolean }) {
                     ? (<Skeleton/>)
                     : (<button
                         onClick={toggleDropdown}
-                        className="flex items-center text-gray-700 dark:text-gray-400 dropdown-toggle"
-                    >
-                        <span className="mr-1 overflow-hidden rounded-full h-12 w-12">
+                        className="flex items-center text-gray-700 dark:text-gray-400 dropdown-toggle">
+                        <span className="overflow-hidden rounded-full size-12">
                             <Image
-                                width={44}
-                                height={44}
+                                width={48}
+                                height={48}
                                 src={user?.avatar?.thumbnail ?? '/images/user/default.jpg'}
                                 alt="Types"
                                 className={`p-0.5 border-2 rounded-full ${isOpen ? "border-blue-400" : "border-gray-200 dark:border-gray-700"}`}
@@ -52,8 +51,8 @@ export default function UserDropdown({toRight}: { toRight?: boolean }) {
                 isOpen={isOpen}
                 onClose={closeDropdown}
                 className={cn(
-                    'absolute mt-[17px] flex w-[260px] flex-col rounded-2xl',
-                    'border border-gray-200 bg-white p-3 shadow-theme-lg dark:border-gray-800 dark:bg-gray-dark',
+                    'mt-[17px] flex w-[260px] flex-col',
+                    'bg-white p-3 dark:border-gray-800 dark:bg-gray-dark',
                     [toRight ? 'left-0' : 'right-0']
                 )}>
                 <div className={'px-2'}>

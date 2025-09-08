@@ -50,7 +50,6 @@ const navItems: NavItem[] = [
         subItems: [
             {name: "profile", path: "/panel/settings/profile"},
             {name: "security", path: "/panel/settings/security"},
-            {name: "people", path: "/panel/settings/people"},
             {name: "api", path: "/panel/settings/api"},
             {name: "Notifications", path: "/error-404"},
             {name: "Billings", path: "/error-404"},

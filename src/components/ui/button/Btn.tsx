@@ -27,7 +27,7 @@ const Btn: React.FC<ButtonProps> =
      }) => {
         const sizeClasses = {
             sm: "px-3.5 py-2 text-xs",
-            md: "px-4 py-3 text-sm",
+            md: "px-4 py-3 text-xs",
             lg: "px-4 py-3.5 text-base",
             xl: "px-5 py-4 text-lg"
         }
@@ -48,7 +48,7 @@ const Btn: React.FC<ButtonProps> =
             <button
                 type={inType}
                 className={cn(
-                    'flex items-center justify-center font-medium gap-2',
+                    'flex items-center justify-center font-medium gap-2.5',
                     'rounded-lg transition disabled:cursor-not-allowed',
                     sizeClasses[size], variantClasses[variant], className
                 )}

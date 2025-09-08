@@ -3,7 +3,8 @@ import Link from "next/link"
 // import {cn} from "@/utils/helper";
 import React from "react";
 import SignInForm from "@/components/auth/SignInForm";
-import Form from "@/components/home/form"
+import Form from "@/components/home/Form"
+import {LinkProvider} from "@/context/LinkContext";
 
 export const metadata: Metadata = {
     title: 'Nolink'
@@ -46,7 +47,9 @@ export default function Home() {
                             </h3>
                         </div>
 
-                        <Form/>
+                        <LinkProvider>
+                            <Form/>
+                        </LinkProvider>
 
                         <div className="rounded-lg flex flex-col w-full overflow-hidden">
 

@@ -2,12 +2,13 @@
 
 import type React from "react"
 import {useEffect, useRef} from "react"
+import {cn} from "@/utils/helper";
 
 interface DropdownProps {
-    isOpen: boolean;
-    onClose: () => void;
-    children: React.ReactNode;
-    className?: string;
+    isOpen: boolean
+    onClose: () => void
+    children: React.ReactNode
+    className?: string
 }
 
 export const Dropdown: React.FC<DropdownProps> =
@@ -17,33 +18,35 @@ export const Dropdown: React.FC<DropdownProps> =
          children,
          className = "",
      }) => {
-        const dropdownRef = useRef<HTMLDivElement>(null);
+        const dropdownRef = useRef<HTMLDivElement>(null)
 
         useEffect(() => {
             const handleClickOutside = (event: MouseEvent) => {
-                if (
-                    dropdownRef.current &&
+                if (dropdownRef.current &&
                     !dropdownRef.current.contains(event.target as Node) &&
                     !(event.target as HTMLElement).closest('.dropdown-toggle')
                 ) {
-                    onClose();
+                    onClose()
                 }
-            };
+            }
 
-            document.addEventListener("mousedown", handleClickOutside);
+            document.addEventListener("mousedown", handleClickOutside)
             return () => {
-                document.removeEventListener("mousedown", handleClickOutside);
-            };
-        }, [onClose]);
+                document.removeEventListener("mousedown", handleClickOutside)
+            }
+        }, [onClose])
 
 
-        if (!isOpen) return null;
+        if (!isOpen) {
+            return null
+        }
 
-        return (
-            <div
+        return (<div
                 ref={dropdownRef}
-                className={`absolute z-40  right-0 mt-2  rounded-xl border border-gray-200 bg-white  shadow-theme-lg dark:border-gray-800 dark:bg-gray-dark ${className}`}
-            >
+                className={cn(
+                    'absolute z-40 mt-2 rounded-lg border border-gray-200',
+                    'bg-white shadow-md dark:border-gray-800 dark:bg-gray-dark',
+                    className)}>
                 {children}
             </div>
         );

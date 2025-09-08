@@ -374,7 +374,9 @@
     @apply fill-blue-200
 }
 
-
+.tabs-style {
+    @apply flex items-center gap-1.5 py-3
+}
 
 .loader {
     width: 48px;
@@ -387,6 +389,7 @@
     box-sizing: border-box;
     animation: rotation 1s linear infinite;
 }
+
 .loader::after {
     content: '';
     box-sizing: border-box;
