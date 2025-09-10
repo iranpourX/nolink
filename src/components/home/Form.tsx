@@ -23,6 +23,7 @@ import Btn from "@/components/ui/button/Btn"
 import {ShortedLink} from "@/components/home/ShortedLink"
 import Image from "next/image"
 import ErrorMessage from "@/components/ui/error/ErrorMessage"
+import {IconClipboard, IconX} from "@tabler/icons-react";
 
 export default function Form() {
     const {loading, sendLink, open, close} = useLink()
@@ -95,75 +96,30 @@ export default function Form() {
                             'md:justify-center items-center md:right-2 md:top-1/2 md:-translate-y-1/2 md:-tracking-[0.2px]'
                         )}>
 
-                        {
-                            !!watch('url')
-                                ? (<Btn
-                                    onClick={cleanIcon}
-                                    size={'sm'}
-                                    className={cn(
-                                        `md:bg-transparent bg-gray-100 shadow-none w-full md:w-auto`
-                                    )}>
-                                    <svg
-                                        className="size-5 fill-gray-400 dark:fill-gray-200"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        viewBox="0 0 384 512">
-                                        <path
-                                            d="M7.5 105c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l151 151 151-151c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-151 151 151 151c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-151-151-151 151c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l151-151-151-151z"/>
-                                    </svg>
-                                    <span className={'md:hidden text-gray-600 text-base'}>clear</span>
-                                </Btn>)
-                                : (<Btn
-                                    onClick={pasteIcon}
-                                    size={'sm'}
-                                    className={cn(
-                                        `md:bg-transparent bg-gray-100 shadow-none w-full md:w-auto`
-                                    )}>
-                                    <svg
-                                        className="size-5 md:size-6 fill-gray-400 dark:fill-gray-200"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        viewBox="0 0 384 512">
-                                        <path
-                                            d="M248 80L136 80c-13.3 0-24-10.7-24-24s10.7-24 24-24l112 0c13.3 0 24 10.7 24 24s-10.7 24-24 24zm0 32c28.2 0 51.6-20.9 55.4-48L320 64c17.7 0 32 14.3 32 32l0 352c0 17.7-14.3 32-32 32L64 480c-17.7 0-32-14.3-32-32L32 96c0-17.7 14.3-32 32-32l16.6 0c3.9 27.1 27.2 48 55.4 48l112 0zm50.6-80c-9-18.9-28.3-32-50.6-32L136 0C113.7 0 94.4 13.1 85.4 32L64 32C28.7 32 0 60.7 0 96L0 448c0 35.3 28.7 64 64 64l256 0c35.3 0 64-28.7 64-64l0-352c0-35.3-28.7-64-64-64l-21.4 0z"/>
-                                    </svg>
-                                    <span className={'md:hidden text-gray-600 text-base'}>paste</span>
-                                </Btn>)
-                        }
+                        <Btn
+                            size={'sm'}
+                            className={'md:bg-transparent bg-gray-100 px-2 shadow-none w-full md:w-auto'}
+                            onClick={!!watch('url') ? cleanIcon : pasteIcon}>
+                            {
+                                !!watch('url')
+                                    ? (<>
+                                        <IconX className={'text-gray-400 dark:text-gray-200'}/>
+                                        <span className={'md:hidden text-gray-600 text-base'}>clear</span>
+                                    </>)
+                                    : (<>
+                                        <IconClipboard className={'text-gray-400 dark:text-gray-200'}/>
+                                        <span className={'md:hidden text-gray-600 text-base'}>paste</span>
+                                    </>)
+                            }
+                        </Btn>
 
-                        {
-                            !!user
-                                ? (<button
-                                    type={'submit'}
-                                    disabled={loading}
-                                    className={cn(
-                                        'flex items-center rounded-lg border justify-center',
-                                        'border-blue-600 bg-blue-600 w-full px-4 py-2',
-                                        'text-white text-base font-semibold disabled:bg-blue-300 disabled:border-blue-300',
-                                        'dark:border-gray-800 dark:bg-white/[0.03] dark:text-gray-400'
-                                    )}>
-                                    {loading
-                                        ? (<svg
-                                            className={`size-6 fill-white animate-spin`}
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            viewBox="0 0 512 512">
-                                            <path
-                                                d="M457 372c11.5 6.6 26.3 2.7 31.8-9.3C503.7 330.2 512 294.1 512 256C512 122.7 410.1 13.2 280 1.1C266.8-.1 256 10.7 256 24s10.8 23.9 24 25.4C383.5 61.2 464 149.2 464 256c0 29.3-6.1 57.3-17 82.6c-5.3 12.2-1.5 26.8 10 33.5z"/>
-                                        </svg>)
-                                        : (<span>short it</span>)
-                                    }
-                                </button>)
-                                : (<button
-                                    onClick={() => setShowLoginPopup(true)}
-                                    type={'button'}
-                                    className={cn(
-                                        'flex items-center rounded-lg border justify-center',
-                                        'border-blue-600 bg-blue-600 w-full px-4 py-2',
-                                        'text-white text-base font-semibold',
-                                        'dark:border-gray-800 dark:bg-white/[0.03] dark:text-gray-400'
-                                    )}>
-                                    <span>short it</span>
-                                </button>)
-                        }
-
+                        <Btn
+                            inType={!!user ? 'submit' : 'button'}
+                            loading={loading}
+                            className={'text-base border border-blue-600 py-2 font-semibold'}
+                            onClick={!!user ? () => null : () => setShowLoginPopup(true)}>
+                            short it
+                        </Btn>
                     </div>
                 </div>
                 <ErrorMessage error={errors.url}/>
