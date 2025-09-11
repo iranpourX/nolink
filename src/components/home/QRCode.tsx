@@ -23,6 +23,7 @@ export const QRCode = () => {
             if (!qrRef.current) {
                 qrRef.current = new QRCodeStyling(QROptions)
             }
+            // @ts-ignore
             qrRef.current.append(ref.current)
         }
 

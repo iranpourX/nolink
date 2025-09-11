@@ -35,12 +35,12 @@ type DropdownItemProps = {
     onClick?: () => void
     onItemClick?: () => void
     className?: string
-    children: React.ReactNode
+    children: ReactNode
 }
 
 type NavItem = {
     name: string
-    icon: React.ReactNode
+    icon: ReactNode
     path?: string
     subItems?: {
         name: string
@@ -68,23 +68,6 @@ type ShortedLink = {
     delete_url: string
 } | null
 
-declare module "qr-code-styling" {
-    import {Options} from "qr-code-styling"
-    export type QrExtension = "png" | "jpeg" | "webp" | "svg"
-
-    export default class QRCodeStyling {
-        constructor(options?: Options)
-
-        append(element: HTMLDivElement | null): void
-
-        update(options?: Options): void
-
-        download(downloadOptions?: { name?: string; extension?: QrExtension }): void
-
-        getRawData?(extension?: QrExtension): Promise<Blob>
-    }
-}
-
 type OtpContextType = {
     phone: string | null
     loading: boolean
@@ -104,7 +87,6 @@ type LinkContextType = {
     sendLink: (value: CreateLink) => Promise<void>
     open: boolean,
     close: () => void
-    QROptions: object
-    setQROptions: (QROptions: object) => void
+    QROptions: Options
+    setQROptions: (options: Options) => void
 }
-

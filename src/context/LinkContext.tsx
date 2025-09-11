@@ -44,7 +44,7 @@ export function LinkProvider({children}: { children: ReactNode }) {
                 setShortedData(json)
                 setQROptions(op => ({
                     ...op,
-                    data: json.short_url,
+                    data: json.short_url
                 }))
                 setOpen(true)
             }
