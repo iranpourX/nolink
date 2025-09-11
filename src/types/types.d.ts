@@ -104,5 +104,7 @@ type LinkContextType = {
     sendLink: (value: CreateLink) => Promise<void>
     open: boolean,
     close: () => void
+    QROptions: object
+    setQROptions: (QROptions: object) => void
 }
 

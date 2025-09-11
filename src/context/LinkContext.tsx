@@ -6,9 +6,28 @@ import {toast} from "sonner"
 const LinkContext = createContext<LinkContextType | undefined>(undefined)
 
 export function LinkProvider({children}: { children: ReactNode }) {
-    const [shortedData, setShortedData] = useState<ShortedLink>(null)
+    const [shortedData, setShortedData] = useState<ShortedLink | null>(null)
     const [loading, setLoading] = useState<boolean>(false)
     const [open, setOpen] = useState<boolean>(false)
+    const [QROptions, setQROptions] = useState({
+        width: 240,
+        height: 240,
+        type: 'canvas',
+        data: null,
+        margin: 10,
+        qrOptions: {
+            typeNumber: 0,
+            mode: 'Byte',
+            errorCorrectionLevel: 'Q'
+        },
+        imageOptions: {
+            hideBackgroundDots: true,
+            imageSize: 0.4,
+            margin: 20,
+            crossOrigin: 'anonymous',
+            saveAsBlob: true,
+        }
+    })
 
     const sendLink = async (value: CreateLink) => {
         setLoading(true)
@@ -23,6 +42,10 @@ export function LinkProvider({children}: { children: ReactNode }) {
             const json = await res.json()
             if (res.ok) {
                 setShortedData(json)
+                setQROptions(op => ({
+                    ...op,
+                    data: json.short_url,
+                }))
                 setOpen(true)
             }
         } catch (err: unknown) {
@@ -42,7 +65,9 @@ export function LinkProvider({children}: { children: ReactNode }) {
             shortedData,
             sendLink,
             open,
-            close
+            close,
+            QROptions,
+            setQROptions
         }}>
         {children}
     </LinkContext.Provider>)

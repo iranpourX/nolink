@@ -375,7 +375,11 @@
 }
 
 .tabs-style {
-    @apply flex items-center gap-1.5 py-3
+    @apply flex items-center gap-1 py-3
+}
+
+.tabler-icon {
+    stroke-width: 1.5
 }
 
 .loader {

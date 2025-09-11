@@ -23,7 +23,16 @@ import Btn from "@/components/ui/button/Btn"
 import {ShortedLink} from "@/components/home/ShortedLink"
 import Image from "next/image"
 import ErrorMessage from "@/components/ui/error/ErrorMessage"
-import {IconClipboard, IconX} from "@tabler/icons-react";
+import {
+    IconClipboard,
+    IconX,
+    IconLink,
+    IconQrcode,
+    IconKey,
+    IconRoadSign,
+    IconClockHour9
+} from "@tabler/icons-react"
+import {QRCode} from "@/components/home/QRCode"
 
 export default function Form() {
     const {loading, sendLink, open, close} = useLink()
@@ -67,7 +76,6 @@ export default function Form() {
     const cleanIcon = () => {
         setValue('url', '')
     }
-
 
     return (
         <>
@@ -153,11 +161,7 @@ export default function Form() {
                                 <button
                                     onClick={close}
                                     className="border border-transparent p-1">
-                                    <svg className="size-5 fill-gray-600" xmlns="http://www.w3.org/2000/svg"
-                                         viewBox="0 0 384 512">
-                                        <path
-                                            d="M345 137c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-119 119L73 103c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l119 119L39 375c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l119-119L311 409c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-119-119L345 137z"/>
-                                    </svg>
+                                    <IconX className={'text-gray-600'}/>
                                 </button>
                             </DialogTitle>
 
@@ -166,51 +170,33 @@ export default function Form() {
                                     className={'border-b px-4 mt-3 flex justify-start items-center text-xs gap-4 text-gray-700 overflow-x-auto'}>
                                     <Tab
                                         className="tabs-style border-b-2 border-transparent data-selected:border-b-blue-500 data-selected:text-blue-600">
-                                        <svg
-                                            className={'size-3.5 fill-gray-700 data-selected:fill-blue-600'}
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            viewBox="0 0 576 512">
-                                            <path
-                                                d="M0 256C0 150 86 64 192 64l48 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-48 0C103.6 96 32 167.6 32 256s71.6 160 160 160l48 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-48 0C86 448 0 362 0 256zm160 0c0-8.8 7.2-16 16-16l224 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-224 0c-8.8 0-16-7.2-16-16zM384 64c106 0 192 86 192 192S490 448 384 448l-48 0c-8.8 0-16-7.2-16-16s7.2-16 16-16l48 0c88.4 0 160-71.6 160-160S472.4 96 384 96l-48 0c-8.8 0-16-7.2-16-16s7.2-16 16-16l48 0z"/>
-                                        </svg>
-                                        General
+                                        <IconLink size={16}
+                                                  className={'text-gray-700 rotate-45 data-selected:text-blue-600'}/>
+                                        Link
                                     </Tab>
                                     <Tab
                                         className="tabs-style border-b-2 border-transparent data-selected:border-b-blue-500 data-selected:text-blue-600">
-                                        <svg
-                                            className={'size-3.5 fill-gray-700 data-selected:fill-blue-600'}
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            viewBox="0 0 448 512">
-                                            <path
-                                                d="M144 64c8.8 0 16 7.2 16 16l0 96c0 8.8-7.2 16-16 16l-96 0c-8.8 0-16-7.2-16-16l0-96c0-8.8 7.2-16 16-16l96 0zM48 32C21.5 32 0 53.5 0 80l0 96c0 26.5 21.5 48 48 48l96 0c26.5 0 48-21.5 48-48l0-96c0-26.5-21.5-48-48-48L48 32zM160 336l0 96c0 8.8-7.2 16-16 16l-96 0c-8.8 0-16-7.2-16-16l0-96c0-8.8 7.2-16 16-16l96 0c8.8 0 16 7.2 16 16zM48 288c-26.5 0-48 21.5-48 48l0 96c0 26.5 21.5 48 48 48l96 0c26.5 0 48-21.5 48-48l0-96c0-26.5-21.5-48-48-48l-96 0zM304 64l96 0c8.8 0 16 7.2 16 16l0 96c0 8.8-7.2 16-16 16l-96 0c-8.8 0-16-7.2-16-16l0-96c0-8.8 7.2-16 16-16zM256 80l0 96c0 26.5 21.5 48 48 48l96 0c26.5 0 48-21.5 48-48l0-96c0-26.5-21.5-48-48-48l-96 0c-26.5 0-48 21.5-48 48zm8 240a24 24 0 1 0 48 0 24 24 0 1 0 -48 0zm0 128a24 24 0 1 0 48 0 24 24 0 1 0 -48 0zm152-24a24 24 0 1 0 0 48 24 24 0 1 0 0-48zM392 320a24 24 0 1 0 48 0 24 24 0 1 0 -48 0zm-40 40a24 24 0 1 0 0 48 24 24 0 1 0 0-48zM96 104a24 24 0 1 0 0 48 24 24 0 1 0 0-48zM72 384a24 24 0 1 0 48 0 24 24 0 1 0 -48 0zM352 104a24 24 0 1 0 0 48 24 24 0 1 0 0-48z"/>
-                                        </svg>
+                                        <IconQrcode size={16} className={'text-gray-700 data-selected:text-blue-600'}/>
                                         QRcode
                                     </Tab>
                                     <Tab
                                         className="tabs-style border-b-2 border-transparent data-selected:border-b-blue-500 data-selected:text-blue-600">
-                                        <svg
-                                            className={'size-3.5 fill-gray-700 data-selected:fill-blue-600'}
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            viewBox="0 0 512 512">
-                                            <path
-                                                d="M192 176c0-79.5 64.5-144 144-144s144 64.5 144 144-64.5 144-144 144c-11.1 0-22-1.3-32.4-3.6-5.4-1.2-11 .4-14.9 4.3L257.4 352 208 352c-8.8 0-16 7.2-16 16l0 48-48 0c-8.8 0-16 7.2-16 16l0 48-96 0 0-81.4 162.8-162.8c4.2-4.2 5.7-10.5 3.9-16.2-4.4-13.8-6.7-28.4-6.7-43.7zM336 0c-97.2 0-176 78.8-176 176 0 15.1 1.9 29.8 5.5 43.9L4.7 380.7c-3 3-4.7 7.1-4.7 11.3L0 496c0 8.8 7.2 16 16 16l128 0c8.8 0 16-7.2 16-16l0-48 48 0c8.8 0 16-7.2 16-16l0-48 40 0c4.2 0 8.3-1.7 11.3-4.7l30-30c10 1.8 20.2 2.7 30.7 2.7 97.2 0 176-78.8 176-176S433.2 0 336 0zm32 168a24 24 0 1 0 0-48 24 24 0 1 0 0 48z"/>
-                                        </svg>
+                                        <IconKey size={16} className={'text-gray-700 data-selected:text-blue-600'}/>
                                         Password
                                     </Tab>
 
                                     <Tab
                                         className={`tabs-style border-b-2 border-transparent data-selected:border-b-blue-500 data-selected:text-blue-600`}>
-                                        <svg
-                                            className={'size-3.5 fill-gray-700 data-selected:fill-blue-600'}
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            viewBox="0 0 512 512">
-                                            <path fill="currentColor"
-                                                  d="M480 256a224 224 0 1 0 -448 0 224 224 0 1 0 448 0zM0 256a256 256 0 1 1 512 0 256 256 0 1 1 -512 0zM272 112l0 144c0 8.8-7.2 16-16 16l-112 0c-8.8 0-16-7.2-16-16s7.2-16 16-16l96 0 0-128c0-8.8 7.2-16 16-16s16 7.2 16 16z"/>
-                                        </svg>
+                                        <IconClockHour9 size={16}
+                                                        className={'text-gray-700 data-selected:text-blue-600'}/>
                                         Expiration
                                     </Tab>
                                     <Tab
-                                        className={`tabs-style data-selected:border-b-blue-500 data-selected:text-blue-600`}>Preview</Tab>
+                                        className={`tabs-style border-b-2 border-transparent data-selected:border-b-blue-500 data-selected:text-blue-600`}>
+                                        <IconRoadSign size={16}
+                                                            className={'text-gray-700 data-selected:text-blue-600'}/>
+                                        Preview
+                                    </Tab>
                                 </TabList>
 
                                 <TabPanels>
@@ -235,7 +221,7 @@ export default function Form() {
                                             enterFrom="translate-y-1 opacity-0"
                                             enterTo="translate-y-0 opacity-100">
 
-                                            <ShortedLink/>
+                                            <QRCode/>
 
                                         </Transition>
                                     </TabPanel>
@@ -246,7 +232,7 @@ export default function Form() {
                             </TabGroup>
 
                             <div className="mt-4 bg-gray-50 border-t rounded-b-lg p-4 flex items-center justify-end">
-                                <Btn>
+                                <Btn className={'w-full'}>
                                     Copy Shortened link
                                 </Btn>
                             </div>
