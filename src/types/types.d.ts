@@ -88,5 +88,4 @@ type LinkContextType = {
     open: boolean,
     close: () => void
     QROptions: Options
-    setQROptions: (options: Options) => void
 }

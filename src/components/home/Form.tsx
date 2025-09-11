@@ -30,7 +30,7 @@ import {
     IconQrcode,
     IconKey,
     IconRoadSign,
-    IconClockHour9
+    IconClockHour9, IconCopy
 } from "@tabler/icons-react"
 import {QRCode} from "@/components/home/QRCode"
 
@@ -144,7 +144,7 @@ export default function Form() {
                             className="w-full max-w-xl relative shadow border rounded-lg bg-white backdrop-blur-2xl duration-200 ease-out data-closed:transform-[scale(98%)] data-closed:opacity-0">
                             <DialogTitle
                                 as="span"
-                                className="text-base flex items-center justify-between px-4 py-2 font-semibold text-gray-800">
+                                className="text-base flex items-center justify-between px-4 pt-4 font-semibold text-gray-800">
                                 <div id="element" className="flex items-center gap-3">
                                     <Image
                                         width={64}
@@ -233,6 +233,7 @@ export default function Form() {
 
                             <div className="mt-4 bg-gray-50 border-t rounded-b-lg p-4 flex items-center justify-end">
                                 <Btn className={'w-full'}>
+                                    <IconCopy size={18} className={'text-gray-50'} />
                                     Copy Shortened link
                                 </Btn>
                             </div>

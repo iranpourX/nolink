@@ -14,3 +14,11 @@ export const getPathName = (url?: string): string | undefined => {
         return pathname.pathname.slice(1)
     }
 }
+
+export const debounce = <T extends (...args: any[]) => void>(fn: T, delay: number) => {
+    let timer: NodeJS.Timeout
+    return (...args: Parameters<T>) => {
+        clearTimeout(timer)
+        timer = setTimeout(() => fn(...args), delay)
+    };
+}

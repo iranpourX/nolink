@@ -14,16 +14,26 @@ export function LinkProvider({children}: { children: ReactNode }) {
         height: 240,
         type: 'canvas',
         data: null,
-        margin: 10,
+        margin: 0,
+        dotsOptions: {
+            type: "square"
+        },
+        cornersSquareOptions: {
+            type: ""
+        },
+        cornersDotOptions: {
+            type: "dot",
+        },
         qrOptions: {
             typeNumber: 0,
             mode: 'Byte',
             errorCorrectionLevel: 'Q'
         },
+        image: '/images/plugin.svg',
         imageOptions: {
             hideBackgroundDots: true,
-            imageSize: 0.4,
-            margin: 20,
+            imageSize: 0.5,
+            margin: 1,
             crossOrigin: 'anonymous',
             saveAsBlob: true,
         }
@@ -66,8 +76,7 @@ export function LinkProvider({children}: { children: ReactNode }) {
             sendLink,
             open,
             close,
-            QROptions,
-            setQROptions
+            QROptions
         }}>
         {children}
     </LinkContext.Provider>)
